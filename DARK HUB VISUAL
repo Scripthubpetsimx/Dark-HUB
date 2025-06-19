@@ -1,9 +1,3 @@
-loadstring([[
-    -- First script
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20(MAIN)"))()
 
-    wait(10)
-
-    -- Second script
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTI%20BAN"))()
-]])()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTI%20BAN"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20(MAIN)"))()
