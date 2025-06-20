@@ -1,18 +1,18 @@
--- Mobile GUI with auto-execution & persistence
+
 local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local player = Players.LocalPlayer
 
--- GUI Setup
+
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ScriptHubMobile"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
--- Main Frame (Stylish Glass Effect)
+
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Size = UDim2.new(0.8, 0, 0.5, 0)
@@ -23,7 +23,6 @@ MainFrame.BorderSizePixel = 0
 MainFrame.ClipsDescendants = true
 MainFrame.Parent = ScreenGui
 
--- UI Effects
 local UICorner = Instance.new("UICorner")
 UICorner.CornerRadius = UDim.new(0.05, 0)
 UICorner.Parent = MainFrame
@@ -33,7 +32,7 @@ UIStroke.Color = Color3.fromRGB(100, 150, 255)
 UIStroke.Thickness = 2
 UIStroke.Parent = MainFrame
 
--- Title Bar
+
 local TitleBar = Instance.new("Frame")
 TitleBar.Name = "TitleBar"
 TitleBar.Size = UDim2.new(1, 0, 0.12, 0)
@@ -52,7 +51,6 @@ Title.TextColor3 = Color3.fromRGB(220, 220, 255)
 Title.TextSize = 22
 Title.Parent = TitleBar
 
--- Close Button (Minimize)
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
 CloseButton.Size = UDim2.new(0.1, 0, 0.8, 0)
@@ -69,7 +67,6 @@ local CloseCorner = Instance.new("UICorner")
 CloseCorner.CornerRadius = UDim.new(0.2, 0)
 CloseCorner.Parent = CloseButton
 
--- Button Container
 local ButtonContainer = Instance.new("Frame")
 ButtonContainer.Name = "ButtonContainer"
 ButtonContainer.Size = UDim2.new(0.9, 0, 0.75, 0)
@@ -81,7 +78,7 @@ local UIListLayout = Instance.new("UIListLayout")
 UIListLayout.Padding = UDim.new(0.05, 0)
 UIListLayout.Parent = ButtonContainer
 
--- Create Animated Button Function
+
 local function CreateButton(name, color)
     local Button = Instance.new("TextButton")
     Button.Name = name
@@ -98,7 +95,7 @@ local function CreateButton(name, color)
     ButtonCorner.CornerRadius = UDim.new(0.2, 0)
     ButtonCorner.Parent = Button
     
-    -- Hover Effect
+    
     Button.MouseEnter:Connect(function()
         TweenService:Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = color:lerp(Color3.new(1,1,1), 0.2)}):Play()
     end)
@@ -119,11 +116,11 @@ local function CreateButton(name, color)
     return Button
 end
 
--- Garden Spawner Button (2nd Script)
+
 local SpawnerButton = CreateButton("GARDEN SPAWNER", Color3.fromRGB(80, 180, 120))
 SpawnerButton.Parent = ButtonContainer
 
--- Minimize/Restore GUI
+
 local guiEnabled = true
 CloseButton.MouseButton1Click:Connect(function()
     guiEnabled = not guiEnabled
@@ -134,7 +131,7 @@ CloseButton.MouseButton1Click:Connect(function()
     end
 end)
 
--- Draggable GUI
+
 local dragging, dragInput, dragStart, startPos
 TitleBar.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -173,9 +170,9 @@ local function ExecuteDarkHUB()
     end
 end
 
-ExecuteDarkHUB() -- Auto-run on startup
+ExecuteDarkHUB()
 
--- Execute 2nd Script (Garden Spawner) via Button + Persistence
+
 local function ExecuteGardenSpawner()
     local success, err = pcall(function()
         local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/ataturk123/GardenSpawner/main/Spawner.lua", true))()
@@ -184,20 +181,19 @@ local function ExecuteGardenSpawner()
     if not success then
         warn("[Garden Spawner] Failed to load:", err)
     else
-        -- Mark as executed for server hop persistence
+       
         TeleportService:SetTeleportData({GardenSpawnerLoaded = true})
     end
 end
 
 SpawnerButton.MouseButton1Click:Connect(ExecuteGardenSpawner)
 
--- Re-execute Garden Spawner after server hop
+
 local teleportData = TeleportService:GetLocalPlayerTeleportData()
 if teleportData and teleportData.GardenSpawnerLoaded then
     ExecuteGardenSpawner()
 end
 
--- Initial GUI Animation
 MainFrame.Size = UDim2.new(0, 0, 0, 0)
 MainFrame.Visible = true
 TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {Size = UDim2.new(0.8, 0, 0.5, 0)}):Play()
