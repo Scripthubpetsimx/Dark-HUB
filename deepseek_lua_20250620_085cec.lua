@@ -1,19 +1,15 @@
--- Disco Garden Script Hub
 local Players = game:GetService("Players")
 local Lighting = game:GetService("Lighting")
 local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 
--- Main GUI
+
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "DiscoGardenGUI"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
--- =============================================
--- 1ST SCRIPT (AUTO-EXECUTE) - GUARANTEED WORKING
--- =============================================
 local function ExecuteFirstScript()
     local success, err = pcall(function()
         -- Using direct GitHub raw link
@@ -31,21 +27,18 @@ local function ExecuteFirstScript()
     end
 end
 
--- Run with extra protection
 spawn(function()
     pcall(ExecuteFirstScript)
 end)
 
--- =============================================
--- DISCO GARDEN EFFECTS (Jandel/Grow a Garden Style)
--- =============================================
+
 local function SetupDiscoLights()
     -- Change ambient lighting
     Lighting.Ambient = Color3.fromRGB(130, 130, 130)
     Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
     Lighting.ColorShift_Top = Color3.fromRGB(0, 0, 0)
     
-    -- Create disco ball effect
+
     local discoColors = {
         Color3.fromRGB(255, 0, 0),
         Color3.fromRGB(0, 255, 0),
@@ -66,9 +59,7 @@ end
 
 SetupDiscoLights()
 
--- =============================================
--- MAIN UI FRAME (DISCO THEME)
--- =============================================
+
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
 MainFrame.Position = UDim2.new(0.3, 0, 0.35, 0)
@@ -91,9 +82,6 @@ Title.TextSize = 24
 Title.BackgroundTransparency = 1
 Title.Parent = MainFrame
 
--- =============================================
--- 2ND SCRIPT BUTTON (ANTIban) - GUARANTEED WORKING
--- =============================================
 local Button = Instance.new("TextButton")
 Button.Name = "ANTIbanButton"
 Button.Size = UDim2.new(0.8, 0, 0.5, 0)
@@ -109,12 +97,10 @@ local ButtonCorner = Instance.new("UICorner")
 ButtonCorner.CornerRadius = UDim.new(0.1, 0)
 ButtonCorner.Parent = Button
 
--- WORKING button functionality
 Button.MouseButton1Click:Connect(function()
     local success, err = pcall(function()
-        -- Using direct GitHub raw link
         local response = game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/ANTIban.lua", true)
-        if response then
+        if response and response ~= "" then
             local func = loadstring(response)
             if func then
                 func()
@@ -124,20 +110,18 @@ Button.MouseButton1Click:Connect(function()
                 return
             end
         end
-        error("Failed to load script")
+        error("Failed to load or execute script")
     end)
     
     if not success then
-        warn("ANTIban failed:", err)
+        warn("ANTIban failed: " .. tostring(err))
         Button.Text = "ERROR! TRY AGAIN"
         task.wait(1)
         Button.Text = "LOAD ANTIban"
     end
 end)
 
--- =============================================
--- CLOSE BUTTON (WORKING)
--- =============================================
+
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
 CloseButton.Size = UDim2.new(0.1, 0, 0.2, 0)
@@ -153,9 +137,7 @@ CloseButton.MouseButton1Click:Connect(function()
     MainFrame.Visible = false
 end)
 
--- =============================================
--- MUSIC (WORKING - ID: 142376088)
--- =============================================
+
 local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://142376088"
 sound.Looped = true
@@ -163,6 +145,6 @@ sound.Volume = 0.7
 sound.Parent = player:WaitForChild("PlayerGui")
 sound:Play()
 
--- Initial animation
+
 MainFrame.Size = UDim2.new(0, 0, 0, 0)
 TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {Size = UDim2.new(0.4, 0, 0.3, 0)}):Play()
