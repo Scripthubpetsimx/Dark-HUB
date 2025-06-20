@@ -1,4 +1,4 @@
--- Disco Garden Script Hub
+-- Disco Garden Script Hub with Popups and ESP
 local Players = game:GetService("Players")
 local Lighting = game:GetService("Lighting")
 local TweenService = game:GetService("TweenService")
@@ -54,8 +54,8 @@ SetupDiscoLights()
 
 -- ========== MAIN UI FRAME ==========
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
-MainFrame.Position = UDim2.new(0.3, 0, 0.35, 0)
+MainFrame.Size = UDim2.new(0.4, 0, 0.4, 0) -- Increased height for new button
+MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
 MainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
 MainFrame.BackgroundTransparency = 0.2
 MainFrame.BorderSizePixel = 0
@@ -67,7 +67,7 @@ UICorner.CornerRadius = UDim.new(0.1, 0)
 UICorner.Parent = MainFrame
 
 local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1, 0, 0.2, 0)
+Title.Size = UDim2.new(1, 0, 0.15, 0)
 Title.Text = "DISCO GARDEN HUB"
 Title.Font = Enum.Font.GothamBold
 Title.TextColor3 = Color3.new(1, 1, 1)
@@ -75,47 +75,146 @@ Title.TextSize = 24
 Title.BackgroundTransparency = 1
 Title.Parent = MainFrame
 
--- ========== DARK HUB VISUAL BUTTON ==========
-local Button = Instance.new("TextButton")
-Button.Name = "VisualHubButton"
-Button.Size = UDim2.new(0.8, 0, 0.5, 0)
-Button.Position = UDim2.new(0.1, 0, 0.3, 0)
-Button.BackgroundColor3 = Color3.fromRGB(80, 180, 120)
-Button.Text = "LOAD VISUAL HUB"
-Button.Font = Enum.Font.GothamBold
-Button.TextColor3 = Color3.new(1, 1, 1)
-Button.TextSize = 18
-Button.Parent = MainFrame
+-- ========== BUTTON CONTAINER ==========
+local ButtonContainer = Instance.new("Frame")
+ButtonContainer.Size = UDim2.new(0.9, 0, 0.7, 0)
+ButtonContainer.Position = UDim2.new(0.05, 0, 0.2, 0)
+ButtonContainer.BackgroundTransparency = 1
+ButtonContainer.Parent = MainFrame
 
-local ButtonCorner = Instance.new("UICorner")
-ButtonCorner.CornerRadius = UDim.new(0.1, 0)
-ButtonCorner.Parent = Button
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.Padding = UDim.new(0.05, 0)
+UIListLayout.Parent = ButtonContainer
 
-Button.MouseButton1Click:Connect(function()
-    local success, err = pcall(function()
-        local func = loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/DARK%20HUB%20VISUAL"))()
-        if func then
-            Button.Text = "SUCCESS! 🌿"
+-- ========== CREATE POPUP FUNCTION ==========
+local function CreatePopup(message)
+    local PopupFrame = Instance.new("Frame")
+    PopupFrame.Size = UDim2.new(0.6, 0, 0.3, 0)
+    PopupFrame.Position = UDim2.new(0.2, 0, 0.35, 0)
+    PopupFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
+    PopupFrame.BorderSizePixel = 0
+    PopupFrame.Parent = ScreenGui
+    
+    local PopupCorner = Instance.new("UICorner")
+    PopupCorner.CornerRadius = UDim.new(0.1, 0)
+    PopupCorner.Parent = PopupFrame
+    
+    local Message = Instance.new("TextLabel")
+    Message.Size = UDim2.new(0.8, 0, 0.5, 0)
+    Message.Position = UDim2.new(0.1, 0, 0.1, 0)
+    Message.Text = message
+    Message.Font = Enum.Font.GothamBold
+    Message.TextColor3 = Color3.new(1, 1, 1)
+    Message.TextSize = 18
+    Message.BackgroundTransparency = 1
+    Message.Parent = PopupFrame
+    
+    local OKButton = Instance.new("TextButton")
+    OKButton.Size = UDim2.new(0.4, 0, 0.3, 0)
+    OKButton.Position = UDim2.new(0.3, 0, 0.6, 0)
+    OKButton.BackgroundColor3 = Color3.fromRGB(80, 180, 120)
+    OKButton.Text = "OK"
+    OKButton.Font = Enum.Font.GothamBold
+    OKButton.TextColor3 = Color3.new(1, 1, 1)
+    OKButton.TextSize = 18
+    OKButton.Parent = PopupFrame
+    
+    local OKCorner = Instance.new("UICorner")
+    OKCorner.CornerRadius = UDim.new(0.1, 0)
+    OKCorner.Parent = OKButton
+    
+    OKButton.MouseButton1Click:Connect(function()
+        PopupFrame:Destroy()
+    end)
+    
+    return PopupFrame
+end
+
+-- ========== VISUAL HUB BUTTON ==========
+local VisualHubButton = Instance.new("TextButton")
+VisualHubButton.Name = "VisualHubButton"
+VisualHubButton.Size = UDim2.new(1, 0, 0.3, 0)
+VisualHubButton.BackgroundColor3 = Color3.fromRGB(80, 180, 120)
+VisualHubButton.Text = "LOAD VISUAL HUB"
+VisualHubButton.Font = Enum.Font.GothamBold
+VisualHubButton.TextColor3 = Color3.new(1, 1, 1)
+VisualHubButton.TextSize = 18
+VisualHubButton.Parent = ButtonContainer
+
+local VisualHubCorner = Instance.new("UICorner")
+VisualHubCorner.CornerRadius = UDim.new(0.1, 0)
+VisualHubCorner.Parent = VisualHubButton
+
+VisualHubButton.MouseButton1Click:Connect(function()
+    local popup = CreatePopup("FIXING SCRIPT...")
+    
+    task.spawn(function()
+        local success, err = pcall(function()
+            local func = loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/DARK%20HUB%20VISUAL"))()
+            if func then
+                func()
+                VisualHubButton.Text = "SUCCESS! 🌿"
+                task.wait(2)
+                VisualHubButton.Text = "LOAD VISUAL HUB"
+            else
+                error("loadstring returned nil")
+            end
+        end)
+
+        if not success then
+            warn("VISUAL HUB failed: " .. tostring(err))
+            VisualHubButton.Text = "ERROR! TRY AGAIN"
             task.wait(2)
-            Button.Text = "LOAD VISUAL HUB"
-        else
-            error("loadstring returned nil")
+            VisualHubButton.Text = "LOAD VISUAL HUB"
         end
     end)
+end)
 
-    if not success then
-        warn("VISUAL HUB failed: " .. tostring(err))
-        Button.Text = "ERROR! TRY AGAIN"
-        task.wait(2)
-        Button.Text = "LOAD VISUAL HUB"
-    end
+-- ========== EGG ESP BUTTON ==========
+local EggESPButton = Instance.new("TextButton")
+EggESPButton.Name = "EggESPButton"
+EggESPButton.Size = UDim2.new(1, 0, 0.3, 0)
+EggESPButton.BackgroundColor3 = Color3.fromRGB(180, 80, 180)
+EggESPButton.Text = "LOAD EGG ESP"
+EggESPButton.Font = Enum.Font.GothamBold
+EggESPButton.TextColor3 = Color3.new(1, 1, 1)
+EggESPButton.TextSize = 18
+EggESPButton.Parent = ButtonContainer
+
+local EggESPCorner = Instance.new("UICorner")
+EggESPCorner.CornerRadius = UDim.new(0.1, 0)
+EggESPCorner.Parent = EggESPButton
+
+EggESPButton.MouseButton1Click:Connect(function()
+    local popup = CreatePopup("LOADING EGG ESP...")
+    
+    task.spawn(function()
+        local success, err = pcall(function()
+            local func = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+            if func then
+                func()
+                EggESPButton.Text = "SUCCESS! 🥚"
+                task.wait(2)
+                EggESPButton.Text = "LOAD EGG ESP"
+            else
+                error("loadstring returned nil")
+            end
+        end)
+
+        if not success then
+            warn("EGG ESP failed: " .. tostring(err))
+            EggESPButton.Text = "ERROR! TRY AGAIN"
+            task.wait(2)
+            EggESPButton.Text = "LOAD EGG ESP"
+        end
+    end)
 end)
 
 -- ========== CLOSE BUTTON ==========
 local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
-CloseButton.Size = UDim2.new(0.1, 0, 0.2, 0)
-CloseButton.Position = UDim2.new(0.85, 0, 0.05, 0)
+CloseButton.Size = UDim2.new(0.1, 0, 0.15, 0)
+CloseButton.Position = UDim2.new(0.85, 0, 0.02, 0)
 CloseButton.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
 CloseButton.Text = "X"
 CloseButton.Font = Enum.Font.GothamBold
@@ -138,5 +237,5 @@ sound:Play()
 -- Animate GUI on load
 MainFrame.Size = UDim2.new(0, 0, 0, 0)
 TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {
-    Size = UDim2.new(0.4, 0, 0.3, 0)
+    Size = UDim2.new(0.4, 0, 0.4, 0)
 }):Play()
