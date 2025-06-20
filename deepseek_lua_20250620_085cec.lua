@@ -30,7 +30,7 @@ end
 -- Run first script safely
 task.spawn(ExecuteFirstScript)
 
--- ========== DISCO LIGHT EFFECT ==========
+-- ========== SINGLE ROUND DISCO EFFECT ==========
 local function SetupDiscoLights()
     local discoColors = {
         Color3.fromRGB(255, 0, 0),
@@ -40,21 +40,23 @@ local function SetupDiscoLights()
         Color3.fromRGB(255, 0, 255)
     }
 
-    task.spawn(function()
-        while true do
-            local color = discoColors[math.random(1, #discoColors)]
-            Lighting.Ambient = color
-            Lighting.OutdoorAmbient = color
-            task.wait(0.5)
-        end
-    end)
+    -- Play through colors once without looping
+    for i = 1, #discoColors do
+        Lighting.Ambient = discoColors[i]
+        Lighting.OutdoorAmbient = discoColors[i]
+        task.wait(0.5)
+    end
+    
+    -- Return to normal lighting
+    Lighting.Ambient = Color3.fromRGB(127, 127, 127)
+    Lighting.OutdoorAmbient = Color3.fromRGB(127, 127, 127)
 end
 
 SetupDiscoLights()
 
 -- ========== MAIN UI FRAME ==========
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0.4, 0, 0.4, 0) -- Increased height for new button
+MainFrame.Size = UDim2.new(0.4, 0, 0.4, 0)
 MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
 MainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
 MainFrame.BackgroundTransparency = 0.2
@@ -87,10 +89,10 @@ UIListLayout.Padding = UDim.new(0.05, 0)
 UIListLayout.Parent = ButtonContainer
 
 -- ========== CREATE POPUP FUNCTION ==========
-local function CreatePopup(message)
+local function CreatePopup(message, isEggESP)
     local PopupFrame = Instance.new("Frame")
-    PopupFrame.Size = UDim2.new(0.6, 0, 0.3, 0)
-    PopupFrame.Position = UDim2.new(0.2, 0, 0.35, 0)
+    PopupFrame.Size = isEggESP and UDim2.new(0.7, 0, 0.4, 0) or UDim2.new(0.6, 0, 0.3, 0)
+    PopupFrame.Position = isEggESP and UDim2.new(0.15, 0, 0.3, 0) or UDim2.new(0.2, 0, 0.35, 0)
     PopupFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
     PopupFrame.BorderSizePixel = 0
     PopupFrame.Parent = ScreenGui
@@ -100,18 +102,19 @@ local function CreatePopup(message)
     PopupCorner.Parent = PopupFrame
     
     local Message = Instance.new("TextLabel")
-    Message.Size = UDim2.new(0.8, 0, 0.5, 0)
-    Message.Position = UDim2.new(0.1, 0, 0.1, 0)
+    Message.Size = UDim2.new(0.9, 0, isEggESP and 0.7 or 0.5, 0)
+    Message.Position = UDim2.new(0.05, 0, 0.05, 0)
     Message.Text = message
     Message.Font = Enum.Font.GothamBold
     Message.TextColor3 = Color3.new(1, 1, 1)
-    Message.TextSize = 18
+    Message.TextSize = isEggESP and 16 or 18
+    Message.TextWrapped = true
     Message.BackgroundTransparency = 1
     Message.Parent = PopupFrame
     
     local OKButton = Instance.new("TextButton")
-    OKButton.Size = UDim2.new(0.4, 0, 0.3, 0)
-    OKButton.Position = UDim2.new(0.3, 0, 0.6, 0)
+    OKButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+    OKButton.Position = UDim2.new(0.3, 0, isEggESP and 0.75 or 0.7, 0)
     OKButton.BackgroundColor3 = Color3.fromRGB(80, 180, 120)
     OKButton.Text = "OK"
     OKButton.Font = Enum.Font.GothamBold
@@ -146,7 +149,7 @@ VisualHubCorner.CornerRadius = UDim.new(0.1, 0)
 VisualHubCorner.Parent = VisualHubButton
 
 VisualHubButton.MouseButton1Click:Connect(function()
-    local popup = CreatePopup("FIXING SCRIPT...")
+    local popup = CreatePopup("FIXING SCRIPT...", false)
     
     task.spawn(function()
         local success, err = pcall(function()
@@ -186,7 +189,8 @@ EggESPCorner.CornerRadius = UDim.new(0.1, 0)
 EggESPCorner.Parent = EggESPButton
 
 EggESPButton.MouseButton1Click:Connect(function()
-    local popup = CreatePopup("LOADING EGG ESP...")
+    local warningMessage = "⚠️ YOUR EGG MUST BE READY TO HATCH ⚠️\n\nIF THE SERVER HOPS, MEANING IT TRIES TO FIND A LOWER (v1346 below)"
+    local popup = CreatePopup(warningMessage, true)
     
     task.spawn(function()
         local success, err = pcall(function()
