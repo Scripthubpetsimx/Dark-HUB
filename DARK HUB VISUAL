@@ -1,1 +1,2 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20MAIN"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua"))()
