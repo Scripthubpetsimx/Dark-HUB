@@ -1,23 +1,15 @@
--- Party GUI with ANTIban button & raining tacos
+-- Party GUI with ANTIban (Garden Spawner) button
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 
--- Main GUI (Semi-transparent)
+-- Main GUI (Visible, no transparency)
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "PartyGUI"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
-
--- Background (Subtle party effect)
-local Background = Instance.new("Frame")
-Background.Size = UDim2.new(1, 0, 1, 0)
-Background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Background.BackgroundTransparency = 0.8
-Background.BorderSizePixel = 0
-Background.Parent = ScreenGui
 
 -- Raining Tacos Animation
 local tacoImages = {
@@ -55,77 +47,81 @@ spawn(function()
     end
 end)
 
--- ANTIban Button (Glowing Party Style)
+-- Main Container (Solid background)
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
+MainFrame.Position = UDim2.new(0.3, 0, 0.35, 0)
+MainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+MainFrame.BorderSizePixel = 0
+MainFrame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0.1, 0)
+UICorner.Parent = MainFrame
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0.2, 0)
+Title.Text = "PARTY HUB 🎉"
+Title.Font = Enum.Font.GothamBold
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 24
+Title.BackgroundTransparency = 1
+Title.Parent = MainFrame
+
+-- ANTIban Button (Now loads Garden Spawner)
 local Button = Instance.new("TextButton")
-Button.Name = "ANTIbanButton"
-Button.Size = UDim2.new(0.3, 0, 0.1, 0)
-Button.Position = UDim2.new(0.35, 0, 0.8, 0)
-Button.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
-Button.BackgroundTransparency = 0.5
-Button.Text = "LOAD ANTIban"
+Button.Name = "GardenSpawnerButton"
+Button.Size = UDim2.new(0.8, 0, 0.5, 0)
+Button.Position = UDim2.new(0.1, 0, 0.3, 0)
+Button.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+Button.Text = "LOAD GARDEN SPAWNER"
 Button.Font = Enum.Font.GothamBold
 Button.TextColor3 = Color3.new(1, 1, 1)
 Button.TextSize = 18
-Button.BorderSizePixel = 0
-Button.Parent = ScreenGui
+Button.Parent = MainFrame
 
--- Button Effects
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0.3, 0)
-UICorner.Parent = Button
+local ButtonCorner = Instance.new("UICorner")
+ButtonCorner.CornerRadius = UDim.new(0.1, 0)
+ButtonCorner.Parent = Button
 
-local UIStroke = Instance.new("UIStroke")
-UIStroke.Color = Color3.fromRGB(255, 255, 0)
-UIStroke.Thickness = 2
-UIStroke.Parent = Button
-
--- Glow Animation
-spawn(function()
-    while true do
-        TweenService:Create(Button, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 
-            {BackgroundTransparency = 0.3}):Play()
-        wait(1)
-        TweenService:Create(Button, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 
-            {BackgroundTransparency = 0.7}):Play()
-        wait(1)
-    end
-end)
-
--- Click Effect
+-- Button Animation
 Button.MouseButton1Down:Connect(function()
-    Button.Size = UDim2.new(0.28, 0, 0.09, 0)
-    Button.Position = UDim2.new(0.36, 0, 0.805, 0)
+    TweenService:Create(Button, TweenInfo.new(0.1), {Size = UDim2.new(0.75, 0, 0.45, 0)}):Play()
 end)
 
 Button.MouseButton1Up:Connect(function()
-    Button.Size = UDim2.new(0.3, 0, 0.1, 0)
-    Button.Position = UDim2.new(0.35, 0, 0.8, 0)
+    TweenService:Create(Button, TweenInfo.new(0.3, {EasingStyle = Enum.EasingStyle.Elastic}), {Size = UDim2.new(0.8, 0, 0.5, 0)}):Play()
 end)
 
--- Load ANTIban Script
+-- Load Garden Spawner Script
 Button.MouseButton1Click:Connect(function()
     local success, err = pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/ANTIban.lua", true))()
+        local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/ataturk123/GardenSpawner/main/Spawner.lua", true))()
+        Spawner.Load()
     end)
     
     if success then
-        Button.Text = "LOADED!"
+        Button.Text = "LOADED! 🌱"
         task.wait(2)
-        Button.Text = "LOAD ANTIban"
+        Button.Text = "GARDEN SPAWNER"
     else
-        warn("ANTIban failed:", err)
-        Button.Text = "ERROR!"
+        warn("Garden Spawner failed:", err)
+        Button.Text = "ERROR! TRY AGAIN"
         task.wait(1)
-        Button.Text = "TRY AGAIN"
+        Button.Text = "GARDEN SPAWNER"
     end
 end)
 
--- Play "It's Raining Tacos" (Roblox Audio)
-spawn(function()
-    local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://138081500" -- It's Raining Tacos
-    sound.Looped = true
-    sound.Volume = 0.5
-    sound.Parent = player:WaitForChild("PlayerGui")
-    sound:Play()
-end)
+-- Play Correct Music (ID: 142376088)
+local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://142376088"
+sound.Looped = true
+sound.Volume = 0.7
+sound.Parent = ScreenGui
+sound:Play()
+
+-- Initial GUI Animation
+MainFrame.Size = UDim2.new(0, 0, 0, 0)
+MainFrame.Visible = true
+TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {Size = UDim2.new(0.4, 0, 0.3, 0)}):Play()
