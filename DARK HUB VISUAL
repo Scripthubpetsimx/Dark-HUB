@@ -7,4 +7,4 @@ Spawner.SpawnEgg("Night Egg") -- Spawns Night Egg
 Spawner.Spin("Sunflower") -- Spins Sunflower
 Spawner.Load() -- Loads the Default UI
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT(MAIN).lua))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT(MAIN)))()
