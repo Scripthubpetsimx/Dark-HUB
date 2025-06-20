@@ -1,4 +1,4 @@
--- Party GUI with working scripts
+-- Party GUI with working ANTIban script
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -77,7 +77,7 @@ UICorner.Parent = MainFrame
 
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0.2, 0)
-Title.Text = "PARTY HUB 🎉"
+Title.Text = "ANTIban PARTY 🎉"
 Title.Font = Enum.Font.GothamBold
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 24
@@ -85,14 +85,14 @@ Title.BackgroundTransparency = 1
 Title.Parent = MainFrame
 
 -- =============================================
--- 2ND SCRIPT BUTTON (GARDEN SPAWNER) - FIXED
+-- 2ND SCRIPT BUTTON (ANTIban) - UPDATED
 -- =============================================
 local Button = Instance.new("TextButton")
-Button.Name = "GardenSpawnerButton"
+Button.Name = "ANTIbanButton"
 Button.Size = UDim2.new(0.8, 0, 0.5, 0)
 Button.Position = UDim2.new(0.1, 0, 0.3, 0)
-Button.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-Button.Text = "LOAD GARDEN SPAWNER"
+Button.BackgroundColor3 = Color3.fromRGB(200, 80, 80) -- Red color for ANTIban
+Button.Text = "LOAD ANTIban"
 Button.Font = Enum.Font.GothamBold
 Button.TextColor3 = Color3.new(1, 1, 1)
 Button.TextSize = 18
@@ -111,27 +111,22 @@ Button.MouseButton1Up:Connect(function()
     TweenService:Create(Button, TweenInfo.new(0.3, {EasingStyle = Enum.EasingStyle.Elastic}), {Size = UDim2.new(0.8, 0, 0.5, 0)}):Play()
 end)
 
--- Fixed Garden Spawner load
+-- Updated ANTIban load
 Button.MouseButton1Click:Connect(function()
     local success, err = pcall(function()
-        -- Using new working URL
-        local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/ataturk123/GardenSpawner/main/Spawner.lua", true))()
-        if Spawner and Spawner.Load then
-            Spawner.Load()
-            return true
-        end
-        return false
+        -- Using your specified ANTIban URL
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/ANTIban.lua", true))()
     end)
     
     if success then
-        Button.Text = "SUCCESS! 🌱"
+        Button.Text = "ANTIban LOADED! 🔒"
         task.wait(2)
-        Button.Text = "GARDEN SPAWNER"
+        Button.Text = "LOAD ANTIban"
     else
-        warn("2nd Script Error:", err)
+        warn("ANTIban Error:", err)
         Button.Text = "ERROR! TRY AGAIN"
         task.wait(1)
-        Button.Text = "GARDEN SPAWNER"
+        Button.Text = "LOAD ANTIban"
     end
 end)
 
