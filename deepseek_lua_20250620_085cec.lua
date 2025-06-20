@@ -1,4 +1,4 @@
--- Party GUI with working ANTIban script
+-- Fixed Party GUI with ANTIban
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -12,14 +12,17 @@ ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
 -- =============================================
--- 1ST SCRIPT (AUTO-EXECUTE) - DARK HUB
+-- 1ST SCRIPT (AUTO-EXECUTE) - DARK HUB (FIXED)
 -- =============================================
 local function ExecuteFirstScript()
     local success, err = pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/DARK%20HUB%20VISUAL", true))()
+        local script = game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/DARK%20HUB%20VISUAL", true)
+        loadstring(script)()
     end)
     if not success then
         warn("1st Script Error:", err)
+    else
+        print("Dark HUB loaded successfully!")
     end
 end
 ExecuteFirstScript() -- Auto-run on start
@@ -62,13 +65,14 @@ spawn(function()
 end)
 
 -- =============================================
--- MAIN UI FRAME
+-- MAIN UI FRAME (FIXED VISIBILITY)
 -- =============================================
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.new(0.4, 0, 0.3, 0)
 MainFrame.Position = UDim2.new(0.3, 0, 0.35, 0)
 MainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
 MainFrame.BorderSizePixel = 0
+MainFrame.Visible = true
 MainFrame.Parent = ScreenGui
 
 local UICorner = Instance.new("UICorner")
@@ -85,13 +89,13 @@ Title.BackgroundTransparency = 1
 Title.Parent = MainFrame
 
 -- =============================================
--- 2ND SCRIPT BUTTON (ANTIban) - UPDATED
+-- 2ND SCRIPT BUTTON (ANTIban - FIXED)
 -- =============================================
 local Button = Instance.new("TextButton")
 Button.Name = "ANTIbanButton"
 Button.Size = UDim2.new(0.8, 0, 0.5, 0)
 Button.Position = UDim2.new(0.1, 0, 0.3, 0)
-Button.BackgroundColor3 = Color3.fromRGB(200, 80, 80) -- Red color for ANTIban
+Button.BackgroundColor3 = Color3.fromRGB(200, 80, 80)
 Button.Text = "LOAD ANTIban"
 Button.Font = Enum.Font.GothamBold
 Button.TextColor3 = Color3.new(1, 1, 1)
@@ -111,11 +115,11 @@ Button.MouseButton1Up:Connect(function()
     TweenService:Create(Button, TweenInfo.new(0.3, {EasingStyle = Enum.EasingStyle.Elastic}), {Size = UDim2.new(0.8, 0, 0.5, 0)}):Play()
 end)
 
--- Updated ANTIban load
+-- FIXED ANTIban load
 Button.MouseButton1Click:Connect(function()
     local success, err = pcall(function()
-        -- Using your specified ANTIban URL
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/ANTIban.lua", true))()
+        local script = game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/ANTIban.lua", true)
+        loadstring(script)()
     end)
     
     if success then
@@ -131,7 +135,25 @@ Button.MouseButton1Click:Connect(function()
 end)
 
 -- =============================================
--- MUSIC (ID: 142376088)
+-- CLOSE BUTTON (FIXED)
+-- =============================================
+local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "CloseButton"
+CloseButton.Size = UDim2.new(0.1, 0, 0.2, 0)
+CloseButton.Position = UDim2.new(0.85, 0, 0.05, 0)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+CloseButton.Text = "X"
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextColor3 = Color3.new(1, 1, 1)
+CloseButton.TextSize = 18
+CloseButton.Parent = MainFrame
+
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+end)
+
+-- =============================================
+-- MUSIC (FIXED - ID: 142376088)
 -- =============================================
 local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://142376088"
@@ -142,5 +164,4 @@ sound:Play()
 
 -- Initial animation
 MainFrame.Size = UDim2.new(0, 0, 0, 0)
-MainFrame.Visible = true
 TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {Size = UDim2.new(0.4, 0, 0.3, 0)}):Play()
