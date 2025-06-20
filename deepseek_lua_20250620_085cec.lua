@@ -1,203 +1,131 @@
--- Mobile GUI with auto-execution & persistence
+-- Party GUI with ANTIban button & raining tacos
 local Players = game:GetService("Players")
-local TeleportService = game:GetService("TeleportService")
 local TweenService = game:GetService("TweenService")
-local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 
--- GUI Setup
+-- Main GUI (Semi-transparent)
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "ScriptHubMobile"
+ScreenGui.Name = "PartyGUI"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
--- Main Frame (Stylish Glass Effect)
-local MainFrame = Instance.new("Frame")
-MainFrame.Name = "MainFrame"
-MainFrame.Size = UDim2.new(0.8, 0, 0.5, 0)
-MainFrame.Position = UDim2.new(0.1, 0, 0.25, 0)
-MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-MainFrame.BackgroundTransparency = 0.2
-MainFrame.BorderSizePixel = 0
-MainFrame.ClipsDescendants = true
-MainFrame.Parent = ScreenGui
+-- Background (Subtle party effect)
+local Background = Instance.new("Frame")
+Background.Size = UDim2.new(1, 0, 1, 0)
+Background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Background.BackgroundTransparency = 0.8
+Background.BorderSizePixel = 0
+Background.Parent = ScreenGui
 
--- UI Effects
+-- Raining Tacos Animation
+local tacoImages = {
+    "rbxassetid://1312944696", -- Taco image 1
+    "rbxassetid://1312944877", -- Taco image 2
+    "rbxassetid://1312945012"  -- Taco image 3
+}
+
+local function createTaco()
+    local taco = Instance.new("ImageLabel")
+    taco.Image = tacoImages[math.random(1, 3)]
+    taco.Size = UDim2.new(0, 50, 0, 50)
+    taco.Position = UDim2.new(math.random(), 0, 0, -50)
+    taco.BackgroundTransparency = 1
+    taco.Parent = ScreenGui
+    
+    local spin = math.random(-50, 50)
+    local speed = math.random(3, 7)
+    
+    RunService.Heartbeat:Connect(function(dt)
+        taco.Position += UDim2.new(0, spin * dt, 0, speed)
+        taco.Rotation += spin * dt * 2
+        
+        if taco.Position.Y.Offset > workspace.CurrentCamera.ViewportSize.Y then
+            taco:Destroy()
+        end
+    end)
+end
+
+-- Spawn tacos every 0.2 seconds
+spawn(function()
+    while true do
+        createTaco()
+        wait(0.2)
+    end
+end)
+
+-- ANTIban Button (Glowing Party Style)
+local Button = Instance.new("TextButton")
+Button.Name = "ANTIbanButton"
+Button.Size = UDim2.new(0.3, 0, 0.1, 0)
+Button.Position = UDim2.new(0.35, 0, 0.8, 0)
+Button.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+Button.BackgroundTransparency = 0.5
+Button.Text = "LOAD ANTIban"
+Button.Font = Enum.Font.GothamBold
+Button.TextColor3 = Color3.new(1, 1, 1)
+Button.TextSize = 18
+Button.BorderSizePixel = 0
+Button.Parent = ScreenGui
+
+-- Button Effects
 local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0.05, 0)
-UICorner.Parent = MainFrame
+UICorner.CornerRadius = UDim.new(0.3, 0)
+UICorner.Parent = Button
 
 local UIStroke = Instance.new("UIStroke")
-UIStroke.Color = Color3.fromRGB(100, 150, 255)
+UIStroke.Color = Color3.fromRGB(255, 255, 0)
 UIStroke.Thickness = 2
-UIStroke.Parent = MainFrame
+UIStroke.Parent = Button
 
--- Title Bar
-local TitleBar = Instance.new("Frame")
-TitleBar.Name = "TitleBar"
-TitleBar.Size = UDim2.new(1, 0, 0.12, 0)
-TitleBar.BackgroundColor3 = Color3.fromRGB(30, 40, 60)
-TitleBar.BorderSizePixel = 0
-TitleBar.Parent = MainFrame
-
-local Title = Instance.new("TextLabel")
-Title.Name = "Title"
-Title.Size = UDim2.new(0.7, 0, 1, 0)
-Title.Position = UDim2.new(0.15, 0, 0, 0)
-Title.BackgroundTransparency = 1
-Title.Text = "SCRIPT HUB"
-Title.Font = Enum.Font.GothamBold
-Title.TextColor3 = Color3.fromRGB(220, 220, 255)
-Title.TextSize = 22
-Title.Parent = TitleBar
-
--- Close Button (Minimize)
-local CloseButton = Instance.new("TextButton")
-CloseButton.Name = "CloseButton"
-CloseButton.Size = UDim2.new(0.1, 0, 0.8, 0)
-CloseButton.Position = UDim2.new(0.88, 0, 0.1, 0)
-CloseButton.BackgroundColor3 = Color3.fromRGB(200, 60, 75)
-CloseButton.Font = Enum.Font.GothamBold
-CloseButton.Text = "X"
-CloseButton.TextColor3 = Color3.new(1, 1, 1)
-CloseButton.TextSize = 18
-CloseButton.BorderSizePixel = 0
-CloseButton.Parent = TitleBar
-
-local CloseCorner = Instance.new("UICorner")
-CloseCorner.CornerRadius = UDim.new(0.2, 0)
-CloseCorner.Parent = CloseButton
-
--- Button Container
-local ButtonContainer = Instance.new("Frame")
-ButtonContainer.Name = "ButtonContainer"
-ButtonContainer.Size = UDim2.new(0.9, 0, 0.75, 0)
-ButtonContainer.Position = UDim2.new(0.05, 0, 0.18, 0)
-ButtonContainer.BackgroundTransparency = 1
-ButtonContainer.Parent = MainFrame
-
-local UIListLayout = Instance.new("UIListLayout")
-UIListLayout.Padding = UDim.new(0.05, 0)
-UIListLayout.Parent = ButtonContainer
-
--- Create Animated Button Function
-local function CreateButton(name, color)
-    local Button = Instance.new("TextButton")
-    Button.Name = name
-    Button.Size = UDim2.new(1, 0, 0.2, 0)
-    Button.BackgroundColor3 = color
-    Button.AutoButtonColor = false
-    Button.Font = Enum.Font.GothamBold
-    Button.TextColor3 = Color3.new(1, 1, 1)
-    Button.TextSize = 18
-    Button.Text = name
-    Button.BorderSizePixel = 0
-    
-    local ButtonCorner = Instance.new("UICorner")
-    ButtonCorner.CornerRadius = UDim.new(0.2, 0)
-    ButtonCorner.Parent = Button
-    
-    -- Hover Effect
-    Button.MouseEnter:Connect(function()
-        TweenService:Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = color:lerp(Color3.new(1,1,1), 0.2)}):Play()
-    end)
-    
-    Button.MouseLeave:Connect(function()
-        TweenService:Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = color}):Play()
-    end)
-    
-    -- Click Animation
-    Button.MouseButton1Down:Connect(function()
-        TweenService:Create(Button, TweenInfo.new(0.1), {Size = UDim2.new(0.95, 0, 0.18, 0)}):Play()
-    end)
-    
-    Button.MouseButton1Up:Connect(function()
-        TweenService:Create(Button, TweenInfo.new(0.3, {EasingStyle = Enum.EasingStyle.Elastic}), {Size = UDim2.new(1, 0, 0.2, 0)}):Play()
-    end)
-    
-    return Button
-end
-
--- Garden Spawner Button (2nd Script)
-local SpawnerButton = CreateButton("GARDEN SPAWNER", Color3.fromRGB(80, 180, 120))
-SpawnerButton.Parent = ButtonContainer
-
--- Minimize/Restore GUI
-local guiEnabled = true
-CloseButton.MouseButton1Click:Connect(function()
-    guiEnabled = not guiEnabled
-    if guiEnabled then
-        TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back), {Size = UDim2.new(0.8, 0, 0.5, 0)}):Play()
-    else
-        TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back), {Size = UDim2.new(0, 0, 0, 0)}):Play()
+-- Glow Animation
+spawn(function()
+    while true do
+        TweenService:Create(Button, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 
+            {BackgroundTransparency = 0.3}):Play()
+        wait(1)
+        TweenService:Create(Button, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 
+            {BackgroundTransparency = 0.7}):Play()
+        wait(1)
     end
 end)
 
--- Draggable GUI
-local dragging, dragInput, dragStart, startPos
-TitleBar.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = MainFrame.Position
-        
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
+-- Click Effect
+Button.MouseButton1Down:Connect(function()
+    Button.Size = UDim2.new(0.28, 0, 0.09, 0)
+    Button.Position = UDim2.new(0.36, 0, 0.805, 0)
 end)
 
-TitleBar.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
+Button.MouseButton1Up:Connect(function()
+    Button.Size = UDim2.new(0.3, 0, 0.1, 0)
+    Button.Position = UDim2.new(0.35, 0, 0.8, 0)
 end)
 
-UserInputService.InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        local delta = input.Position - dragStart
-        MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-end)
-
--- Execute 1st Script (Dark HUB) Automatically
-local function ExecuteDarkHUB()
+-- Load ANTIban Script
+Button.MouseButton1Click:Connect(function()
     local success, err = pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/DARK%20HUB%20VISUAL", true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/ANTIban.lua", true))()
     end)
-    if not success then
-        warn("[Dark HUB] Failed to load:", err)
-    end
-end
-
-ExecuteDarkHUB() -- Auto-run on startup
-
--- Execute 2nd Script (Garden Spawner) via Button + Persistence
-local function ExecuteGardenSpawner()
-    local success, err = pcall(function()
-        local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/ataturk123/GardenSpawner/main/Spawner.lua", true))()
-        Spawner.Load()
-    end)
-    if not success then
-        warn("[Garden Spawner] Failed to load:", err)
+    
+    if success then
+        Button.Text = "LOADED!"
+        task.wait(2)
+        Button.Text = "LOAD ANTIban"
     else
-        -- Mark as executed for server hop persistence
-        TeleportService:SetTeleportData({GardenSpawnerLoaded = true})
+        warn("ANTIban failed:", err)
+        Button.Text = "ERROR!"
+        task.wait(1)
+        Button.Text = "TRY AGAIN"
     end
-end
+end)
 
-SpawnerButton.MouseButton1Click:Connect(ExecuteGardenSpawner)
-
--- Re-execute Garden Spawner after server hop
-local teleportData = TeleportService:GetLocalPlayerTeleportData()
-if teleportData and teleportData.GardenSpawnerLoaded then
-    ExecuteGardenSpawner()
-end
-
--- Initial GUI Animation
-MainFrame.Size = UDim2.new(0, 0, 0, 0)
-MainFrame.Visible = true
-TweenService:Create(MainFrame, TweenInfo.new(0.7, Enum.EasingStyle.Elastic), {Size = UDim2.new(0.8, 0, 0.5, 0)}):Play()
+-- Play "It's Raining Tacos" (Roblox Audio)
+spawn(function()
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://138081500" -- It's Raining Tacos
+    sound.Looped = true
+    sound.Volume = 0.5
+    sound.Parent = player:WaitForChild("PlayerGui")
+    sound:Play()
+end)
