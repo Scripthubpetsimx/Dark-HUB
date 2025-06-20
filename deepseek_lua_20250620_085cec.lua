@@ -83,7 +83,7 @@ Title.BackgroundTransparency = 1
 Title.Parent = MainFrame
 
 local Button = Instance.new("TextButton")
-Button.Name = "ANTIbanButton"
+Button.Name = "Garden Spawener"
 Button.Size = UDim2.new(0.8, 0, 0.5, 0)
 Button.Position = UDim2.new(0.1, 0, 0.3, 0)
 Button.BackgroundColor3 = Color3.fromRGB(80, 180, 120) -- Garden green
@@ -99,27 +99,25 @@ ButtonCorner.Parent = Button
 
 Button.MouseButton1Click:Connect(function()
     local success, err = pcall(function()
-        local response = game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/ANTIban.lua", true)
-        if response and response ~= "" then
-            local func = loadstring(response)
-            if func then
-                func()
-                Button.Text = "SUCCESS! 🌿"
-                task.wait(2)
-                Button.Text = "LOAD ANTIban"
-                return
-            end
+        local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/ataturk123/GardenSpawner/refs/heads/main/Spawner.lua"))()
+        if Spawner and typeof(Spawner.Load) == "function" then
+            Spawner.Load()
+            Button.Text = "SUCCESS! 🌱"
+            task.wait(2)
+            Button.Text = "LOAD SPAWNER"
+        else
+            error("Spawner or Spawner.Load missing")
         end
-        error("Failed to load or execute script")
     end)
-    
+
     if not success then
-        warn("ANTIban failed: " .. tostring(err))
+        warn("Spawner Load Failed: " .. tostring(err))
         Button.Text = "ERROR! TRY AGAIN"
-        task.wait(1)
-        Button.Text = "LOAD ANTIban"
+        task.wait(2)
+        Button.Text = "LOAD SPAWNER"
     end
 end)
+
 
 
 local CloseButton = Instance.new("TextButton")
