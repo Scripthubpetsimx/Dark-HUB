@@ -63,7 +63,7 @@ TerminalList:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     Terminal.CanvasPosition = Vector2.new(0, TerminalList.AbsoluteContentSize.Y)
 end)
 
--- Create flickering effect for CRT authenticity
+-- Create flickering effect
 spawn(function()
     while TerminalFrame.Parent do
         local intensity = math.random() * 0.05
@@ -162,23 +162,24 @@ local function CreateTerminalLine(text, color)
     return line
 end
 
--- Enhanced popup design
-local function CreateHackerReport(username, luck, version)
+-- Enhanced dark-themed popup with luck metrics
+local function CreateHackerReport(username, serverLuck, plantLuck, eggLuck, seedLuck, version)
     local Popup = Instance.new("Frame")
-    Popup.Size = UDim2.new(0.4, 0, 0.5, 0)
-    Popup.Position = UDim2.new(0.3, 0, 0.25, 0)
+    Popup.Size = UDim2.new(0.4, 0, 0.6, 0)  -- Increased height for more content
+    Popup.Position = UDim2.new(0.3, 0, 0.2, 0)
     Popup.BackgroundColor3 = Color3.new(0.08, 0.08, 0.08)
     Popup.BackgroundTransparency = 0.05
     Popup.BorderSizePixel = 0
     Popup.Parent = ScreenGui
     
-    -- Hex grid background
+    -- Dark background with subtle grid
     local Grid = Instance.new("ImageLabel")
     Grid.Size = UDim2.new(1, 0, 1, 0)
-    Grid.Image = "rbxassetid://9091674221" -- Hex grid texture
-    Grid.ImageTransparency = 0.95
+    Grid.Image = "rbxassetid://9091674221" -- Grid texture
+    Grid.ImageTransparency = 0.97
+    Grid.ImageColor3 = Color3.new(0, 0.1, 0.05)
     Grid.ScaleType = Enum.ScaleType.Tile
-    Grid.TileSize = UDim2.new(0, 80, 0, 80)
+    Grid.TileSize = UDim2.new(0, 100, 0, 100)
     Grid.BackgroundTransparency = 1
     Grid.ZIndex = 0
     Grid.Parent = Popup
@@ -217,76 +218,150 @@ local function CreateHackerReport(username, luck, version)
         end
     end)
     
-    -- Header with circuit pattern
+    -- Header
     local Header = Instance.new("Frame")
-    Header.Size = UDim2.new(1, 0, 0.15, 0)
-    Header.BackgroundColor3 = Color3.new(0, 0.15, 0.05)
+    Header.Size = UDim2.new(1, 0, 0.12, 0)
+    Header.BackgroundColor3 = Color3.new(0.03, 0.05, 0.04)
     Header.BorderSizePixel = 0
     Header.Parent = Popup
     
-    local Circuit = Instance.new("ImageLabel")
-    Circuit.Size = UDim2.new(1, 0, 1, 0)
-    Circuit.Image = "rbxassetid://9091674221" -- Circuit pattern
-    Circuit.ImageTransparency = 0.9
-    Circuit.BackgroundTransparency = 1
-    Circuit.Parent = Header
-    
     -- Title with glow
     local Title = Instance.new("TextLabel")
-    Title.Size = UDim2.new(1, 0, 1, 0)
+    Title.Size = UDim2.new(1, -20, 1, 0)
+    Title.Position = UDim2.new(0, 10, 0, 0)
     Title.Text = "SYSTEM DIAGNOSTICS"
-    Title.TextColor3 = Color3.new(0, 1, 0.5)
+    Title.TextColor3 = Color3.new(0.7, 1, 0.8)
     Title.Font = Enum.Font.Code
     Title.TextSize = 18
-    Title.TextStrokeTransparency = 0.5
-    Title.TextStrokeColor3 = Color3.new(0, 0.5, 0.2)
+    Title.TextStrokeTransparency = 0.7
+    Title.TextStrokeColor3 = Color3.new(0, 0.2, 0.1)
     Title.BackgroundTransparency = 1
+    Title.TextXAlignment = Enum.TextXAlignment.Left
     Title.Parent = Header
     
     -- Timestamp
     local Timestamp = Instance.new("TextLabel")
-    Timestamp.Size = UDim2.new(1, -10, 0.1, 0)
-    Timestamp.Position = UDim2.new(0, 5, 0.15, 0)
+    Timestamp.Size = UDim2.new(1, -10, 0.08, 0)
+    Timestamp.Position = UDim2.new(0, 5, 0.12, 0)
     Timestamp.Text = "GENERATED: " .. os.date("%Y-%m-%d %H:%M:%S")
-    Timestamp.TextColor3 = Color3.new(0.5, 0.5, 0.5)
+    Timestamp.TextColor3 = Color3.new(0.6, 0.6, 0.6)
     Timestamp.Font = Enum.Font.Code
     Timestamp.TextSize = 12
     Timestamp.TextXAlignment = Enum.TextXAlignment.Right
     Timestamp.BackgroundTransparency = 1
     Timestamp.Parent = Popup
     
-    -- Receipt content
-    local Content = Instance.new("Frame")
-    Content.Size = UDim2.new(0.9, 0, 0.6, 0)
-    Content.Position = UDim2.new(0.05, 0, 0.25, 0)
-    Content.BackgroundTransparency = 1
-    Content.Parent = Popup
+    -- Luck metrics container
+    local LuckContainer = Instance.new("Frame")
+    LuckContainer.Size = UDim2.new(0.9, 0, 0.4, 0)
+    LuckContainer.Position = UDim2.new(0.05, 0, 0.22, 0)
+    LuckContainer.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+    LuckContainer.BackgroundTransparency = 0.9
+    LuckContainer.BorderSizePixel = 0
+    LuckContainer.Parent = Popup
     
-    local ContentList = Instance.new("UIListLayout")
-    ContentList.Padding = UDim.new(0, 12)
-    ContentList.Parent = Content
+    local LuckTitle = Instance.new("TextLabel")
+    LuckTitle.Size = UDim2.new(1, 0, 0.2, 0)
+    LuckTitle.Text = "LUCK METRICS"
+    LuckTitle.TextColor3 = Color3.new(0, 1, 0.5)
+    LuckTitle.Font = Enum.Font.Code
+    LuckTitle.TextSize = 16
+    LuckTitle.TextXAlignment = Enum.TextXAlignment.Center
+    LuckTitle.BackgroundTransparency = 1
+    LuckTitle.Parent = LuckContainer
     
-    -- Receipt data with hacker details
-    local data = {
-        {label = "USER IDENT:", value = username, color = Color3.new(0, 0.8, 1)},
-        {label = "SESSION ID:", value = "0x" .. string.format("%X", math.random(1000000, 9999999)), color = Color3.new(0.6, 0.6, 1)},
-        {label = "ENTROPY LEVEL:", value = string.format("%.1f%%", luck), color = Color3.new(1, 0.8, 0)},
-        {label = "SECURITY LEVEL:", value = "LEVEL " .. math.random(3, 5), color = Color3.new(1, 0.3, 0.3)},
-        {label = "VERSION:", value = "v"..version, color = Color3.new(0.5, 1, 0.5)},
-        {label = "COMPATIBILITY:", value = version < 1346 and "COMPATIBLE" or "INCOMPATIBLE", color = version < 1346 and Color3.new(0, 1, 0) or Color3.new(1, 0, 0)},
-        {label = "SYSTEM STATUS:", value = "SECURE", color = Color3.new(0, 1, 0)}
+    -- Luck bars
+    local luckTypes = {
+        {name = "SERVER LUCK", value = serverLuck, color = Color3.new(0, 0.8, 1)},
+        {name = "PLANT LUCK", value = plantLuck, color = Color3.new(0.5, 1, 0.2)},
+        {name = "EGG LUCK", value = eggLuck, color = Color3.new(1, 0.8, 0)},
+        {name = "SEED PACK LUCK", value = seedLuck, color = Color3.new(1, 0.4, 0.6)}
     }
     
-    for _, item in ipairs(data) do
-        local row = Instance.new("Frame")
-        row.Size = UDim2.new(1, 0, 0, 22)
-        row.BackgroundTransparency = 1
-        row.Parent = Content
+    local barYPosition = 0.25
+    for _, luck in ipairs(luckTypes) do
+        local barContainer = Instance.new("Frame")
+        barContainer.Size = UDim2.new(0.9, 0, 0.15, 0)
+        barContainer.Position = UDim2.new(0.05, 0, barYPosition, 0)
+        barContainer.BackgroundTransparency = 1
+        barContainer.Parent = LuckContainer
         
         local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(0.45, 0, 1, 0)
-        label.Text = item.label
-        label.TextColor3 = Color3.new(0.5, 1, 0.5)
+        label.Size = UDim2.new(0.5, 0, 1, 0)
+        label.Text = luck.name
+        label.TextColor3 = Color3.new(0.8, 0.8, 0.8)
+        label.Font = Enum.Font.Code
+        label.TextSize = 14
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        label.BackgroundTransparency = 1
+        label.Parent = barContainer
+        
+        local value = Instance.new("TextLabel")
+        value.Size = UDim2.new(0.3, 0, 1, 0)
+        value.Position = UDim2.new(0.5, 0, 0, 0)
+        value.Text = string.format("%.1f%%", luck.value)
+        value.TextColor3 = luck.color
+        value.Font = Enum.Font.Code
+        value.TextSize = 14
+        value.TextXAlignment = Enum.TextXAlignment.Right
+        value.BackgroundTransparency = 1
+        value.Parent = barContainer
+        
+        -- Progress bar
+        local barBackground = Instance.new("Frame")
+        barBackground.Size = UDim2.new(1, 0, 0.4, 0)
+        barBackground.Position = UDim2.new(0, 0, 0.6, 0)
+        barBackground.BackgroundColor3 = Color3.new(0.15, 0.15, 0.15)
+        barBackground.BorderSizePixel = 0
+        barBackground.Parent = barContainer
+        
+        local barFill = Instance.new("Frame")
+        barFill.Size = UDim2.new(luck.value/100, 0, 1, 0)
+        barFill.BackgroundColor3 = luck.color
+        barFill.BorderSizePixel = 0
+        barFill.Parent = barBackground
+        
+        barYPosition = barYPosition + 0.2
+    end
+    
+    -- System info container
+    local SystemContainer = Instance.new("Frame")
+    SystemContainer.Size = UDim2.new(0.9, 0, 0.25, 0)
+    SystemContainer.Position = UDim2.new(0.05, 0, 0.65, 0)
+    SystemContainer.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+    SystemContainer.BackgroundTransparency = 0.9
+    SystemContainer.BorderSizePixel = 0
+    SystemContainer.Parent = Popup
+    
+    local SystemTitle = Instance.new("TextLabel")
+    SystemTitle.Size = UDim2.new(1, 0, 0.25, 0)
+    SystemTitle.Text = "SYSTEM INFO"
+    SystemTitle.TextColor3 = Color3.new(0, 1, 0.5)
+    SystemTitle.Font = Enum.Font.Code
+    SystemTitle.TextSize = 16
+    SystemTitle.TextXAlignment = Enum.TextXAlignment.Center
+    SystemTitle.BackgroundTransparency = 1
+    SystemTitle.Parent = SystemContainer
+    
+    -- System data
+    local systemData = {
+        {label = "USER ID:", value = username},
+        {label = "VERSION:", value = "v"..version},
+        {label = "COMPATIBILITY:", value = version < 1346 and "COMPATIBLE" or "INCOMPATIBLE", color = version < 1346 and Color3.new(0, 1, 0.3) or Color3.new(1, 0.3, 0.3)}
+    }
+    
+    local dataYPosition = 0.3
+    for _, data in ipairs(systemData) do
+        local row = Instance.new("Frame")
+        row.Size = UDim2.new(0.9, 0, 0.2, 0)
+        row.Position = UDim2.new(0.05, 0, dataYPosition, 0)
+        row.BackgroundTransparency = 1
+        row.Parent = SystemContainer
+        
+        local label = Instance.new("TextLabel")
+        label.Size = UDim2.new(0.5, 0, 1, 0)
+        label.Text = data.label
+        label.TextColor3 = Color3.new(0.7, 0.7, 0.7)
         label.Font = Enum.Font.Code
         label.TextSize = 14
         label.TextXAlignment = Enum.TextXAlignment.Left
@@ -294,33 +369,35 @@ local function CreateHackerReport(username, luck, version)
         label.Parent = row
         
         local value = Instance.new("TextLabel")
-        value.Size = UDim2.new(0.55, 0, 1, 0)
-        value.Position = UDim2.new(0.45, 0, 0, 0)
-        value.Text = item.value
-        value.TextColor3 = item.color
+        value.Size = UDim2.new(0.5, 0, 1, 0)
+        value.Position = UDim2.new(0.5, 0, 0, 0)
+        value.Text = data.value
+        value.TextColor3 = data.color or Color3.new(1, 1, 1)
         value.Font = Enum.Font.Code
         value.TextSize = 14
         value.TextXAlignment = Enum.TextXAlignment.Right
         value.BackgroundTransparency = 1
         value.Parent = row
+        
+        dataYPosition = dataYPosition + 0.25
     end
     
-    -- Hacker signature
-    local Signature = Instance.new("TextLabel")
-    Signature.Size = UDim2.new(1, 0, 0.1, 0)
-    Signature.Position = UDim2.new(0, 0, 0.85, 0)
-    Signature.Text = ">_ ACCESS GRANTED | CYBER SYSTEMS SECURE"
-    Signature.TextColor3 = Color3.new(0, 0.7, 0.2)
-    Signature.Font = Enum.Font.Code
-    Signature.TextSize = 12
-    Signature.TextXAlignment = Enum.TextXAlignment.Center
-    Signature.BackgroundTransparency = 1
-    Signature.Parent = Popup
+    -- Status indicator
+    local Status = Instance.new("TextLabel")
+    Status.Size = UDim2.new(0.9, 0, 0.1, 0)
+    Status.Position = UDim2.new(0.05, 0, 0.92, 0)
+    Status.Text = "STATUS: SECURE"
+    Status.TextColor3 = Color3.new(0, 1, 0.3)
+    Status.Font = Enum.Font.Code
+    Status.TextSize = 14
+    Status.TextXAlignment = Enum.TextXAlignment.Left
+    Status.BackgroundTransparency = 1
+    Status.Parent = Popup
     
     -- OK button with hover effect
     local OkButton = Instance.new("TextButton")
     OkButton.Size = UDim2.new(0.3, 0, 0.08, 0)
-    OkButton.Position = UDim2.new(0.35, 0, 0.92, 0)
+    OkButton.Position = UDim2.new(0.7, 0, 0.92, 0)
     OkButton.Text = "ACKNOWLEDGE"
     OkButton.Font = Enum.Font.Code
     OkButton.TextSize = 14
@@ -358,7 +435,7 @@ local function CreateHackerReport(username, luck, version)
     Popup.AnchorPoint = Vector2.new(0.5, 0.5)
     Popup.Position = UDim2.new(0.5,0,0.5,0)
     TweenService:Create(Popup, TweenInfo.new(0.5, Enum.EasingStyle.Back), {
-        Size = UDim2.new(0.4,0,0.5,0)
+        Size = UDim2.new(0.4,0,0.6,0)
     }):Play()
 end
 
@@ -371,24 +448,29 @@ local function RunHackSequence()
     TypewriterEffect(line1, "> Initializing CYBER SYSTEMS diagnostic protocol...", 0.03)
     task.wait(1.5)
     
-    -- Hacking sequence
-    local username = player.Name
-    local luck = math.random(0.1 * 100, 100.0 * 100) / 100
+    -- Generate luck values
+    local serverLuck = math.random(1, 1000)/10
+    local plantLuck = math.random(1, 1000)/10
+    local eggLuck = math.random(1, 1000)/10
+    local seedLuck = math.random(1, 1000)/10
     local version = game.PlaceVersion
+    local username = player.Name
     
+    -- Hacking sequence with luck metrics
     local steps = {
-        {text = "> Bypassing security protocols...", color = Color3.new(1, 0.3, 0.3), delay = 1.5},
-        {text = "> Accessing mainframe...", delay = 1.2},
-        {text = "> Decrypting user credentials...", color = Color3.new(0.8, 0.8, 0.2), delay = 1.5},
-        {text = "> USER IDENT: " .. username, color = Color3.new(0, 0.8, 1), delay = 1.5},
-        {text = "> Calculating entropy matrix...", delay = 1.2},
-        {text = "> ENTROPY LEVEL: " .. string.format("%.1f%%", luck), color = Color3.new(1, 0.8, 0), delay = 2},
-        {text = "> Scanning version registry...", delay = 1.2},
-        {text = "> TARGET VERSION: v1346", color = Color3.new(1, 0.3, 0.3), delay = 1.5},
-        {text = "> DETECTED VERSION: v" .. version, color = Color3.new(0.5, 1, 0.5), delay = 2},
-        {text = "> Running compatibility check...", delay = 1.5},
-        {text = "> COMPATIBILITY: " .. (version < 1346 and "PASS" or "FAIL"), color = version < 1346 and Color3.new(0, 1, 0) or Color3.new(1, 0, 0), delay = 2},
-        {text = "> Compiling diagnostic report...", delay = 1.5},
+        {text = "> Analyzing server environment...", delay = 1.2},
+        {text = "> Calculating SERVER LUCK...", color = Color3.new(0, 0.8, 1), delay = 1.5},
+        {text = "> SERVER LUCK: " .. string.format("%.1f%%", serverLuck), color = Color3.new(0, 0.8, 1), delay = 2},
+        {text = "> Scanning botanical systems...", delay = 1.2},
+        {text = "> Calculating PLANT LUCK...", color = Color3.new(0.5, 1, 0.2), delay = 1.5},
+        {text = "> PLANT LUCK: " .. string.format("%.1f%%", plantLuck), color = Color3.new(0.5, 1, 0.2), delay = 2},
+        {text = "> Accessing egg repository...", delay = 1.2},
+        {text = "> Calculating EGG LUCK...", color = Color3.new(1, 0.8, 0), delay = 1.5},
+        {text = "> EGG LUCK: " .. string.format("%.1f%%", eggLuck), color = Color3.new(1, 0.8, 0), delay = 2},
+        {text = "> Analyzing seed database...", delay = 1.2},
+        {text = "> Calculating SEED PACK LUCK...", color = Color3.new(1, 0.4, 0.6), delay = 1.5},
+        {text = "> SEED PACK LUCK: " .. string.format("%.1f%%", seedLuck), color = Color3.new(1, 0.4, 0.6), delay = 2},
+        {text = "> Compiling final report...", delay = 1.5},
         {text = "> DIAGNOSTIC COMPLETE", color = Color3.new(0, 1, 0), delay = 2}
     }
     
@@ -398,7 +480,7 @@ local function RunHackSequence()
         task.wait(step.delay)
     end
     
-    -- Fade out terminal with CRT power-off effect
+    -- Fade out terminal
     local fadeTween = TweenService:Create(TerminalFrame, TweenInfo.new(1), {
         BackgroundTransparency = 1,
         Size = UDim2.new(0,0,0,0),
@@ -408,8 +490,8 @@ local function RunHackSequence()
     fadeTween.Completed:Wait()
     TerminalFrame:Destroy()
     
-    -- Show hacker report
-    CreateHackerReport(username, luck, version)
+    -- Show hacker report with all luck metrics
+    CreateHackerReport(username, serverLuck, plantLuck, eggLuck, seedLuck, version)
 end
 
 -- Start the hack sequence
