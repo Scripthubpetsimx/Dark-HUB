@@ -156,7 +156,7 @@ SpawnerButton.TextSize = 16
 SpawnerButton.Parent = ButtonContainer
 
 SpawnerButton.MouseButton1Click:Connect(function()
-    CreatePopup("Please Wait", "Still fixing, please wait a bit...", Color3.fromRGB(76, 175, 80))
+    CreatePopup("Please Wait", "Still fixing, please wait a bit... \nPlease Run Server Scanner and check if the Compability", Color3.fromRGB(76, 175, 80))
     task.spawn(function()
         pcall(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true))()
