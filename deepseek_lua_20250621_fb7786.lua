@@ -1,294 +1,167 @@
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
-local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
-local random = Random.new()
 
--- Create main GUI
+-- Cleaner GUI setup
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "SystemDiagnostic"
+ScreenGui.Name = "CyberDiagnostics"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
--- Main container
+-- Modern frame design
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.new(0.35, 0, 0.4, 0)
-MainFrame.Position = UDim2.new(0.6, 0, 0.3, 0) -- Right center
-MainFrame.BackgroundColor3 = Color3.new(0.05, 0.05, 0.05)
+MainFrame.Position = UDim2.new(0.6, 0, 0.3, 0)
+MainFrame.BackgroundColor3 = Color3.new(0.08, 0.08, 0.08)
+MainFrame.BackgroundTransparency = 0.1
 MainFrame.BorderSizePixel = 0
 MainFrame.ClipsDescendants = true
 MainFrame.Parent = ScreenGui
 
--- Add cyberpunk-style glow
-local Glow = Instance.new("ImageLabel")
-Glow.Size = UDim2.new(1.1, 0, 1.1, 0)
-Glow.Position = UDim2.new(-0.05, 0, -0.05, 0)
-Glow.Image = "rbxassetid://5028857084"
-Glow.ImageColor3 = Color3.fromRGB(0, 0.7, 0.2)
-Glow.ScaleType = Enum.ScaleType.Slice
-Glow.SliceCenter = Rect.new(100, 100, 100, 100)
-Glow.BackgroundTransparency = 1
-Glow.ZIndex = -1
-Glow.Parent = MainFrame
-
--- Add scan lines effect
-local ScanLines = Instance.new("Frame")
-ScanLines.Size = UDim2.new(1, 0, 1, 0)
-ScanLines.BackgroundTransparency = 0.95
-ScanLines.BackgroundColor3 = Color3.new(0, 0, 0)
-ScanLines.ZIndex = 10
-ScanLines.Parent = MainFrame
-
-local scanPattern = Instance.new("UIGradient")
-scanPattern.Rotation = 90
-scanPattern.Transparency = NumberSequence.new({
-    NumberSequenceKeypoint.new(0, 1),
-    NumberSequenceKeypoint.new(0.05, 0.8),
-    NumberSequenceKeypoint.new(0.1, 1),
-    NumberSequenceKeypoint.new(1, 1)
+-- Subtle gradient background
+local Gradient = Instance.new("UIGradient")
+Gradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(10, 15, 20)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 20, 25))
 })
-scanPattern.Parent = ScanLines
+Gradient.Rotation = 90
+Gradient.Parent = MainFrame
 
--- Terminal-style text
+-- Minimalist border effect
+local Border = Instance.new("Frame")
+Border.Size = UDim2.new(1, 0, 0.002, 0)
+Border.Position = UDim2.new(0, 0, 0, 0)
+Border.BackgroundColor3 = Color3.fromRGB(0, 230, 154)
+Border.BorderSizePixel = 0
+Border.ZIndex = 2
+Border.Parent = MainFrame
+
+-- Refined terminal styling
 local Terminal = Instance.new("ScrollingFrame")
-Terminal.Size = UDim2.new(1, -10, 1, -10)
-Terminal.Position = UDim2.new(0, 5, 0, 5)
+Terminal.Size = UDim2.new(1, -20, 1, -20)
+Terminal.Position = UDim2.new(0, 10, 0, 10)
 Terminal.BackgroundTransparency = 1
-Terminal.ScrollBarThickness = 5
-Terminal.ScrollBarImageColor3 = Color3.new(0, 0.7, 0.2)
+Terminal.ScrollBarThickness = 3
+Terminal.ScrollBarImageColor3 = Color3.fromRGB(100, 255, 200)
 Terminal.CanvasSize = UDim2.new(0, 0, 0, 0)
 Terminal.AutomaticCanvasSize = Enum.AutomaticSize.Y
-Terminal.ScrollingDirection = Enum.ScrollingDirection.Y
-Terminal.VerticalScrollBarInset = Enum.ScrollBarInset.Always
 Terminal.Parent = MainFrame
 
 local TerminalList = Instance.new("UIListLayout")
-TerminalList.Padding = UDim.new(0, 8)
+TerminalList.Padding = UDim.new(0, 6)
 TerminalList.Parent = Terminal
 
--- Auto-scroll when new items added
 TerminalList:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     Terminal.CanvasPosition = Vector2.new(0, TerminalList.AbsoluteContentSize.Y)
 end)
 
--- Create flickering effect
-spawn(function()
-    while MainFrame.Parent do
-        local intensity = math.random() * 0.1
-        TweenService:Create(Glow, TweenInfo.new(0.1), {
-            ImageTransparency = intensity
-        }):Play()
-        task.wait(math.random(0.1, 0.5))
-    end
-end)
-
--- Matrix rain effect
-local MatrixRain = Instance.new("Frame")
-MatrixRain.Size = UDim2.new(1, 0, 1, 0)
-MatrixRain.BackgroundTransparency = 1
-MatrixRain.ZIndex = -1
-MatrixRain.Parent = MainFrame
-
--- Add hacker effects
-local function CreateMatrixCode()
-    local code = Instance.new("TextLabel")
-    code.Size = UDim2.new(0, 20, 0, 20)
-    code.Position = UDim2.new(math.random(), 0, 0, -20)
-    code.Text = string.char(math.random(65, 90))
-    code.TextColor3 = Color3.new(0, math.random() * 0.5 + 0.5, 0)
-    code.BackgroundTransparency = 1
-    code.Font = Enum.Font.Code
-    code.TextSize = 14
-    code.ZIndex = -1
-    code.Parent = MatrixRain
-    
-    spawn(function()
-        local speed = math.random(5, 10)
-        while code.Parent do
-            code.Position += UDim2.new(0, 0, 0, speed)
-            if code.Position.Y.Offset > MainFrame.AbsoluteSize.Y then
-                code:Destroy()
-                break
-            end
-            task.wait(0.03)
-        end
-    end)
-end
-
--- Create matrix rain effect
-spawn(function()
-    while MatrixRain.Parent do
-        CreateMatrixCode()
-        task.wait(0.03)
-    end
-end)
-
--- Typewriter effect function
+-- Enhanced typewriter effect function
 local function TypewriterEffect(label, text, speed)
     label.Text = ""
-    local charDelay = speed * 0.8  -- Faster typing
+    local charDelay = speed
+    
     for i = 1, #text do
         label.Text = string.sub(text, 1, i)
-        task.wait(charDelay)
-        
-        -- Random glitch effect
-        if math.random() < 0.15 then
-            local glitchChars = {"#", "@", "%", "&", "*", "~"}
-            local original = label.Text
-            label.Text = string.sub(text, 1, i-1) .. glitchChars[math.random(1, #glitchChars)]
-            task.wait(0.03)
-            label.Text = original
-        end
-    end
-    
-    -- Final glitch for dramatic effect
-    if math.random() < 0.7 then
-        local original = label.Text
-        for _ = 1, 3 do
-            label.Text = original .. "�"
-            task.wait(0.05)
-            label.Text = original
-            task.wait(0.05)
-        end
+        local variance = math.random() * 0.03
+        task.wait(charDelay + variance)
     end
 end
 
--- Create new terminal line
-local function CreateTerminalLine(text, color)
+-- Create terminal line with improved styling
+local function CreateTerminalLine(text, color, prefix)
     local line = Instance.new("TextLabel")
-    line.Size = UDim2.new(1, -10, 0, 20)
+    line.Size = UDim2.new(1, 0, 0, 20)
     line.Text = ""
-    line.TextColor3 = color or Color3.new(0, 1, 0.3)
+    line.TextColor3 = color or Color3.fromRGB(180, 255, 230)
     line.Font = Enum.Font.Code
     line.TextSize = 14
     line.TextXAlignment = Enum.TextXAlignment.Left
     line.BackgroundTransparency = 1
-    line.TextStrokeTransparency = 0.8
-    line.TextStrokeColor3 = Color3.new(0, 0.2, 0)
+    line.TextTransparency = 0.1
+    line.RichText = true
     line.Parent = Terminal
+    
+    if prefix then
+        local prefixLabel = line:Clone()
+        prefixLabel.Text = prefix
+        prefixLabel.TextColor3 = Color3.fromRGB(0, 200, 150)
+        prefixLabel.Size = UDim2.new(0, 40, 0, 20)
+        prefixLabel.TextXAlignment = Enum.TextXAlignment.Right
+        prefixLabel.Parent = line.Parent
+        prefixLabel.LayoutOrder = line.LayoutOrder - 1
+    end
     
     return line
 end
 
--- Create professional receipt popup
+-- Modern receipt popup
 local function CreateReceiptPopup(username, luck, version)
     local Popup = Instance.new("Frame")
     Popup.Size = UDim2.new(0.4, 0, 0.5, 0)
     Popup.Position = UDim2.new(0.3, 0, 0.25, 0)
-    Popup.BackgroundColor3 = Color3.new(0.08, 0.08, 0.08)
+    Popup.BackgroundColor3 = Color3.new(0.1, 0.12, 0.15)
+    Popup.BackgroundTransparency = 0.1
     Popup.BorderSizePixel = 0
     Popup.Parent = ScreenGui
-    
-    -- Hacker grid background
-    local Grid = Instance.new("ImageLabel")
-    Grid.Size = UDim2.new(1, 0, 1, 0)
-    Grid.Image = "rbxassetid://9091674221" -- Grid texture
-    Grid.ImageTransparency = 0.9
-    Grid.ScaleType = Enum.ScaleType.Tile
-    Grid.TileSize = UDim2.new(0, 50, 0, 50)
-    Grid.BackgroundTransparency = 1
-    Grid.ZIndex = 0
-    Grid.Parent = Popup
-    
-    -- Glowing border
-    local Border = Instance.new("Frame")
-    Border.Size = UDim2.new(1, 4, 1, 4)
-    Border.Position = UDim2.new(0, -2, 0, -2)
-    Border.BackgroundColor3 = Color3.new(0, 0.7, 0.2)
-    Border.ZIndex = -1
-    Border.Parent = Popup
-    
-    -- Animated glow effect
-    local GlowEffect = Instance.new("ImageLabel")
-    GlowEffect.Size = UDim2.new(1, 10, 1, 10)
-    GlowEffect.Position = UDim2.new(0, -5, 0, -5)
-    GlowEffect.Image = "rbxassetid://5028857084"
-    GlowEffect.ImageColor3 = Color3.new(0, 0.5, 0.1)
-    GlowEffect.ScaleType = Enum.ScaleType.Slice
-    GlowEffect.SliceCenter = Rect.new(100, 100, 100, 100)
-    GlowEffect.BackgroundTransparency = 1
-    GlowEffect.ZIndex = -1
-    GlowEffect.Parent = Border
-    
-    -- Pulsing glow animation
-    spawn(function()
-        while GlowEffect.Parent do
-            TweenService:Create(GlowEffect, TweenInfo.new(1), {
-                ImageTransparency = 0.3
-            }):Play()
-            task.wait(1)
-            TweenService:Create(GlowEffect, TweenInfo.new(1), {
-                ImageTransparency = 0.7
-            }):Play()
-            task.wait(1)
-        end
-    end)
-    
-    -- Header
+
+    -- Header with accent
     local Header = Instance.new("Frame")
-    Header.Size = UDim2.new(1, 0, 0.15, 0)
-    Header.BackgroundColor3 = Color3.new(0, 0.15, 0.05)
+    Header.Size = UDim2.new(1, 0, 0.12, 0)
+    Header.BackgroundColor3 = Color3.new(0.08, 0.1, 0.12)
     Header.BorderSizePixel = 0
     Header.Parent = Popup
     
-    -- Title
+    local AccentBar = Instance.new("Frame")
+    AccentBar.Size = UDim2.new(1, 0, 0, 3)
+    AccentBar.Position = UDim2.new(0, 0, 1, 0)
+    AccentBar.BackgroundColor3 = Color3.fromRGB(0, 230, 154)
+    AccentBar.BorderSizePixel = 0
+    AccentBar.Parent = Header
+    
+    -- Minimalist title
     local Title = Instance.new("TextLabel")
     Title.Size = UDim2.new(1, 0, 1, 0)
-    Title.Text = "CYBER SYSTEMS REPORT"
-    Title.TextColor3 = Color3.new(0, 1, 0.3)
-    Title.Font = Enum.Font.Code
+    Title.Text = "SYSTEM DIAGNOSTICS"
+    Title.TextColor3 = Color3.fromRGB(180, 255, 230)
+    Title.Font = Enum.Font.GothamMedium
     Title.TextSize = 18
     Title.BackgroundTransparency = 1
     Title.Parent = Header
-    
-    -- Timestamp
-    local Timestamp = Instance.new("TextLabel")
-    Timestamp.Size = UDim2.new(1, 0, 0.1, 0)
-    Timestamp.Position = UDim2.new(0, 0, 0.15, 0)
-    Timestamp.Text = "GENERATED: " .. os.date("%Y-%m-%d %H:%M:%S")
-    Timestamp.TextColor3 = Color3.new(0.5, 0.5, 0.5)
-    Timestamp.Font = Enum.Font.Code
-    Timestamp.TextSize = 12
-    Timestamp.TextXAlignment = Enum.TextXAlignment.Right
-    Timestamp.BackgroundTransparency = 1
-    Timestamp.Parent = Popup
-    
-    -- Receipt content
+
+    -- Content container
     local Content = Instance.new("Frame")
-    Content.Size = UDim2.new(0.9, 0, 0.6, 0)
-    Content.Position = UDim2.new(0.05, 0, 0.25, 0)
+    Content.Size = UDim2.new(0.9, 0, 0.7, 0)
+    Content.Position = UDim2.new(0.05, 0, 0.15, 0)
     Content.BackgroundTransparency = 1
     Content.Parent = Popup
     
     local ContentList = Instance.new("UIListLayout")
-    ContentList.Padding = UDim.new(0, 15)
+    ContentList.Padding = UDim.new(0, 12)
     ContentList.Parent = Content
-    
-    -- Receipt data - enhanced with hacker details
+
+    -- Data presentation - cleaner format
     local data = {
-        {label = "USER IDENT:", value = username, color = Color3.new(0, 0.8, 1)},
-        {label = "SESSION ID:", value = "0x" .. string.format("%X", math.random(1000000, 9999999)), color = Color3.new(0.6, 0.6, 1)},
-        {label = "SERVER LUCK:", value = string.format("%.1f%%", luck), color = Color3.new(1, 0.8, 0)},
-        {label = "SECURITY LEVEL:", value = "LEVEL " .. math.random(3, 5), color = Color3.new(1, 0.3, 0.3)},
-        {label = "VERSION:", value = "v"..version, color = Color3.new(0.5, 1, 0.5)},
-        {label = "COMPATIBILITY:", value = "v1346 below "..(version < 1346 and "✅" or "❌"), color = version < 1346 and Color3.new(0, 1, 0) or Color3.new(1, 0, 0)},
-        {label = "EGG STATUS:", value = "ENCRYPTED & VERIFIED", color = Color3.new(0, 1, 0.5)},
-        {label = "SYSTEM STATUS:", value = "SECURE", color = Color3.new(0, 1, 0)},
-        {label = "DIAGNOSTIC:", value = "COMPLETE", color = Color3.new(0, 1, 0)}
+        {label = "User ID:", value = username},
+        {label = "Session:", value = "0x" .. string.format("%X", math.random(1000000, 9999999))},
+        {label = "Server Entropy:", value = string.format("%.1f%%", luck), color = luck > 75 and Color3.fromRGB(0, 255, 170) or Color3.fromRGB(255, 200, 50)},
+        {label = "Security Level:", value = "Tier " .. math.random(3, 5)},
+        {label = "Version:", value = "v"..version},
+        {label = "Compatibility:", value = version < 1346 and "Verified" or "Unsupported", color = version < 1346 and Color3.fromRGB(0, 255, 170) or Color3.fromRGB(255, 80, 80)},
+        {label = "System Status:", value = "Secure", color = Color3.fromRGB(0, 255, 170)}
     }
     
     for _, item in ipairs(data) do
         local row = Instance.new("Frame")
-        row.Size = UDim2.new(1, 0, 0, 20)
+        row.Size = UDim2.new(1, 0, 0, 24)
         row.BackgroundTransparency = 1
         row.Parent = Content
         
         local label = Instance.new("TextLabel")
         label.Size = UDim2.new(0.45, 0, 1, 0)
         label.Text = item.label
-        label.TextColor3 = Color3.new(0.5, 1, 0.5)
-        label.Font = Enum.Font.Code
+        label.TextColor3 = Color3.fromRGB(180, 220, 240)
+        label.Font = Enum.Font.Gotham
         label.TextSize = 14
         label.TextXAlignment = Enum.TextXAlignment.Left
         label.BackgroundTransparency = 1
@@ -298,119 +171,107 @@ local function CreateReceiptPopup(username, luck, version)
         value.Size = UDim2.new(0.55, 0, 1, 0)
         value.Position = UDim2.new(0.45, 0, 0, 0)
         value.Text = item.value
-        value.TextColor3 = item.color
-        value.Font = Enum.Font.Code
+        value.TextColor3 = item.color or Color3.fromRGB(200, 240, 255)
+        value.Font = Enum.Font.GothamMedium
         value.TextSize = 14
         value.TextXAlignment = Enum.TextXAlignment.Right
         value.BackgroundTransparency = 1
         value.Parent = row
     end
     
-    -- Hacker signature
-    local Signature = Instance.new("TextLabel")
-    Signature.Size = UDim2.new(1, 0, 0.1, 0)
-    Signature.Position = UDim2.new(0, 0, 0.85, 0)
-    Signature.Text = ">_ SYSTEM SECURED BY CYBER DIAGNOSTICS"
-    Signature.TextColor3 = Color3.new(0, 0.7, 0.2)
-    Signature.Font = Enum.Font.Code
-    Signature.TextSize = 12
-    Signature.TextXAlignment = Enum.TextXAlignment.Center
-    Signature.BackgroundTransparency = 1
-    Signature.Parent = Popup
+    -- Status indicator
+    local Status = Instance.new("Frame")
+    Status.Size = UDim2.new(0.9, 0, 0, 24)
+    Status.Position = UDim2.new(0.05, 0, 0.88, 0)
+    Status.BackgroundTransparency = 1
+    Status.Parent = Popup
     
-    -- OK button
-    local OkButton = Instance.new("TextButton")
-    OkButton.Size = UDim2.new(0.3, 0, 0.08, 0)
-    OkButton.Position = UDim2.new(0.35, 0, 0.92, 0)
-    OkButton.Text = "ACKNOWLEDGE"
-    OkButton.Font = Enum.Font.Code
-    OkButton.TextSize = 14
-    OkButton.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-    OkButton.TextColor3 = Color3.new(0, 1, 0.3)
-    OkButton.BorderColor3 = Color3.new(0, 0.7, 0.2)
-    OkButton.Parent = Popup
+    local StatusText = Instance.new("TextLabel")
+    StatusText.Size = UDim2.new(1, 0, 1, 0)
+    StatusText.Text = "Diagnostic Complete • " .. os.date("%H:%M:%S")
+    StatusText.TextColor3 = Color3.fromRGB(150, 220, 220)
+    StatusText.Font = Enum.Font.Gotham
+    StatusText.TextSize = 12
+    StatusText.TextXAlignment = Enum.TextXAlignment.Right
+    StatusText.BackgroundTransparency = 1
+    StatusText.Parent = Status
     
-    -- Button hover effect
-    OkButton.MouseEnter:Connect(function()
-        TweenService:Create(OkButton, TweenInfo.new(0.2), {
-            BackgroundColor3 = Color3.new(0.15, 0.15, 0.15),
-            TextColor3 = Color3.new(0, 1, 0.5)
+    -- Action button
+    local CloseButton = Instance.new("TextButton")
+    CloseButton.Size = UDim2.new(0.3, 0, 0.08, 0)
+    CloseButton.Position = UDim2.new(0.35, 0, 0.92, 0)
+    CloseButton.Text = "CLOSE"
+    CloseButton.Font = Enum.Font.GothamMedium
+    CloseButton.TextSize = 14
+    CloseButton.TextColor3 = Color3.new(1, 1, 1)
+    CloseButton.BackgroundColor3 = Color3.fromRGB(30, 40, 50)
+    CloseButton.BorderSizePixel = 0
+    CloseButton.Parent = Popup
+    
+    -- Button animation
+    CloseButton.MouseEnter:Connect(function()
+        TweenService:Create(CloseButton, TweenInfo.new(0.2), {
+            BackgroundColor3 = Color3.fromRGB(0, 180, 120)
         }):Play()
     end)
     
-    OkButton.MouseLeave:Connect(function()
-        TweenService:Create(OkButton, TweenInfo.new(0.2), {
-            BackgroundColor3 = Color3.new(0.1, 0.1, 0.1),
-            TextColor3 = Color3.new(0, 1, 0.3)
+    CloseButton.MouseLeave:Connect(function()
+        TweenService:Create(CloseButton, TweenInfo.new(0.2), {
+            BackgroundColor3 = Color3.fromRGB(30, 40, 50)
         }):Play()
     end)
     
-    OkButton.MouseButton1Click:Connect(function()
-        TweenService:Create(Popup, TweenInfo.new(0.5), {Size = UDim2.new(0,0,0,0)}):Play()
-        task.wait(0.5)
+    CloseButton.MouseButton1Click:Connect(function()
+        TweenService:Create(Popup, TweenInfo.new(0.3), {
+            Size = UDim2.new(0,0,0,0),
+            Position = UDim2.new(0.5,0,0.5,0)
+        }):Play()
+        task.wait(0.3)
         Popup:Destroy()
     end)
     
-    -- Animate in
+    -- Entrance animation
     Popup.Size = UDim2.new(0,0,0,0)
-    TweenService:Create(Popup, TweenInfo.new(0.5), {
+    TweenService:Create(Popup, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
         Size = UDim2.new(0.4,0,0.5,0)
     }):Play()
 end
 
--- Main diagnostic sequence - faster with more steps
+-- Streamlined diagnostic sequence
 local function RunDiagnostic()
-    -- Initial delay for dramatic effect
-    task.wait(0.5)
+    task.wait(0.8)
     
-    -- Create initial line
-    local line1 = CreateTerminalLine()
-    TypewriterEffect(line1, "> Initializing CYBER SYSTEMS diagnostic protocol...", 0.02)
-    task.wait(1)
-    
-    -- Sequence of diagnostics - more steps, faster execution
     local username = player.Name
-    local luck = random:NextNumber(0.1, 100.0)
+    local luck = math.random(0.1 * 100, 100.0 * 100) / 100
     local version = game.PlaceVersion
     
     local steps = {
-        {text = "> Establishing secure connection...", delay = 1.5},
-        {text = "> Bypassing security protocols...", color = Color3.new(1, 0.3, 0.3), delay = 1.5},
-        {text = "> Accessing mainframe...", delay = 1.5},
-        {text = "> Decrypting user credentials...", color = Color3.new(0.8, 0.8, 0.2), delay = 1.5},
-        {text = "> USER IDENT: " .. username, color = Color3.new(0, 0.8, 1), delay = 1.5},
-        {text = "> Analyzing server entropy matrix...", delay = 1.5},
-        {text = "> Calculating probabilistic outcomes...", color = Color3.new(0.8, 0.5, 1), delay = 1.5},
-        {text = "> SERVER LUCK COEFFICIENT: " .. string.format("%.1f", luck) .. "%", color = Color3.new(1, 0.8, 0), delay = 2},
-        {text = "> Scanning version registry...", delay = 1.5},
-        {text = "> TARGET VERSION: v1346 below", color = Color3.new(1, 0.3, 0.3), delay = 1.5},
-        {text = "> DETECTED VERSION: v" .. version, color = Color3.new(0.5, 1, 0.5), delay = 2},
-        {text = "> Running compatibility check...", delay = 1.5},
-        {text = "> COMPATIBILITY: " .. (version < 1346 and "PASS" or "FAIL"), color = version < 1346 and Color3.new(0, 1, 0) or Color3.new(1, 0, 0), delay = 2},
-        {text = "> Accessing encrypted egg database...", delay = 1.5},
-        {text = "> Decrypting egg signatures...", color = Color3.new(0.5, 0.8, 1), delay = 1.5},
-        {text = "> Verifying cryptographic hashes...", delay = 1.5},
-        {text = "> EGG SIGNATURES: VERIFIED", color = Color3.new(0, 1, 0.5), delay = 2},
-        {text = "> Compiling diagnostic report...", delay = 1.5},
-        {text = "> DIAGNOSTIC COMPLETE", color = Color3.new(0, 1, 0), delay = 2},
-        {text = "> Generating final report...", delay = 1.5}
+        {text = "Initializing diagnostics protocol...", prefix = ">", delay = 1.2},
+        {text = "Establishing secure connection...", delay = 1.0},
+        {text = "Authenticating user credentials...", delay = 1.2},
+        {text = username, prefix = "USER:", color = Color3.fromRGB(100, 220, 255), delay = 1.5},
+        {text = "Analyzing server environment...", delay = 1.0},
+        {text = string.format("%.1f%%", luck), prefix = "ENTROPY:", color = luck > 75 and Color3.fromRGB(0, 255, 170) or Color3.fromRGB(255, 200, 50), delay = 2.0},
+        {text = "Verifying system version...", delay = 1.0},
+        {text = "v"..version, prefix = "VERSION:", color = version < 1346 and Color3.fromRGB(0, 255, 170) or Color3.fromRGB(255, 100, 100), delay = 1.8},
+        {text = "Validating security protocols...", delay = 1.5},
+        {text = "Compiling final report...", color = Color3.fromRGB(180, 255, 230), delay = 1.8}
     }
     
     for _, step in ipairs(steps) do
-        local line = CreateTerminalLine(nil, step.color)
-        TypewriterEffect(line, step.text, 0.02)
+        local line = CreateTerminalLine(step.text, step.color, step.prefix)
+        TypewriterEffect(line, step.text, 0.03)
         task.wait(step.delay)
     end
     
-    -- Fade out terminal
-    local fadeTween = TweenService:Create(MainFrame, TweenInfo.new(1), {BackgroundTransparency = 1})
-    fadeTween:Play()
-    fadeTween.Completed:Wait()
-    MainFrame:Destroy()
+    -- Smooth transition
+    TweenService:Create(MainFrame, TweenInfo.new(0.8), {
+        BackgroundTransparency = 1,
+        Position = UDim2.new(0.6, 0, 0.2, 0)
+    }):Play()
+    task.wait(0.8)
     
-    -- Show professional receipt
     CreateReceiptPopup(username, luck, version)
 end
 
--- Start the diagnostic sequence
 spawn(RunDiagnostic)
