@@ -19,218 +19,8 @@ end)
 -- ===== AUTO-EXECUTE 2 =====
 task.spawn(function()
     pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250622_d4f90d.lua", true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true))()
     end)
-end)
-
--- ===== AUTO-EXECUTE 3: DIAGNOSTIC REPORT =====
-task.spawn(function()
-    -- Create CRT-style terminal
-    local TerminalFrame = Instance.new("Frame")
-    TerminalFrame.Size = UDim2.new(0.35, 0, 0.4, 0)
-    TerminalFrame.Position = UDim2.new(0.6, 0, 0.3, 0)
-    TerminalFrame.BackgroundColor3 = Color3.new(0.05, 0.05, 0.05)
-    TerminalFrame.BorderSizePixel = 0
-    TerminalFrame.ClipsDescendants = true
-    TerminalFrame.Parent = ScreenGui
-
-    -- Add CRT screen curvature effect
-    local Curvature = Instance.new("ImageLabel")
-    Curvature.Size = UDim2.new(1, 0, 1, 0)
-    Curvature.Image = "rbxassetid://9995398932"
-    Curvature.ImageTransparency = 0.95
-    Curvature.BackgroundTransparency = 1
-    Curvature.Parent = TerminalFrame
-
-    -- Add scan lines effect
-    local ScanLines = Instance.new("Frame")
-    ScanLines.Size = UDim2.new(1, 0, 1, 0)
-    ScanLines.BackgroundTransparency = 0.95
-    ScanLines.BackgroundColor3 = Color3.new(0, 0, 0)
-    ScanLines.ZIndex = 10
-    ScanLines.Parent = TerminalFrame
-
-    local scanPattern = Instance.new("UIGradient")
-    scanPattern.Rotation = 90
-    scanPattern.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 1),
-        NumberSequenceKeypoint.new(0.05, 0.8),
-        NumberSequenceKeypoint.new(0.1, 1),
-        NumberSequenceKeypoint.new(1, 1)
-    })
-    scanPattern.Parent = ScanLines
-
-    -- Terminal text display
-    local Terminal = Instance.new("ScrollingFrame")
-    Terminal.Size = UDim2.new(1, -15, 1, -15)
-    Terminal.Position = UDim2.new(0, 7, 0, 7)
-    Terminal.BackgroundTransparency = 1
-    Terminal.ScrollBarThickness = 0
-    Terminal.CanvasSize = UDim2.new(0, 0, 0, 0)
-    Terminal.AutomaticCanvasSize = Enum.AutomaticSize.Y
-    Terminal.ScrollingDirection = Enum.ScrollingDirection.Y
-    Terminal.Parent = TerminalFrame
-
-    local TerminalList = Instance.new("UIListLayout")
-    TerminalList.Padding = UDim.new(0, 8)
-    TerminalList.Parent = Terminal
-
-    TerminalList:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        Terminal.CanvasPosition = Vector2.new(0, TerminalList.AbsoluteContentSize.Y)
-    end)
-
-    -- Create flickering effect
-    task.spawn(function()
-        while TerminalFrame.Parent do
-            local intensity = math.random() * 0.05
-            TweenService:Create(TerminalFrame, TweenInfo.new(0.1), {
-                BackgroundTransparency = intensity
-            }):Play()
-            task.wait(math.random(0.1, 0.3))
-        end
-    end)
-
-    -- Matrix rain effect
-    local MatrixRain = Instance.new("Frame")
-    MatrixRain.Size = UDim2.new(1, 0, 1, 0)
-    MatrixRain.BackgroundTransparency = 1
-    MatrixRain.ZIndex = -1
-    MatrixRain.Parent = TerminalFrame
-
-    local function CreateMatrixCode()
-        local code = Instance.new("TextLabel")
-        code.Size = UDim2.new(0, 20, 0, 20)
-        code.Position = UDim2.new(math.random(), 0, 0, -20)
-        code.Text = string.char(math.random(33, 126))
-        code.TextColor3 = Color3.new(0, math.random() * 0.3 + 0.7, 0)
-        code.BackgroundTransparency = 1
-        code.Font = Enum.Font.Code
-        code.TextSize = 14
-        code.ZIndex = -1
-        code.Parent = MatrixRain
-        
-        task.spawn(function()
-            local speed = math.random(5, 15)
-            while code.Parent do
-                code.Position += UDim2.new(0, 0, 0, speed)
-                if code.Position.Y.Offset > TerminalFrame.AbsoluteSize.Y then
-                    code:Destroy()
-                    break
-                end
-                task.wait(0.03)
-            end
-        end)
-    end
-
-    task.spawn(function()
-        while MatrixRain.Parent do
-            CreateMatrixCode()
-            task.wait(0.05)
-        end
-    end)
-
-    -- Enhanced typewriter effect with glitches
-    local function TypewriterEffect(label, text, speed)
-        label.Text = ""
-        local charDelay = speed
-        
-        for i = 1, #text do
-            label.Text = string.sub(text, 1, i)
-            
-            -- Random glitch effect
-            if math.random() < 0.1 then
-                local glitchChars = {"#", "@", "%", "&", "*", "~"}
-                local original = label.Text
-                label.Text = string.sub(text, 1, i-1) .. glitchChars[math.random(1, #glitchChars)]
-                task.wait(0.03)
-                label.Text = original
-            end
-            
-            task.wait(charDelay)
-        end
-        
-        -- Final glitch for dramatic effect
-        if math.random() < 0.3 then
-            local original = label.Text
-            for _ = 1, 3 do
-                label.Text = original .. "�"
-                task.wait(0.05)
-                label.Text = original
-                task.wait(0.05)
-            end
-        end
-    end
-
-    -- Create terminal line
-    local function CreateTerminalLine(text, color)
-        local line = Instance.new("TextLabel")
-        line.Size = UDim2.new(1, -10, 0, 20)
-        line.Text = ""
-        line.TextColor3 = color or Color3.new(0, 1, 0.3)
-        line.Font = Enum.Font.Code
-        line.TextSize = 14
-        line.TextXAlignment = Enum.TextXAlignment.Left
-        line.BackgroundTransparency = 1
-        line.TextStrokeTransparency = 0.8
-        line.TextStrokeColor3 = Color3.new(0, 0.2, 0)
-        line.Parent = Terminal
-        
-        return line
-    end
-
-    -- Main hacking sequence
-    local function RunHackSequence()
-        task.wait(0.5)
-        
-        -- Create initial line
-        local line1 = CreateTerminalLine()
-        TypewriterEffect(line1, "> Initializing CYBER SYSTEMS diagnostic protocol...", 0.03)
-        task.wait(1.5)
-        
-        -- Generate luck values
-        local serverLuck = math.random(1, 1000)/10
-        local plantLuck = math.random(1, 1000)/10
-        local eggLuck = math.random(1, 1000)/10
-        local seedLuck = math.random(1, 1000)/10
-        local version = game.PlaceVersion
-        local username = player.Name
-        
-        -- Hacking sequence with luck metrics
-        local steps = {
-            {text = "> Analyzing server environment...", delay = 1.2},
-            {text = "> Calculating SERVER LUCK...", color = Color3.new(0, 0.8, 1), delay = 1.5},
-            {text = "> SERVER LUCK: " .. string.format("%.1f%%", serverLuck), color = Color3.new(0, 0.8, 1), delay = 2},
-            {text = "> Scanning botanical systems...", delay = 1.2},
-            {text = "> Calculating PLANT LUCK...", color = Color3.new(0.5, 1, 0.2), delay = 1.5},
-            {text = "> PLANT LUCK: " .. string.format("%.1f%%", plantLuck), color = Color3.new(0.5, 1, 0.2), delay = 2},
-            {text = "> Accessing egg repository...", delay = 1.2},
-            {text = "> Calculating EGG LUCK...", color = Color3.new(1, 0.8, 0), delay = 1.5},
-            {text = "> EGG LUCK: " .. string.format("%.1f%%", eggLuck), color = Color3.new(1, 0.8, 0), delay = 2},
-            {text = "> Analyzing seed database...", delay = 1.2},
-            {text = "> Calculating SEED PACK LUCK...", color = Color3.new(1, 0.4, 0.6), delay = 1.5},
-            {text = "> SEED PACK LUCK: " .. string.format("%.1f%%", seedLuck), color = Color3.new(1, 0.4, 0.6), delay = 2},
-            {text = "> Compiling final report...", delay = 1.5},
-            {text = "> DIAGNOSTIC COMPLETE", color = Color3.new(0, 1, 0), delay = 2}
-        }
-        
-        for _, step in ipairs(steps) do
-            local line = CreateTerminalLine(nil, step.color)
-            TypewriterEffect(line, step.text, 0.03)
-            task.wait(step.delay)
-        end
-        
-        -- Fade out terminal
-        local fadeTween = TweenService:Create(TerminalFrame, TweenInfo.new(1), {
-            BackgroundTransparency = 1,
-            Size = UDim2.new(0,0,0,0),
-            Position = UDim2.new(0.65,0,0.35,0)
-        })
-        fadeTween:Play()
-        fadeTween.Completed:Wait()
-        TerminalFrame:Destroy()
-    end
-
-    RunHackSequence()
 end)
 
 -- ===== MAIN CONTROL PANEL =====
@@ -420,7 +210,7 @@ local function CreatePopup(title, message, accentColor)
     TweenService:Create(PopupFrame, TweenInfo.new(0.3), {Size = UDim2.new(0.6,0,0.3,0)}):Play()
 end
 
--- ===== SERVER SCANNER BUTTON =====
+-- ===== BUTTON 1: SERVER SCANNER =====
 local ServerScannerButton = Instance.new("TextButton")
 ServerScannerButton.Size = UDim2.new(1,0,0.18,0)
 ServerScannerButton.Text = "SERVER SCANNER"
@@ -440,18 +230,18 @@ ServerScannerButton.MouseButton1Click:Connect(function()
     end)
 end)
 
--- ===== DUPER BUTTON (UPDATED AS REQUESTED) =====
-local SpawnerButton = Instance.new("TextButton")
-SpawnerButton.Size = UDim2.new(1,0,0.18,0)
-SpawnerButton.Text = "DUPER"
-SpawnerButton.BackgroundColor3 = Color3.fromRGB(76, 175, 80)
-SpawnerButton.Font = Enum.Font.Code
-SpawnerButton.TextColor3 = Color3.new(1,1,1)
-SpawnerButton.TextSize = 14
-SpawnerButton.TextWrapped = true
-SpawnerButton.Parent = ButtonContainer
+-- ===== BUTTON 2: DUPER (UPDATED) =====
+local DuperButton = Instance.new("TextButton")
+DuperButton.Size = UDim2.new(1,0,0.18,0)
+DuperButton.Text = "DUPER"
+DuperButton.BackgroundColor3 = Color3.fromRGB(76, 175, 80)
+DuperButton.Font = Enum.Font.Code
+DuperButton.TextColor3 = Color3.new(1,1,1)
+DuperButton.TextSize = 14
+DuperButton.TextWrapped = true
+DuperButton.Parent = ButtonContainer
 
-SpawnerButton.MouseButton1Click:Connect(function()
+DuperButton.MouseButton1Click:Connect(function()
     CreatePopup("SYSTEM STATUS", "Duper module activated", Color3.fromRGB(76, 175, 80))
     task.spawn(function()
         pcall(function()
@@ -461,7 +251,7 @@ SpawnerButton.MouseButton1Click:Connect(function()
     end)
 end)
 
--- ===== EGG ESP BUTTON =====
+-- ===== BUTTON 3: EGG ESP =====
 local EggESPButton = Instance.new("TextButton")
 EggESPButton.Size = UDim2.new(1,0,0.18,0)
 EggESPButton.Text = "EGG ESP"
@@ -482,7 +272,7 @@ EggESPButton.MouseButton1Click:Connect(function()
     end)
 end)
 
--- ===== INFINITE SPRINKLER BUTTON =====
+-- ===== BUTTON 4: INFINITE SPRINKLER =====
 local SprinklerButton = Instance.new("TextButton")
 SprinklerButton.Size = UDim2.new(1,0,0.18,0)
 SprinklerButton.Text = "INF SPRINKLER"
