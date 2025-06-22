@@ -28,6 +28,16 @@ local TextButton_2 = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local TextLabel_5 = Instance.new("TextLabel")
 local UICorner_4 = Instance.new("UICorner")
+local Frame_7 = Instance.new("ImageLabel")
+local TextLabel_6 = Instance.new("TextLabel")
+local ImageLabel_5 = Instance.new("ImageLabel")
+local ImageLabel_6 = Instance.new("ImageLabel")
+local TextButton_3 = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local Frame_8 = Instance.new("ImageLabel")
+local ImageLabel_7 = Instance.new("ImageLabel")
+local TextButton_4 = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
 
 --Properties:
 
@@ -132,6 +142,7 @@ ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0.0230547544, 0, 0.0959885418, 0)
 ScrollingFrame.Size = UDim2.new(0, 330, 0, 408)
+ScrollingFrame.CanvasPosition = Vector2.new(0, 840)
 
 Frame_5.Name = "Frame"
 Frame_5.Parent = ScrollingFrame
@@ -255,7 +266,7 @@ TextLabel_5.Parent = ScrollingFrame
 TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 170, 127)
 TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_5.BorderSizePixel = 0
-TextLabel_5.Position = UDim2.new(0.0372334793, 0, 0.410608232, 0)
+TextLabel_5.Position = UDim2.new(0.0372334793, 0, 0.763007045, 0)
 TextLabel_5.Size = UDim2.new(0, 304, 0, 76)
 TextLabel_5.Font = Enum.Font.Unknown
 TextLabel_5.Text = "To Obtain combination points you need to wait every 5 minutes for an EAGLE  to fly, find it around the MAP"
@@ -265,9 +276,105 @@ TextLabel_5.TextWrapped = true
 
 UICorner_4.Parent = TextLabel_5
 
+Frame_7.Name = "Frame"
+Frame_7.Parent = ScrollingFrame
+Frame_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_7.BackgroundTransparency = 1.000
+Frame_7.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame_7.BorderSizePixel = 5
+Frame_7.Position = UDim2.new(0.0694006681, 0, 0.419619828, 0)
+Frame_7.Size = UDim2.new(0, 275, 0, 120)
+Frame_7.Image = "rbxassetid://3570695787"
+Frame_7.ImageColor3 = Color3.fromRGB(154, 184, 84)
+Frame_7.ScaleType = Enum.ScaleType.Slice
+Frame_7.SliceCenter = Rect.new(100, 100, 100, 100)
+Frame_7.SliceScale = 0.120
+
+TextLabel_6.Parent = Frame_7
+TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_6.BackgroundTransparency = 1.000
+TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_6.BorderSizePixel = 0
+TextLabel_6.Position = UDim2.new(0.167272732, 0, 0.283333331, 0)
+TextLabel_6.Size = UDim2.new(0, 200, 0, 50)
+TextLabel_6.Font = Enum.Font.SourceSans
+TextLabel_6.Text = "+"
+TextLabel_6.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_6.TextSize = 100.000
+
+ImageLabel_5.Parent = Frame_7
+ImageLabel_5.Active = true
+ImageLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_5.BackgroundTransparency = 1.000
+ImageLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_5.BorderSizePixel = 0
+ImageLabel_5.Position = UDim2.new(0.483728468, 0, -0.157158405, 0)
+ImageLabel_5.Size = UDim2.new(0, 161, 0, 146)
+ImageLabel_5.Image = "rbxassetid://95975299514508"
+
+ImageLabel_6.Parent = Frame_7
+ImageLabel_6.Active = true
+ImageLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_6.BackgroundTransparency = 1.000
+ImageLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_6.BorderSizePixel = 0
+ImageLabel_6.Position = UDim2.new(-0.0580900423, 0, -0.224999994, 0)
+ImageLabel_6.Size = UDim2.new(0, 171, 0, 164)
+ImageLabel_6.Image = "rbxassetid://95975299514508"
+
+TextButton_3.Parent = Frame_7
+TextButton_3.BackgroundColor3 = Color3.fromRGB(73, 225, 255)
+TextButton_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_3.BorderSizePixel = 0
+TextButton_3.Position = UDim2.new(0.13454546, 0, 1.26666665, 0)
+TextButton_3.Size = UDim2.new(0, 200, 0, 50)
+TextButton_3.Font = Enum.Font.LuckiestGuy
+TextButton_3.Text = "COMBINE"
+TextButton_3.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_3.TextSize = 27.000
+
+UICorner_5.Parent = TextButton_3
+
+Frame_8.Name = "Frame"
+Frame_8.Parent = ScrollingFrame
+Frame_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_8.BackgroundTransparency = 1.000
+Frame_8.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame_8.BorderSizePixel = 5
+Frame_8.Position = UDim2.new(0.066370368, 0, 0.580365956, 0)
+Frame_8.Size = UDim2.new(0, 275, 0, 120)
+Frame_8.Image = "rbxassetid://3570695787"
+Frame_8.ImageColor3 = Color3.fromRGB(154, 184, 84)
+Frame_8.ScaleType = Enum.ScaleType.Slice
+Frame_8.SliceCenter = Rect.new(100, 100, 100, 100)
+Frame_8.SliceScale = 0.120
+
+ImageLabel_7.Parent = Frame_8
+ImageLabel_7.Active = true
+ImageLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_7.BackgroundTransparency = 1.000
+ImageLabel_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_7.BorderSizePixel = 0
+ImageLabel_7.Position = UDim2.new(0.338273585, 0, 0.0761749297, 0)
+ImageLabel_7.Size = UDim2.new(0, 100, 0, 100)
+ImageLabel_7.Image = "rbxassetid://137637539565539"
+
+TextButton_4.Parent = Frame_8
+TextButton_4.BackgroundColor3 = Color3.fromRGB(73, 225, 255)
+TextButton_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_4.BorderSizePixel = 0
+TextButton_4.Position = UDim2.new(0.13454546, 0, 1.26666665, 0)
+TextButton_4.Size = UDim2.new(0, 200, 0, 50)
+TextButton_4.Font = Enum.Font.LuckiestGuy
+TextButton_4.Text = "DHASEHWB"
+TextButton_4.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_4.TextSize = 27.000
+
+UICorner_6.Parent = TextButton_4
+
 -- Scripts:
 
-local function NFTPIFV_fake_script() -- Timer.RealTimeCountdownTimer 
+local function AQQVCA_fake_script() -- Timer.RealTimeCountdownTimer 
 	local script = Instance.new('LocalScript', Timer)
 
 	local timerLabel = script.Parent
@@ -288,4 +395,4 @@ local function NFTPIFV_fake_script() -- Timer.RealTimeCountdownTimer
 	
 	
 end
-coroutine.wrap(NFTPIFV_fake_script)()
+coroutine.wrap(AQQVCA_fake_script)()
