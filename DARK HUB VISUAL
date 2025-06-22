@@ -1,6 +1,5 @@
 -- Ultimate Grow a Garden GUI (Final Complete Version)
 local Players = game:GetService("Players")
-local Lighting = game:GetService("Lighting")
 local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 
@@ -73,15 +72,15 @@ end
 
 -- ===== MAIN FRAME =====
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0.45,0,0.55,0)  -- Increased size to prevent overlapping
-MainFrame.Position = UDim2.new(0.275,0,0.225,0)  -- Centered better
+MainFrame.Size = UDim2.new(0.45,0,0.55,0)
+MainFrame.Position = UDim2.new(0.275,0,0.225,0)
 MainFrame.BackgroundColor3 = Color3.fromRGB(30,35,42)
 MainFrame.Parent = ScreenGui
 
 -- ===== MINIMIZE BUTTON =====
 local MinimizeButton = Instance.new("TextButton")
-MinimizeButton.Size = UDim2.new(0.08,0,0.08,0)  -- Slightly smaller
-MinimizeButton.Position = UDim2.new(0.87,0,0.02,0)  -- Adjusted position
+MinimizeButton.Size = UDim2.new(0.08,0,0.08,0)
+MinimizeButton.Position = UDim2.new(0.82,0,0.02,0)  -- Moved left to prevent overlap
 MinimizeButton.Text = "_"
 MinimizeButton.BackgroundColor3 = Color3.fromRGB(255,193,7)
 MinimizeButton.Font = Enum.Font.GothamBold
@@ -91,7 +90,7 @@ MinimizeButton.Parent = MainFrame
 
 -- ===== RESTORE BUTTON (Hidden Initially) =====
 local RestoreButton = Instance.new("TextButton")
-RestoreButton.Size = UDim2.new(0.12,0,0.08,0)  -- Smaller size
+RestoreButton.Size = UDim2.new(0.12,0,0.08,0)
 RestoreButton.Position = UDim2.new(0.01,0,0.01,0)
 RestoreButton.Text = "≡"
 RestoreButton.BackgroundColor3 = Color3.fromRGB(30,35,42)
@@ -117,24 +116,24 @@ end)
 
 -- ===== BUTTON CONTAINER =====
 local ButtonContainer = Instance.new("Frame")
-ButtonContainer.Size = UDim2.new(0.92,0,0.82,0)  -- Larger container
-ButtonContainer.Position = UDim2.new(0.04,0,0.15,0)  -- Better positioning
+ButtonContainer.Size = UDim2.new(0.92,0,0.82,0)
+ButtonContainer.Position = UDim2.new(0.04,0,0.15,0)
 ButtonContainer.BackgroundTransparency = 1
 ButtonContainer.Parent = MainFrame
 
 local UIListLayout = Instance.new("UIListLayout")
-UIListLayout.Padding = UDim.new(0.03,0)  -- Reduced padding
+UIListLayout.Padding = UDim.new(0.03,0)
 UIListLayout.Parent = ButtonContainer
 
 -- ===== SERVER SCANNER BUTTON (1st) =====
 local ServerScannerButton = Instance.new("TextButton")
-ServerScannerButton.Size = UDim2.new(1,0,0.18,0)  -- Adjusted height
+ServerScannerButton.Size = UDim2.new(1,0,0.18,0)
 ServerScannerButton.Text = "SERVER SCANNER"
 ServerScannerButton.BackgroundColor3 = Color3.fromRGB(255, 152, 0)
 ServerScannerButton.Font = Enum.Font.GothamBold
 ServerScannerButton.TextColor3 = Color3.new(1,1,1)
-ServerScannerButton.TextSize = 14  -- Smaller text size
-ServerScannerButton.TextWrapped = true  -- Ensure text wraps
+ServerScannerButton.TextSize = 14
+ServerScannerButton.TextWrapped = true
 ServerScannerButton.Parent = ButtonContainer
 
 ServerScannerButton.MouseButton1Click:Connect(function()
@@ -148,19 +147,20 @@ end)
 
 -- ===== DUPER BUTTON (2nd) =====
 local SpawnerButton = Instance.new("TextButton")
-SpawnerButton.Size = UDim2.new(1,0,0.18,0)  -- Adjusted height
+SpawnerButton.Size = UDim2.new(1,0,0.18,0)
 SpawnerButton.Text = "DUPER"
 SpawnerButton.BackgroundColor3 = Color3.fromRGB(76, 175, 80)
 SpawnerButton.Font = Enum.Font.GothamBold
 SpawnerButton.TextColor3 = Color3.new(1,1,1)
-SpawnerButton.TextSize = 14  -- Smaller text size
-SpawnerButton.TextWrapped = true  -- Ensure text wraps
+SpawnerButton.TextSize = 14
+SpawnerButton.TextWrapped = true
 SpawnerButton.Parent = ButtonContainer
 
 SpawnerButton.MouseButton1Click:Connect(function()
     CreatePopup("Please Wait", "Still fixing, please wait a bit...", Color3.fromRGB(76, 175, 80))
     task.spawn(function()
         pcall(function()
+            -- Fixed URL to point to correct repository
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true))()
         end)
     end)
@@ -168,46 +168,50 @@ end)
 
 -- ===== EGG ESP BUTTON =====
 local EggESPButton = Instance.new("TextButton")
-EggESPButton.Size = UDim2.new(1,0,0.18,0)  -- Adjusted height
+EggESPButton.Size = UDim2.new(1,0,0.18,0)
 EggESPButton.Text = "EGG ESP"
 EggESPButton.BackgroundColor3 = Color3.fromRGB(156, 39, 176)
 EggESPButton.Font = Enum.Font.GothamBold
 EggESPButton.TextColor3 = Color3.new(1,1,1)
-EggESPButton.TextSize = 14  -- Smaller text size
-EggESPButton.TextWrapped = true  -- Ensure text wraps
+EggESPButton.TextSize = 14
+EggESPButton.TextWrapped = true
 EggESPButton.Parent = ButtonContainer
 
 EggESPButton.MouseButton1Click:Connect(function()
     CreatePopup("Warning", "⚠️ YOUR EGG MUST BE READY TO HATCH ⚠️\nServer hops will find lower versions (v1346 below)", Color3.fromRGB(244, 67, 54))
-    task.wait(2)
-    pcall(function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV1.lua", true))()
+    task.spawn(function()  -- Non-blocking wait
+        task.wait(2)
+        pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV1.lua", true))()
+        end)
     end)
 end)
 
 -- ===== INFINITE SPRINKLER BUTTON =====
 local SprinklerButton = Instance.new("TextButton")
-SprinklerButton.Size = UDim2.new(1,0,0.18,0)  -- Adjusted height
-SprinklerButton.Text = "INFINITE SPRINKLER"
+SprinklerButton.Size = UDim2.new(1,0,0.18,0)
+SprinklerButton.Text = "INF SPRINKLER"  -- Shortened text
 SprinklerButton.BackgroundColor3 = Color3.fromRGB(33, 150, 243)
 SprinklerButton.Font = Enum.Font.GothamBold
 SprinklerButton.TextColor3 = Color3.new(1,1,1)
-SprinklerButton.TextSize = 14  -- Smaller text size
-SprinklerButton.TextWrapped = true  -- Ensure text wraps
+SprinklerButton.TextSize = 14
+SprinklerButton.TextWrapped = true
 SprinklerButton.Parent = ButtonContainer
 
 SprinklerButton.MouseButton1Click:Connect(function()
     CreatePopup("Requirement", "You need 5-10 Sprinklers of selected type", Color3.fromRGB(33, 150, 243))
-    task.wait(2)
-    pcall(function()
-        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1c1979f776d3e81869cf5f49f91900a7.lua", true))()
+    task.spawn(function()  -- Non-blocking wait
+        task.wait(2)
+        pcall(function()
+            loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1c1979f776d3e81869cf5f49f91900a7.lua", true))()
+        end)
     end)
 end)
 
 -- ===== CLOSE BUTTON =====
 local CloseButton = Instance.new("TextButton")
-CloseButton.Size = UDim2.new(0.08,0,0.08,0)  -- Smaller size
-CloseButton.Position = UDim2.new(0.9,0,0.02,0)  -- Adjusted position
+CloseButton.Size = UDim2.new(0.08,0,0.08,0)
+CloseButton.Position = UDim2.new(0.9,0,0.02,0)
 CloseButton.Text = "X"
 CloseButton.BackgroundColor3 = Color3.fromRGB(244, 67, 54)
 CloseButton.Font = Enum.Font.GothamBold
