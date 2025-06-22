@@ -1,244 +1,291 @@
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local gui = Instance.new("ScreenGui")
-gui.Name = "MobileFriendlyGUI"
-gui.ResetOnSpawn = false
-gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-gui.Parent = player:WaitForChild("PlayerGui")
+-- Gui to Lua
+-- Version: 3.2
 
--- Main container with responsive sizing
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("ImageLabel")
-Frame.Name = "MainFrame"
-Frame.Parent = gui
-Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.Size = UDim2.new(0.85, 0, 0.9, 0) -- Relative to screen size
+local Frame_2 = Instance.new("ImageLabel")
+local Timer = Instance.new("TextLabel")
+local Frame_3 = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Frame_4 = Instance.new("ImageLabel")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local Frame_5 = Instance.new("ImageLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local ImageLabel_2 = Instance.new("ImageLabel")
+local TextButton = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Frame_6 = Instance.new("ImageLabel")
+local TextLabel_4 = Instance.new("TextLabel")
+local ImageLabel_3 = Instance.new("ImageLabel")
+local ImageLabel_4 = Instance.new("ImageLabel")
+local TextButton_2 = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local TextLabel_5 = Instance.new("TextLabel")
+local UICorner_4 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Name = "Frame"
+Frame.Parent = ScreenGui
+Frame.Active = true
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame.Position = UDim2.new(0.0763827935, 0, 0.0472636819, 0)
+Frame.Size = UDim2.new(0, 347, 0, 702)
 Frame.Image = "rbxassetid://3570695787"
 Frame.ImageColor3 = Color3.fromRGB(131, 89, 46)
 Frame.ScaleType = Enum.ScaleType.Slice
 Frame.SliceCenter = Rect.new(100, 100, 100, 100)
 Frame.SliceScale = 0.120
-Frame.Visible = false -- Start hidden
 
--- Header with relative sizing
-local Frame_2 = Instance.new("ImageLabel")
-Frame_2.Name = "Header"
+Frame_2.Name = "Frame"
 Frame_2.Parent = Frame
-Frame_2.AnchorPoint = Vector2.new(0.5, 0)
-Frame_2.Position = UDim2.new(0.5, 0, 0.02, 0)
-Frame_2.Size = UDim2.new(0.95, 0, 0.06, 0) -- 95% width, 6% height
+Frame_2.Active = true
+Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_2.BackgroundTransparency = 1.000
+Frame_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame_2.Position = UDim2.new(0.0230547544, 0, 0.0114613185, 0)
+Frame_2.Size = UDim2.new(0, 330, 0, 42)
 Frame_2.Image = "rbxassetid://3570695787"
 Frame_2.ImageColor3 = Color3.fromRGB(30, 181, 55)
 Frame_2.ScaleType = Enum.ScaleType.Slice
 Frame_2.SliceCenter = Rect.new(100, 100, 100, 100)
 Frame_2.SliceScale = 0.050
 
--- Timer with adaptive text size
-local Timer = Instance.new("TextLabel")
 Timer.Name = "Timer"
 Timer.Parent = Frame
-Timer.AnchorPoint = Vector2.new(0.5, 0.5)
-Timer.Position = UDim2.new(0.5, 0, 0.055, 0)
-Timer.Size = UDim2.new(0.9, 0, 0.9, 0)
-Timer.Font = Enum.Font.SourceSansBold
-Timer.Text = "00:00:00"
+Timer.BackgroundColor3 = Color3.fromRGB(255, 255, 48)
+Timer.BackgroundTransparency = 1.000
+Timer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Timer.BorderSizePixel = 0
+Timer.Position = UDim2.new(0.253602296, 0, 0.0128939832, 0)
+Timer.Size = UDim2.new(0, 93, 0, 41)
+Timer.Font = Enum.Font.SourceSans
 Timer.TextColor3 = Color3.fromRGB(255, 255, 255)
-Timer.TextScaled = true -- Auto-scales text
 Timer.TextSize = 26.000
 Timer.TextStrokeTransparency = 0.700
-Timer.BackgroundTransparency = 1
 
--- Main content area
-local Frame_3 = Instance.new("Frame")
 Frame_3.Parent = Frame
-Frame_3.AnchorPoint = Vector2.new(0.5, 0)
-Frame_3.Position = UDim2.new(0.5, 0, 0.12, 0)
-Frame_3.Size = UDim2.new(0.95, 0, 0.82, 0) -- 95% width, 82% height
 Frame_3.BackgroundColor3 = Color3.fromRGB(35, 110, 118)
+Frame_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Frame_3.BorderSizePixel = 0
+Frame_3.Position = UDim2.new(0.0403458215, 0, 0.0959885418, 0)
+Frame_3.Size = UDim2.new(0, 317, 0, 425)
 
-local UICorner = Instance.new("UICorner")
 UICorner.CornerRadius = UDim.new(0, 15)
 UICorner.Parent = Frame_3
 
--- Combination Section 1
-local Frame_4 = Instance.new("ImageLabel")
-Frame_4.Name = "Section1Border"
+Frame_4.Name = "Frame"
 Frame_4.Parent = Frame_3
-Frame_4.AnchorPoint = Vector2.new(0.5, 0)
-Frame_4.Position = UDim2.new(0.5, 0, 0.05, 0)
-Frame_4.Size = UDim2.new(0.95, 0, 0.22, 0)
+Frame_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_4.BackgroundTransparency = 1.000
+Frame_4.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame_4.BorderSizePixel = 5
+Frame_4.Position = UDim2.new(0.0220820196, 0, 0.0372771472, 0)
+Frame_4.Size = UDim2.new(0, 304, 0, 148)
 Frame_4.Image = "rbxassetid://3570695787"
 Frame_4.ImageColor3 = Color3.fromRGB(95, 7, 1)
 Frame_4.ScaleType = Enum.ScaleType.Slice
 Frame_4.SliceCenter = Rect.new(100, 100, 100, 100)
 Frame_4.SliceScale = 0.120
 
-local Frame_5 = Instance.new("ImageLabel")
-Frame_5.Name = "Section1"
-Frame_5.Parent = Frame_3
-Frame_5.AnchorPoint = Vector2.new(0.5, 0)
-Frame_5.Position = UDim2.new(0.5, 0, 0.08, 0)
-Frame_5.Size = UDim2.new(0.85, 0, 0.18, 0)
+TextLabel.Parent = Frame_3
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.447949439, 0, -0.158577561, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "SECRET!"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 47.000
+
+TextLabel_2.Parent = Frame
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(-0.0172910672, 0, 0.00573065924, 0)
+TextLabel_2.Size = UDim2.new(0, 124, 0, 50)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = "Leaving In: "
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 19.000
+
+UIAspectRatioConstraint.Parent = Frame
+UIAspectRatioConstraint.AspectRatio = 0.497
+
+ScrollingFrame.Parent = Frame
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(112, 42, 74)
+ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0.0230547544, 0, 0.0959885418, 0)
+ScrollingFrame.Size = UDim2.new(0, 330, 0, 408)
+
+Frame_5.Name = "Frame"
+Frame_5.Parent = ScrollingFrame
+Frame_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_5.BackgroundTransparency = 1.000
+Frame_5.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame_5.BorderSizePixel = 5
+Frame_5.Position = UDim2.new(0.0694006309, 0, 0.0599675849, 0)
+Frame_5.Size = UDim2.new(0, 275, 0, 120)
 Frame_5.Image = "rbxassetid://3570695787"
 Frame_5.ImageColor3 = Color3.fromRGB(154, 184, 84)
 Frame_5.ScaleType = Enum.ScaleType.Slice
 Frame_5.SliceCenter = Rect.new(100, 100, 100, 100)
 Frame_5.SliceScale = 0.120
 
--- Plus symbol with relative positioning
-local TextLabel = Instance.new("TextLabel")
-TextLabel.Parent = Frame_5
-TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
-TextLabel.Size = UDim2.new(0.2, 0, 0.8, 0)
-TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "+"
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextScaled = true
-TextLabel.BackgroundTransparency = 1
+TextLabel_3.Parent = Frame_5
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0.167272732, 0, 0.283333331, 0)
+TextLabel_3.Size = UDim2.new(0, 200, 0, 50)
+TextLabel_3.Font = Enum.Font.SourceSans
+TextLabel_3.Text = "+"
+TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.TextSize = 100.000
 
--- Left item
-local ImageLabel = Instance.new("ImageLabel")
 ImageLabel.Parent = Frame_5
-ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-ImageLabel.Position = UDim2.new(0.25, 0, 0.5, 0)
-ImageLabel.Size = UDim2.new(0.35, 0, 0.9, 0)
+ImageLabel.Active = true
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.552819073, 0, 0.0761750564, 0)
+ImageLabel.Size = UDim2.new(0, 100, 0, 100)
 ImageLabel.Image = "rbxassetid://79519384825184"
-ImageLabel.BackgroundTransparency = 1
-ImageLabel.ScaleType = Enum.ScaleType.Fit
 
--- Right item
-local ImageLabel_2 = Instance.new("ImageLabel")
 ImageLabel_2.Parent = Frame_5
-ImageLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
-ImageLabel_2.Position = UDim2.new(0.75, 0, 0.5, 0)
-ImageLabel_2.Size = UDim2.new(0.35, 0, 0.9, 0)
+ImageLabel_2.Active = true
+ImageLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_2.BackgroundTransparency = 1.000
+ImageLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_2.BorderSizePixel = 0
+ImageLabel_2.Position = UDim2.new(0.0946372226, 0, 0.0761750415, 0)
+ImageLabel_2.Size = UDim2.new(0, 100, 0, 100)
 ImageLabel_2.Image = "rbxassetid://72741260782585"
-ImageLabel_2.BackgroundTransparency = 1
-ImageLabel_2.ScaleType = Enum.ScaleType.Fit
 
--- Combine button with larger touch area
-local TextButton = Instance.new("TextButton")
 TextButton.Parent = Frame_5
-TextButton.AnchorPoint = Vector2.new(0.5, 0)
-TextButton.Position = UDim2.new(0.5, 0, 1.1, 0)
-TextButton.Size = UDim2.new(0.7, 0, 0.4, 0)
+TextButton.BackgroundColor3 = Color3.fromRGB(73, 225, 255)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.13454546, 0, 1.26666665, 0)
+TextButton.Size = UDim2.new(0, 200, 0, 50)
 TextButton.Font = Enum.Font.LuckiestGuy
 TextButton.Text = "COMBINE"
 TextButton.TextColor3 = Color3.fromRGB(255, 0, 0)
-TextButton.TextScaled = true
-TextButton.BackgroundColor3 = Color3.fromRGB(73, 225, 255)
+TextButton.TextSize = 27.000
 
-local UICorner_2 = Instance.new("UICorner")
-UICorner_2.CornerRadius = UDim.new(0, 12)
 UICorner_2.Parent = TextButton
 
--- Combination Section 2 (repeats pattern with different images)
--- [Similar structure to Section 1 with responsive sizing]
--- ... (omitted for brevity, use same pattern as above)
+Frame_6.Name = "Frame"
+Frame_6.Parent = ScrollingFrame
+Frame_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_6.BackgroundTransparency = 1.000
+Frame_6.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame_6.BorderSizePixel = 5
+Frame_6.Position = UDim2.new(0.0694006681, 0, 0.243368059, 0)
+Frame_6.Size = UDim2.new(0, 275, 0, 120)
+Frame_6.Image = "rbxassetid://3570695787"
+Frame_6.ImageColor3 = Color3.fromRGB(154, 184, 84)
+Frame_6.ScaleType = Enum.ScaleType.Slice
+Frame_6.SliceCenter = Rect.new(100, 100, 100, 100)
+Frame_6.SliceScale = 0.120
 
--- Information panel with scrollable text
-local TextLabel_3 = Instance.new("TextLabel")
-TextLabel_3.Parent = Frame_3
-TextLabel_3.AnchorPoint = Vector2.new(0.5, 1)
-TextLabel_3.Position = UDim2.new(0.5, 0, 0.98, 0)
-TextLabel_3.Size = UDim2.new(0.95, 0, 0.25, 0)
-TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 170, 127)
-TextLabel_3.Font = Enum.Font.SourceSans
-TextLabel_3.Text = "To obtain combination points, find the EAGLE that appears around the map every 5 minutes"
-TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.TextScaled = true
-TextLabel_3.TextWrapped = true
-
-local UICorner_4 = Instance.new("UICorner")
-UICorner_4.CornerRadius = UDim.new(0, 12)
-UICorner_4.Parent = TextLabel_3
-
--- Title label
-local TextLabel_4 = Instance.new("TextLabel")
-TextLabel_4.Parent = Frame
-TextLabel_4.AnchorPoint = Vector2.new(0.5, 0)
-TextLabel_4.Position = UDim2.new(0.5, 0, 0.01, 0)
-TextLabel_4.Size = UDim2.new(0.8, 0, 0.05, 0)
-TextLabel_4.Font = Enum.Font.SourceSansBold
-TextLabel_4.Text = "SECRET!"
+TextLabel_4.Parent = Frame_6
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.BorderSizePixel = 0
+TextLabel_4.Position = UDim2.new(0.167272732, 0, 0.283333331, 0)
+TextLabel_4.Size = UDim2.new(0, 200, 0, 50)
+TextLabel_4.Font = Enum.Font.SourceSans
+TextLabel_4.Text = "+"
 TextLabel_4.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.TextScaled = true
-TextLabel_4.BackgroundTransparency = 1
+TextLabel_4.TextSize = 100.000
 
--- Timer label
-local TextLabel_5 = Instance.new("TextLabel")
-TextLabel_5.Parent = Frame
-TextLabel_5.AnchorPoint = Vector2.new(0, 0.5)
-TextLabel_5.Position = UDim2.new(0.05, 0, 0.055, 0)
-TextLabel_5.Size = UDim2.new(0.4, 0, 0.9, 0)
-TextLabel_5.Font = Enum.Font.SourceSans
-TextLabel_5.Text = "Leaving In: "
+ImageLabel_3.Parent = Frame_6
+ImageLabel_3.Active = true
+ImageLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_3.BackgroundTransparency = 1.000
+ImageLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_3.BorderSizePixel = 0
+ImageLabel_3.Position = UDim2.new(0.563728154, 0, 0.0761749297, 0)
+ImageLabel_3.Size = UDim2.new(0, 100, 0, 100)
+ImageLabel_3.Image = "rbxassetid://122886404445185"
+
+ImageLabel_4.Parent = Frame_6
+ImageLabel_4.Active = true
+ImageLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel_4.BackgroundTransparency = 1.000
+ImageLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel_4.BorderSizePixel = 0
+ImageLabel_4.Position = UDim2.new(-0.0580900423, 0, -0.224999994, 0)
+ImageLabel_4.Size = UDim2.new(0, 171, 0, 164)
+ImageLabel_4.Image = "rbxassetid://75143674487546"
+
+TextButton_2.Parent = Frame_6
+TextButton_2.BackgroundColor3 = Color3.fromRGB(73, 225, 255)
+TextButton_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.13454546, 0, 1.26666665, 0)
+TextButton_2.Size = UDim2.new(0, 200, 0, 50)
+TextButton_2.Font = Enum.Font.LuckiestGuy
+TextButton_2.Text = "COMBINE"
+TextButton_2.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_2.TextSize = 27.000
+
+UICorner_3.Parent = TextButton_2
+
+TextLabel_5.Parent = ScrollingFrame
+TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 170, 127)
+TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_5.BorderSizePixel = 0
+TextLabel_5.Position = UDim2.new(0.0372334793, 0, 0.410608232, 0)
+TextLabel_5.Size = UDim2.new(0, 304, 0, 76)
+TextLabel_5.Font = Enum.Font.Unknown
+TextLabel_5.Text = "To Obtain combination points you need to wait every 5 minutes for an EAGLE  to fly, find it around the MAP"
 TextLabel_5.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_5.TextScaled = true
-TextLabel_5.TextXAlignment = Enum.TextXAlignment.Left
-TextLabel_5.BackgroundTransparency = 1
+TextLabel_5.TextSize = 11.000
+TextLabel_5.TextWrapped = true
 
--- Mobile-friendly toggle button
-local OPEN = Instance.new("TextButton")
-OPEN.Name = "OPEN"
-OPEN.Parent = gui
-OPEN.AnchorPoint = Vector2.new(1, 0.5)
-OPEN.Position = UDim2.new(0.98, 0, 0.5, 0) -- Right side of screen
-OPEN.Size = UDim2.new(0.1, 0, 0.15, 0) -- Larger touch target
-OPEN.Font = Enum.Font.SourceSansBold
-OPEN.Text = "≡" -- Hamburger icon
-OPEN.TextColor3 = Color3.fromRGB(0, 0, 0)
-OPEN.TextScaled = true
-OPEN.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
-OPEN.BackgroundTransparency = 0.2
+UICorner_4.Parent = TextLabel_5
 
-local openCorner = Instance.new("UICorner")
-openCorner.CornerRadius = UDim.new(0, 12)
-openCorner.Parent = OPEN
+-- Scripts:
 
--- Timer script
-local function timerScript()
-	local timerLabel = Timer
+local function NFTPIFV_fake_script() -- Timer.RealTimeCountdownTimer 
+	local script = Instance.new('LocalScript', Timer)
+
+	local timerLabel = script.Parent
 	local totalTime = 3600 -- 1 hour in seconds
 	
-	while true do
-		local hours = math.floor(totalTime / 3600)
-		local minutes = math.floor((totalTime % 3600) / 60)
-		local seconds = totalTime % 60
-		
-		timerLabel.Text = string.format("%02d:%02d:%02d", hours, minutes, seconds)
-		
-		task.wait(1)
-		totalTime = totalTime - 1
-		
-		if totalTime < 0 then
-			timerLabel.Text = "00:00:00"
-			break
-		end
+	while totalTime > 0 do
+	    local hours = math.floor(totalTime / 3600)
+	    local minutes = math.floor((totalTime % 3600) / 60)
+	    local seconds = totalTime % 60
+	
+	    timerLabel.Text = string.format("%02d:%02d:%02d", hours, minutes, seconds)
+	
+	    task.wait(1)
+	    totalTime = totalTime - 1
 	end
+	
+	timerLabel.Text = "00:00:00" -- Timer ends
+	
+	
 end
-
-coroutine.wrap(timerScript)()
-
--- Toggle GUI with animation
-OPEN.MouseButton1Click:Connect(function()
-	Frame.Visible = not Frame.Visible
-	
-	-- Animate toggle button
-	local tweenService = game:GetService("TweenService")
-	local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-	
-	if Frame.Visible then
-		tweenService:Create(OPEN, tweenInfo, {
-			Position = UDim2.new(0.92, 0, 0.5, 0),
-			TextColor3 = Color3.fromRGB(255, 50, 50)
-		}):Play()
-	else
-		tweenService:Create(OPEN, tweenInfo, {
-			Position = UDim2.new(0.98, 0, 0.5, 0),
-			TextColor3 = Color3.fromRGB(0, 0, 0)
-		}):Play()
-	end
-end)
+coroutine.wrap(NFTPIFV_fake_script)()
