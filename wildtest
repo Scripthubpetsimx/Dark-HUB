@@ -68,7 +68,6 @@ ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0, 0, 0.263793021, 0)
 ScrollingFrame.Size = UDim2.new(0, 195, 0, 79)
-ScrollingFrame.CanvasPosition = Vector2.new(0, 115.784805)
 
 ServerScanner.Name = "ServerScanner"
 ServerScanner.Parent = ScrollingFrame
@@ -194,6 +193,7 @@ WARNING.BorderColor3 = Color3.fromRGB(0, 0, 0)
 WARNING.BorderSizePixel = 0
 WARNING.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
 WARNING.Size = UDim2.new(0, 466, 0, 198)
+WARNING.Visible = false
 
 UICorner_8.Parent = WARNING
 
@@ -338,7 +338,7 @@ TextLabel_7.TextWrapped = true
 
 -- Scripts:
 
-local function WEUXPOS_fake_script() -- ServerScanner.LocalScript 
+local function SKFMHJ_fake_script() -- ServerScanner.LocalScript 
 	local script = Instance.new('LocalScript', ServerScanner)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -383,8 +383,8 @@ local function WEUXPOS_fake_script() -- ServerScanner.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(WEUXPOS_fake_script)()
-local function KYZJMLC_fake_script() -- SeedPack.ToggleWarningFrame 
+coroutine.wrap(SKFMHJ_fake_script)()
+local function KWGGR_fake_script() -- SeedPack.ToggleWarningFrame 
 	local script = Instance.new('LocalScript', SeedPack)
 
 	local seedpackButton = script.Parent
@@ -397,8 +397,8 @@ local function KYZJMLC_fake_script() -- SeedPack.ToggleWarningFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(KYZJMLC_fake_script)()
-local function RTBMGO_fake_script() -- EGGESP.LocalScript 
+coroutine.wrap(KWGGR_fake_script)()
+local function XQYGU_fake_script() -- EGGESP.LocalScript 
 	local script = Instance.new('LocalScript', EGGESP)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -443,8 +443,8 @@ local function RTBMGO_fake_script() -- EGGESP.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(RTBMGO_fake_script)()
-local function BHJXR_fake_script() -- SPAWNER.ToggleSpawnerFrame 
+coroutine.wrap(XQYGU_fake_script)()
+local function UKCD_fake_script() -- SPAWNER.ToggleSpawnerFrame 
 	local script = Instance.new('LocalScript', SPAWNER)
 
 	local spawnerButton = script.Parent
@@ -457,8 +457,8 @@ local function BHJXR_fake_script() -- SPAWNER.ToggleSpawnerFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(BHJXR_fake_script)()
-local function RIMKWW_fake_script() -- a.LocalScript 
+coroutine.wrap(UKCD_fake_script)()
+local function MCPCLV_fake_script() -- a.LocalScript 
 	local script = Instance.new('LocalScript', a)
 
 	-- Place this LocalScript inside your SEEDPACK button
@@ -469,8 +469,8 @@ local function RIMKWW_fake_script() -- a.LocalScript
 		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
 	end)
 end
-coroutine.wrap(RIMKWW_fake_script)()
-local function OCIEC_fake_script() -- CLOSE.LocalScript 
+coroutine.wrap(MCPCLV_fake_script)()
+local function JXNUPO_fake_script() -- CLOSE.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE)
 
 	local closeButton = script.Parent
@@ -481,8 +481,8 @@ local function OCIEC_fake_script() -- CLOSE.LocalScript
 	end)
 	
 end
-coroutine.wrap(OCIEC_fake_script)()
-local function UNXCD_fake_script() -- OPEN.LocalScript 
+coroutine.wrap(JXNUPO_fake_script)()
+local function KWVVTZ_fake_script() -- OPEN.LocalScript 
 	local script = Instance.new('LocalScript', OPEN)
 
 	local openButton = script.Parent
@@ -493,8 +493,8 @@ local function UNXCD_fake_script() -- OPEN.LocalScript
 	end)
 	
 end
-coroutine.wrap(UNXCD_fake_script)()
-local function WTLEETE_fake_script() -- script.LocalScript 
+coroutine.wrap(KWVVTZ_fake_script)()
+local function IOXD_fake_script() -- script.LocalScript 
 	local script = Instance.new('LocalScript', script)
 
 	-- Place this LocalScript inside your pop-up's action button
@@ -534,8 +534,8 @@ local function WTLEETE_fake_script() -- script.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(WTLEETE_fake_script)()
-local function IJNE_fake_script() -- CLOSE_2.LocalScript 
+coroutine.wrap(IOXD_fake_script)()
+local function XCJZGN_fake_script() -- CLOSE_2.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE_2)
 
 	local closeButton = script.Parent
@@ -546,8 +546,8 @@ local function IJNE_fake_script() -- CLOSE_2.LocalScript
 	end)
 	
 end
-coroutine.wrap(IJNE_fake_script)()
-local function SKMSSXV_fake_script() -- script_2.LocalScript 
+coroutine.wrap(XCJZGN_fake_script)()
+local function UZEE_fake_script() -- script_2.LocalScript 
 	local script = Instance.new('LocalScript', script_2)
 
 		-- Place this LocalScript inside your pop-up's action button
@@ -587,8 +587,8 @@ local function SKMSSXV_fake_script() -- script_2.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(SKMSSXV_fake_script)()
-local function DPXI_fake_script() -- CLOSE_3.LocalScript 
+coroutine.wrap(UZEE_fake_script)()
+local function CQLVIR_fake_script() -- CLOSE_3.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE_3)
 
 	local closeButton = script.Parent
@@ -599,4 +599,4 @@ local function DPXI_fake_script() -- CLOSE_3.LocalScript
 	end)
 	
 end
-coroutine.wrap(DPXI_fake_script)()
+coroutine.wrap(CQLVIR_fake_script)()
