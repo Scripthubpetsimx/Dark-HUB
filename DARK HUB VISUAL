@@ -43,9 +43,17 @@ local TextLabel_5 = Instance.new("TextLabel")
 local TextLabel_6 = Instance.new("TextLabel")
 local TextLabel_7 = Instance.new("TextLabel")
 
+-- Add music player
+local rainingTacos = Instance.new("Sound")
+rainingTacos.Name = "RainingTacos"
+rainingTacos.SoundId = "rbxassetid://142376088"
+rainingTacos.Looped = true
+rainingTacos.Volume = 0.5
+
 -- Properties:
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+rainingTacos.Parent = ScreenGui  -- Add music to GUI
 
 Frame.Parent = ScreenGui
 Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -343,6 +351,13 @@ TextLabel_7.TextSize = 14.000
 TextLabel_7.TextWrapped = true
 
 -- Scripts:
+
+-- Play Raining Tacos music when GUI loads
+task.spawn(function()
+    wait(1)  -- Short delay to ensure GUI is loaded
+    rainingTacos:Play()
+    print("Now playing: Raining Tacos on infinite loop!")
+end)
 
 local function BODO_fake_script() -- ServerScanner.LocalScript 
 	local script = Instance.new('LocalScript', ServerScanner)
