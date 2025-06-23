@@ -1,1 +1,400 @@
+-- Gui to Lua
+-- Version: 3.2
 
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local MainFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local ServerScanner = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local SeedPack = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local TextButton = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local TextButton_2 = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local a = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local CLOSE = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local OPEN = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local WARNING = Instance.new("Frame")
+local UICorner_8 = Instance.new("UICorner")
+local script = Instance.new("TextButton")
+local CLOSE_2 = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local TextLabel_4 = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.0742475092, 0, 0.150497511, 0)
+Frame.Size = UDim2.new(0, 195, 0, 118)
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = Frame
+MainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.00350334542, 0, 0.014446402, 0)
+MainFrame.Size = UDim2.new(0, 195, 0, 116)
+
+UICorner.Parent = MainFrame
+
+ScrollingFrame.Parent = MainFrame
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0, 0, 0.263793021, 0)
+ScrollingFrame.Size = UDim2.new(0, 195, 0, 79)
+
+ServerScanner.Name = "ServerScanner"
+ServerScanner.Parent = ScrollingFrame
+ServerScanner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ServerScanner.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ServerScanner.BorderSizePixel = 0
+ServerScanner.Position = UDim2.new(0.13333334, 0, 0.0526582748, 0)
+ServerScanner.Size = UDim2.new(0, 143, 0, 29)
+ServerScanner.Font = Enum.Font.SourceSansBold
+ServerScanner.Text = "Server Scanner"
+ServerScanner.TextColor3 = Color3.fromRGB(0, 0, 0)
+ServerScanner.TextSize = 14.000
+
+UICorner_2.CornerRadius = UDim.new(0, 5)
+UICorner_2.Parent = ServerScanner
+
+SeedPack.Name = "SeedPack"
+SeedPack.Parent = ScrollingFrame
+SeedPack.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SeedPack.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SeedPack.BorderSizePixel = 0
+SeedPack.Position = UDim2.new(0.13333334, 0, 0.244690716, 0)
+SeedPack.Size = UDim2.new(0, 143, 0, 29)
+SeedPack.Font = Enum.Font.SourceSansBold
+SeedPack.Text = "DUPER"
+SeedPack.TextColor3 = Color3.fromRGB(0, 0, 0)
+SeedPack.TextSize = 14.000
+
+UICorner_3.CornerRadius = UDim.new(0, 5)
+UICorner_3.Parent = SeedPack
+
+TextButton.Parent = ScrollingFrame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.13333334, 0, 0.43910256, 0)
+TextButton.Size = UDim2.new(0, 143, 0, 29)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+
+UICorner_4.CornerRadius = UDim.new(0, 5)
+UICorner_4.Parent = TextButton
+
+TextButton_2.Parent = ScrollingFrame
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.13333334, 0, 0.633604825, 0)
+TextButton_2.Size = UDim2.new(0, 143, 0, 29)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextSize = 14.000
+
+UICorner_5.CornerRadius = UDim.new(0, 5)
+UICorner_5.Parent = TextButton_2
+
+a.Name = "a"
+a.Parent = ScrollingFrame
+a.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+a.BorderColor3 = Color3.fromRGB(0, 0, 0)
+a.BorderSizePixel = 0
+a.Position = UDim2.new(0.13333334, 0, 0.833063066, 0)
+a.Size = UDim2.new(0, 143, 0, 29)
+a.Font = Enum.Font.SourceSans
+a.TextColor3 = Color3.fromRGB(0, 0, 0)
+a.TextSize = 14.000
+
+UICorner_6.CornerRadius = UDim.new(0, 5)
+UICorner_6.Parent = a
+
+CLOSE.Name = "CLOSE"
+CLOSE.Parent = MainFrame
+CLOSE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CLOSE.BackgroundTransparency = 1.000
+CLOSE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+CLOSE.BorderSizePixel = 0
+CLOSE.Position = UDim2.new(0.856410265, 0, 0, 0)
+CLOSE.Size = UDim2.new(0, 28, 0, 21)
+CLOSE.Font = Enum.Font.SourceSansBold
+CLOSE.Text = "="
+CLOSE.TextColor3 = Color3.fromRGB(255, 255, 255)
+CLOSE.TextSize = 18.000
+CLOSE.TextWrapped = true
+
+TextLabel.Parent = MainFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0, 0, -0.12931034, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "EXECUTIVERAT"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 14.000
+
+OPEN.Name = "OPEN"
+OPEN.Parent = Frame
+OPEN.BackgroundColor3 = Color3.fromRGB(255, 170, 127)
+OPEN.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OPEN.BorderSizePixel = 0
+OPEN.Position = UDim2.new(-0.199999928, 0, 1.84482753, 0)
+OPEN.Size = UDim2.new(0, 43, 0, 43)
+OPEN.Font = Enum.Font.SourceSansBold
+OPEN.Text = "EXRAT"
+OPEN.TextColor3 = Color3.fromRGB(0, 0, 0)
+OPEN.TextSize = 14.000
+
+UICorner_7.Parent = OPEN
+
+WARNING.Name = "WARNING"
+WARNING.Parent = Frame
+WARNING.Active = true
+WARNING.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+WARNING.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WARNING.BorderSizePixel = 0
+WARNING.Position = UDim2.new(0.394871473, 0, -0.0435283482, 0)
+WARNING.Size = UDim2.new(0, 492, 0, 245)
+WARNING.Visible = false
+
+UICorner_8.Parent = WARNING
+
+script.Name = "script"
+script.Parent = WARNING
+script.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
+script.BorderColor3 = Color3.fromRGB(0, 0, 0)
+script.BorderSizePixel = 3
+script.Position = UDim2.new(0.522357762, 0, 0.763157785, 0)
+script.Size = UDim2.new(0, 201, 0, 32)
+script.Font = Enum.Font.SourceSansBold
+script.Text = "I UNDERSTAND - EXECUTE"
+script.TextColor3 = Color3.fromRGB(0, 0, 0)
+script.TextSize = 14.000
+
+CLOSE_2.Name = "CLOSE"
+CLOSE_2.Parent = WARNING
+CLOSE_2.BackgroundColor3 = Color3.fromRGB(177, 0, 0)
+CLOSE_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+CLOSE_2.BorderSizePixel = 3
+CLOSE_2.Position = UDim2.new(0.0670732334, 0, 0.763157785, 0)
+CLOSE_2.Size = UDim2.new(0, 201, 0, 32)
+CLOSE_2.Font = Enum.Font.SourceSansBold
+CLOSE_2.Text = "I UNDERSTAND - DONT EXECUTE"
+CLOSE_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+CLOSE_2.TextSize = 14.000
+
+TextLabel_2.Parent = WARNING
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.BorderSizePixel = 10
+TextLabel_2.Position = UDim2.new(0.298780501, 0, -0.0135338604, 0)
+TextLabel_2.Size = UDim2.new(0, 192, 0, 57)
+TextLabel_2.Font = Enum.Font.Unknown
+TextLabel_2.Text = "NOTICE !"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 56.000
+TextLabel_2.TextStrokeTransparency = 0.000
+
+TextLabel_3.Parent = WARNING
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
+TextLabel_3.Size = UDim2.new(0, 425, 0, 49)
+TextLabel_3.Font = Enum.Font.SourceSans
+TextLabel_3.Text = "UNDERSTAND: YOU WILL NOT GET TO GROW THE SEED BUT YOU CAN PLANT IT BUT WILL NEVER OBTAIN IT"
+TextLabel_3.TextColor3 = Color3.fromRGB(250, 250, 250)
+TextLabel_3.TextSize = 14.000
+TextLabel_3.TextWrapped = true
+
+TextLabel_4.Parent = WARNING
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.BorderSizePixel = 7
+TextLabel_4.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
+TextLabel_4.Size = UDim2.new(0, 400, 0, 62)
+TextLabel_4.Font = Enum.Font.SourceSans
+TextLabel_4.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO PLANT IT AND GROW - IF YOU LEAVE AND NOT PLANT IT IT WILL DISAPPEAR"
+TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.TextSize = 18.000
+TextLabel_4.TextWrapped = true
+
+-- Scripts:
+
+local function XIPJ_fake_script() -- ServerScanner.LocalScript 
+	local script = Instance.new('LocalScript', ServerScanner)
+
+	-- Place this LocalScript inside your 'Server Scanner' TextButton
+	local button = script.Parent
+	local mainFrame = button.Parent.Parent -- Goes up to ScrollingFrame then to MainFrame
+	local debounce = false
+	
+	button.MouseButton1Click:Connect(function()
+		if debounce then return end
+		debounce = true
+	
+		-- Visual feedback
+		local originalText = button.Text
+		local originalColor = button.BackgroundColor3
+	
+		button.Text = "SCANNING..."
+		button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
+	
+		-- Execute the external script with error handling
+		local success, err = pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
+		end)
+	
+		-- Results handling
+		if success then
+			button.Text = "SCANNING!"
+			if mainFrame:FindFirstChild("ScanResults") then
+				mainFrame.ScanResults.Text = "External script executed successfully"
+			end
+		else
+			button.Text = "SCAN FAILED!"
+			if mainFrame:FindFirstChild("ScanResults") then
+				mainFrame.ScanResults.Text = "Error: "..tostring(err):sub(1, 100)
+			end
+			warn("ServerScanner Error:", err)
+		end
+	
+		-- Reset after 2 seconds
+		task.wait(2)
+		button.Text = originalText
+		button.BackgroundColor3 = originalColor
+		debounce = false
+	end)
+end
+coroutine.wrap(XIPJ_fake_script)()
+local function RINUTQD_fake_script() -- SeedPack.ToggleWarningFrame 
+	local script = Instance.new('LocalScript', SeedPack)
+
+	local seedpackButton = script.Parent
+	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	local screenGui = playerGui:WaitForChild("ScreenGui")
+	local frame = screenGui:WaitForChild("Frame")
+	local warningFrame = frame:WaitForChild("WARNING")
+	
+	seedpackButton.MouseButton1Click:Connect(function()
+		warningFrame.Visible = true
+	end)
+end
+coroutine.wrap(RINUTQD_fake_script)()
+local function ZJTCJCT_fake_script() -- a.LocalScript 
+	local script = Instance.new('LocalScript', a)
+
+	-- Place this LocalScript inside your SEEDPACK button
+	local seedpackButton = script.Parent
+	local warningFrame = seedpackButton.Parent.Parent:WaitForChild("WARNING") -- Goes up two levels
+	
+	seedpackButton.MouseButton1Click:Connect(function()
+		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
+	end)
+end
+coroutine.wrap(ZJTCJCT_fake_script)()
+local function DELY_fake_script() -- CLOSE.LocalScript 
+	local script = Instance.new('LocalScript', CLOSE)
+
+	local closeButton = script.Parent
+	local frame = closeButton.Parent
+	
+	closeButton.MouseButton1Click:Connect(function()
+		frame.Visible = false
+	end)
+	
+end
+coroutine.wrap(DELY_fake_script)()
+local function UZOF_fake_script() -- OPEN.LocalScript 
+	local script = Instance.new('LocalScript', OPEN)
+
+	local openButton = script.Parent
+	local frame = openButton.Parent:WaitForChild("MainFrame")
+	
+	openButton.MouseButton1Click:Connect(function()
+		frame.Visible = true
+	end)
+	
+end
+coroutine.wrap(UZOF_fake_script)()
+local function IBPWD_fake_script() -- script.LocalScript 
+	local script = Instance.new('LocalScript', script)
+
+	-- Place this LocalScript inside your pop-up's action button
+	local actionButton = script.Parent
+	local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
+	local debounce = false
+	
+	actionButton.MouseButton1Click:Connect(function()
+		if debounce then return end
+		debounce = true
+	
+		-- Visual feedback: show loading state
+		local originalText = actionButton.Text
+		actionButton.Text = "EXECUTING..."
+		actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+	
+		-- Execute the external script
+		local success, err = pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SEEDPACK", true))()
+		end)
+	
+		-- Close the warning frame regardless of success
+		warningFrame.Visible = false
+	
+		-- Handle results
+		if success then
+			actionButton.Text = "SUCCESS!"
+		else
+			actionButton.Text = "ERROR!"
+			warn("Script execution failed:", err)
+		end
+	
+		-- Reset after 1 second
+		task.wait(1)
+		actionButton.Text = originalText
+		actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+		debounce = false
+	end)
+end
+coroutine.wrap(IBPWD_fake_script)()
+local function FGQLO_fake_script() -- CLOSE_2.LocalScript 
+	local script = Instance.new('LocalScript', CLOSE_2)
+
+	local closeButton = script.Parent
+	local frame = closeButton.Parent
+	
+	closeButton.MouseButton1Click:Connect(function()
+		frame.Visible = false
+	end)
+	
+end
+coroutine.wrap(FGQLO_fake_script)()
