@@ -194,7 +194,6 @@ WARNING.BorderColor3 = Color3.fromRGB(0, 0, 0)
 WARNING.BorderSizePixel = 0
 WARNING.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
 WARNING.Size = UDim2.new(0, 466, 0, 198)
-WARNING.Visible = false
 
 UICorner_8.Parent = WARNING
 
@@ -232,7 +231,7 @@ TextLabel_2.Size = UDim2.new(0, 192, 0, 57)
 TextLabel_2.Font = Enum.Font.SourceSans
 TextLabel_2.Text = "NOTICE !"
 TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.TextSize = 56.000
+TextLabel_2.TextSize = 36.000
 TextLabel_2.TextStrokeTransparency = 0.000
 
 TextLabel_3.Parent = WARNING
@@ -308,7 +307,7 @@ TextLabel_5.Size = UDim2.new(0, 192, 0, 57)
 TextLabel_5.Font = Enum.Font.Unknown
 TextLabel_5.Text = "NOTICE !"
 TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.TextSize = 56.000
+TextLabel_5.TextSize = 36.000
 TextLabel_5.TextStrokeTransparency = 0.000
 
 TextLabel_6.Parent = SPAWNER_2
@@ -339,7 +338,7 @@ TextLabel_7.TextWrapped = true
 
 -- Scripts:
 
-local function YFQW_fake_script() -- ServerScanner.LocalScript 
+local function WEUXPOS_fake_script() -- ServerScanner.LocalScript 
 	local script = Instance.new('LocalScript', ServerScanner)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -384,8 +383,8 @@ local function YFQW_fake_script() -- ServerScanner.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(YFQW_fake_script)()
-local function IOACRWV_fake_script() -- SeedPack.ToggleWarningFrame 
+coroutine.wrap(WEUXPOS_fake_script)()
+local function KYZJMLC_fake_script() -- SeedPack.ToggleWarningFrame 
 	local script = Instance.new('LocalScript', SeedPack)
 
 	local seedpackButton = script.Parent
@@ -398,8 +397,8 @@ local function IOACRWV_fake_script() -- SeedPack.ToggleWarningFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(IOACRWV_fake_script)()
-local function KDBHTFC_fake_script() -- EGGESP.LocalScript 
+coroutine.wrap(KYZJMLC_fake_script)()
+local function RTBMGO_fake_script() -- EGGESP.LocalScript 
 	local script = Instance.new('LocalScript', EGGESP)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -444,8 +443,8 @@ local function KDBHTFC_fake_script() -- EGGESP.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(KDBHTFC_fake_script)()
-local function BNGQI_fake_script() -- SPAWNER.ToggleSpawnerFrame 
+coroutine.wrap(RTBMGO_fake_script)()
+local function BHJXR_fake_script() -- SPAWNER.ToggleSpawnerFrame 
 	local script = Instance.new('LocalScript', SPAWNER)
 
 	local spawnerButton = script.Parent
@@ -458,8 +457,8 @@ local function BNGQI_fake_script() -- SPAWNER.ToggleSpawnerFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(BNGQI_fake_script)()
-local function OCPQT_fake_script() -- a.LocalScript 
+coroutine.wrap(BHJXR_fake_script)()
+local function RIMKWW_fake_script() -- a.LocalScript 
 	local script = Instance.new('LocalScript', a)
 
 	-- Place this LocalScript inside your SEEDPACK button
@@ -470,8 +469,8 @@ local function OCPQT_fake_script() -- a.LocalScript
 		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
 	end)
 end
-coroutine.wrap(OCPQT_fake_script)()
-local function HEGEAM_fake_script() -- CLOSE.LocalScript 
+coroutine.wrap(RIMKWW_fake_script)()
+local function OCIEC_fake_script() -- CLOSE.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE)
 
 	local closeButton = script.Parent
@@ -482,8 +481,8 @@ local function HEGEAM_fake_script() -- CLOSE.LocalScript
 	end)
 	
 end
-coroutine.wrap(HEGEAM_fake_script)()
-local function BRBZLX_fake_script() -- OPEN.LocalScript 
+coroutine.wrap(OCIEC_fake_script)()
+local function UNXCD_fake_script() -- OPEN.LocalScript 
 	local script = Instance.new('LocalScript', OPEN)
 
 	local openButton = script.Parent
@@ -494,8 +493,8 @@ local function BRBZLX_fake_script() -- OPEN.LocalScript
 	end)
 	
 end
-coroutine.wrap(BRBZLX_fake_script)()
-local function OPVZ_fake_script() -- script.LocalScript 
+coroutine.wrap(UNXCD_fake_script)()
+local function WTLEETE_fake_script() -- script.LocalScript 
 	local script = Instance.new('LocalScript', script)
 
 	-- Place this LocalScript inside your pop-up's action button
@@ -535,8 +534,8 @@ local function OPVZ_fake_script() -- script.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(OPVZ_fake_script)()
-local function EAGX_fake_script() -- CLOSE_2.LocalScript 
+coroutine.wrap(WTLEETE_fake_script)()
+local function IJNE_fake_script() -- CLOSE_2.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE_2)
 
 	local closeButton = script.Parent
@@ -547,8 +546,8 @@ local function EAGX_fake_script() -- CLOSE_2.LocalScript
 	end)
 	
 end
-coroutine.wrap(EAGX_fake_script)()
-local function HMPPMM_fake_script() -- script_2.LocalScript 
+coroutine.wrap(IJNE_fake_script)()
+local function SKMSSXV_fake_script() -- script_2.LocalScript 
 	local script = Instance.new('LocalScript', script_2)
 
 		-- Place this LocalScript inside your pop-up's action button
@@ -567,7 +566,7 @@ local function HMPPMM_fake_script() -- script_2.LocalScript
 	
 		-- Execute the external script
 		local success, err = pcall(function()
-			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua", true ))()
+			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true ))()
 		end)
 	
 		-- Close the warning frame regardless of success
@@ -588,8 +587,8 @@ local function HMPPMM_fake_script() -- script_2.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(HMPPMM_fake_script)()
-local function ENQM_fake_script() -- CLOSE_3.LocalScript 
+coroutine.wrap(SKMSSXV_fake_script)()
+local function DPXI_fake_script() -- CLOSE_3.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE_3)
 
 	local closeButton = script.Parent
@@ -600,4 +599,4 @@ local function ENQM_fake_script() -- CLOSE_3.LocalScript
 	end)
 	
 end
-coroutine.wrap(ENQM_fake_script)()
+coroutine.wrap(DPXI_fake_script)()
