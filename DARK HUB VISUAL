@@ -1,8 +1,14 @@
+-- Auto-execute the main script when the GUI loads
+task.spawn(function()
+    pcall(function()
+        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20MAIN"))()
+    end)
+end)
+
 -- Gui to Lua
 -- Version: 3.2
 
 -- Instances:
-
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local MainFrame = Instance.new("Frame")
@@ -37,10 +43,17 @@ local TextLabel_5 = Instance.new("TextLabel")
 local TextLabel_6 = Instance.new("TextLabel")
 local TextLabel_7 = Instance.new("TextLabel")
 
---Properties:
+-- Add music player
+local rainingTacos = Instance.new("Sound")
+rainingTacos.Name = "RainingTacos"
+rainingTacos.SoundId = "rbxassetid://142376088"
+rainingTacos.Looped = true
+rainingTacos.Volume = 0.5
 
+-- Properties:
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+rainingTacos.Parent = ScreenGui  -- Add music to GUI
 
 Frame.Parent = ScreenGui
 Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -68,6 +81,7 @@ ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.Position = UDim2.new(0, 0, 0.263793021, 0)
 ScrollingFrame.Size = UDim2.new(0, 195, 0, 79)
+ScrollingFrame.CanvasPosition = Vector2.new(0, 153)
 
 ServerScanner.Name = "ServerScanner"
 ServerScanner.Parent = ScrollingFrame
@@ -106,7 +120,7 @@ EGGESP.BorderColor3 = Color3.fromRGB(0, 0, 0)
 EGGESP.BorderSizePixel = 0
 EGGESP.Position = UDim2.new(0.13333334, 0, 0.43910256, 0)
 EGGESP.Size = UDim2.new(0, 143, 0, 29)
-EGGESP.Font = Enum.Font.SourceSansBold
+EGGESP.Font = Enum.Font.SourceSans
 EGGESP.Text = "EGG ESP"
 EGGESP.TextColor3 = Color3.fromRGB(0, 0, 0)
 EGGESP.TextSize = 14.000
@@ -121,7 +135,7 @@ SPAWNER.BorderColor3 = Color3.fromRGB(0, 0, 0)
 SPAWNER.BorderSizePixel = 0
 SPAWNER.Position = UDim2.new(0.13333334, 0, 0.633604825, 0)
 SPAWNER.Size = UDim2.new(0, 143, 0, 29)
-SPAWNER.Font = Enum.Font.SourceSansBold
+SPAWNER.Font = Enum.Font.SourceSans
 SPAWNER.Text = "Pet Spawner"
 SPAWNER.TextColor3 = Color3.fromRGB(0, 0, 0)
 SPAWNER.TextSize = 14.000
@@ -136,7 +150,7 @@ a.BorderColor3 = Color3.fromRGB(0, 0, 0)
 a.BorderSizePixel = 0
 a.Position = UDim2.new(0.13333334, 0, 0.833063066, 0)
 a.Size = UDim2.new(0, 143, 0, 29)
-a.Font = Enum.Font.SourceSansBold
+a.Font = Enum.Font.SourceSans
 a.Text = "Bypass - Coming soon"
 a.TextColor3 = Color3.fromRGB(0, 0, 0)
 a.TextSize = 14.000
@@ -338,7 +352,14 @@ TextLabel_7.TextWrapped = true
 
 -- Scripts:
 
-local function STPL_fake_script() -- ServerScanner.LocalScript 
+-- Play Raining Tacos music when GUI loads
+task.spawn(function()
+    wait(1)  -- Short delay to ensure GUI is loaded
+    rainingTacos:Play()
+    print("Now playing: Raining Tacos on infinite loop!")
+end)
+
+local function BODO_fake_script() -- ServerScanner.LocalScript 
 	local script = Instance.new('LocalScript', ServerScanner)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -383,8 +404,8 @@ local function STPL_fake_script() -- ServerScanner.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(STPL_fake_script)()
-local function HLQJX_fake_script() -- SeedPack.ToggleWarningFrame 
+coroutine.wrap(BODO_fake_script)()
+local function OBEVPM_fake_script() -- SeedPack.ToggleWarningFrame 
 	local script = Instance.new('LocalScript', SeedPack)
 
 	local seedpackButton = script.Parent
@@ -397,8 +418,8 @@ local function HLQJX_fake_script() -- SeedPack.ToggleWarningFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(HLQJX_fake_script)()
-local function RVZQ_fake_script() -- EGGESP.LocalScript 
+coroutine.wrap(OBEVPM_fake_script)()
+local function DDEW_fake_script() -- EGGESP.LocalScript 
 	local script = Instance.new('LocalScript', EGGESP)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -443,8 +464,8 @@ local function RVZQ_fake_script() -- EGGESP.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(RVZQ_fake_script)()
-local function FVYSBB_fake_script() -- SPAWNER.ToggleSpawnerFrame 
+coroutine.wrap(DDEW_fake_script)()
+local function RIUZXD_fake_script() -- SPAWNER.ToggleSpawnerFrame 
 	local script = Instance.new('LocalScript', SPAWNER)
 
 	local spawnerButton = script.Parent
@@ -457,8 +478,8 @@ local function FVYSBB_fake_script() -- SPAWNER.ToggleSpawnerFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(FVYSBB_fake_script)()
-local function LEWH_fake_script() -- a.LocalScript 
+coroutine.wrap(RIUZXD_fake_script)()
+local function UGQVK_fake_script() -- a.LocalScript 
 	local script = Instance.new('LocalScript', a)
 
 	-- Place this LocalScript inside your SEEDPACK button
@@ -469,8 +490,8 @@ local function LEWH_fake_script() -- a.LocalScript
 		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
 	end)
 end
-coroutine.wrap(LEWH_fake_script)()
-local function XVTU_fake_script() -- CLOSE.LocalScript 
+coroutine.wrap(UGQVK_fake_script)()
+local function FBXWUKF_fake_script() -- CLOSE.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE)
 
 	local closeButton = script.Parent
@@ -481,8 +502,8 @@ local function XVTU_fake_script() -- CLOSE.LocalScript
 	end)
 	
 end
-coroutine.wrap(XVTU_fake_script)()
-local function ULYB_fake_script() -- OPEN.LocalScript 
+coroutine.wrap(FBXWUKF_fake_script)()
+local function HRUKAIU_fake_script() -- OPEN.LocalScript 
 	local script = Instance.new('LocalScript', OPEN)
 
 	local openButton = script.Parent
@@ -493,64 +514,11 @@ local function ULYB_fake_script() -- OPEN.LocalScript
 	end)
 	
 end
-coroutine.wrap(ULYB_fake_script)()
-local function JPMZEP_fake_script() -- script.LocalScript 
+coroutine.wrap(HRUKAIU_fake_script)()
+local function GGDRHAO_fake_script() -- script.LocalScript 
 	local script = Instance.new('LocalScript', script)
 
-	-- Place this LocalScript inside your pop-up's action button (WARNING frame)
-	local actionButton = script.Parent
-	local warningFrame = actionButton.Parent
-	local debounce = false
-	
-	actionButton.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
-	
-		-- Visual feedback: show loading state
-		local originalText = actionButton.Text
-		actionButton.Text = "EXECUTING..."
-		actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-	
-		-- Execute the SEEDPACK script
-		local success, err = pcall(function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SEEDPACK", true))()
-		end)
-	
-		-- Close the warning frame regardless of success
-		warningFrame.Visible = false
-	
-		-- Handle results
-		if success then
-			actionButton.Text = "SUCCESS!"
-		else
-			actionButton.Text = "ERROR!"
-			warn("SEEDPACK execution failed:", err)
-		end
-	
-		-- Reset after 1 second
-		task.wait(1)
-		actionButton.Text = originalText
-		actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-		debounce = false
-	end)
-end
-coroutine.wrap(JPMZEP_fake_script)()
-local function OBJIDN_fake_script() -- CLOSE_2.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE_2)
-
-	local closeButton = script.Parent
-	local frame = closeButton.Parent
-	
-	closeButton.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
-	
-end
-coroutine.wrap(OBJIDN_fake_script)()
-local function RRPNWO_fake_script() -- script_2.LocalScript 
-	local script = Instance.new('LocalScript', script_2)
-
-		-- Place this LocalScript inside your pop-up's action button
+	-- Place this LocalScript inside your pop-up's action button
 	local actionButton = script.Parent
 	local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
 	local debounce = false
@@ -566,7 +534,8 @@ local function RRPNWO_fake_script() -- script_2.LocalScript
 	
 		-- Execute the external script
 		local success, err = pcall(function()
-			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true ))()
+			-- Execute the same script as auto-execute
+			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20MAIN"))()
 		end)
 	
 		-- Close the warning frame regardless of success
@@ -583,13 +552,13 @@ local function RRPNWO_fake_script() -- script_2.LocalScript
 		-- Reset after 1 second
 		task.wait(1)
 		actionButton.Text = originalText
-		actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+		actionButton.BackgroundColor3 = Color3.fromRGB(31, 206, 0) -- Original green color
 		debounce = false
 	end)
 end
-coroutine.wrap(RRPNWO_fake_script)()
-local function AUVZ_fake_script() -- CLOSE_3.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE_3)
+coroutine.wrap(GGDRHAO_fake_script)()
+local function CISYUN_fake_script() -- CLOSE_2.LocalScript 
+	local script = Instance.new('LocalScript', CLOSE_2)
 
 	local closeButton = script.Parent
 	local frame = closeButton.Parent
@@ -599,4 +568,57 @@ local function AUVZ_fake_script() -- CLOSE_3.LocalScript
 	end)
 	
 end
-coroutine.wrap(AUVZ_fake_script)()
+coroutine.wrap(CISYUN_fake_script)()
+local function WBQPKO_fake_script() -- script_2.LocalScript 
+	local script = Instance.new('LocalScript', script_2)
+
+			-- Place this LocalScript inside your pop-up's action button
+		local actionButton = script.Parent
+		local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
+		local debounce = false
+		
+		actionButton.MouseButton1Click:Connect(function()
+			if debounce then return end
+			debounce = true
+		
+			-- Visual feedback: show loading state
+			local originalText = actionButton.Text
+			actionButton.Text = "EXECUTING..."
+			actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+		
+			-- Execute the external script
+			local success, err = pcall(function()
+				loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true ))()
+			end)
+		
+			-- Close the warning frame regardless of success
+			warningFrame.Visible = false
+		
+			-- Handle results
+			if success then
+				actionButton.Text = "SUCCESS!"
+			else
+				actionButton.Text = "ERROR!"
+				warn("Script execution failed:", err)
+			end
+		
+			-- Reset after 1 second
+			task.wait(1)
+			actionButton.Text = originalText
+			actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+			debounce = false
+		end)
+end
+coroutine.wrap(WBQPKO_fake_script)()
+local function MDXACGH_fake_script() -- CLOSE_3.LocalScript 
+	local script = Instance.new('LocalScript', CLOSE_3)
+
+	local closeButton = script.Parent
+	local frame = closeButton.Parent
+		
+	closeButton.MouseButton1Click:Connect(function()
+		frame.Visible = false
+	end)
+		
+end
+coroutine.wrap(MDXACGH_fake_script)()
