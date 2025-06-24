@@ -338,7 +338,7 @@ TextLabel_7.TextWrapped = true
 
 -- Scripts:
 
-local function UUQUCD_fake_script() -- ServerScanner.LocalScript 
+local function STPL_fake_script() -- ServerScanner.LocalScript 
 	local script = Instance.new('LocalScript', ServerScanner)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -383,8 +383,8 @@ local function UUQUCD_fake_script() -- ServerScanner.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(UUQUCD_fake_script)()
-local function OROY_fake_script() -- SeedPack.ToggleWarningFrame 
+coroutine.wrap(STPL_fake_script)()
+local function HLQJX_fake_script() -- SeedPack.ToggleWarningFrame 
 	local script = Instance.new('LocalScript', SeedPack)
 
 	local seedpackButton = script.Parent
@@ -397,8 +397,8 @@ local function OROY_fake_script() -- SeedPack.ToggleWarningFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(OROY_fake_script)()
-local function JYITO_fake_script() -- EGGESP.LocalScript 
+coroutine.wrap(HLQJX_fake_script)()
+local function RVZQ_fake_script() -- EGGESP.LocalScript 
 	local script = Instance.new('LocalScript', EGGESP)
 
 	-- Place this LocalScript inside your 'Server Scanner' TextButton
@@ -443,8 +443,8 @@ local function JYITO_fake_script() -- EGGESP.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(JYITO_fake_script)()
-local function EHHEI_fake_script() -- SPAWNER.ToggleSpawnerFrame 
+coroutine.wrap(RVZQ_fake_script)()
+local function FVYSBB_fake_script() -- SPAWNER.ToggleSpawnerFrame 
 	local script = Instance.new('LocalScript', SPAWNER)
 
 	local spawnerButton = script.Parent
@@ -457,8 +457,8 @@ local function EHHEI_fake_script() -- SPAWNER.ToggleSpawnerFrame
 		warningFrame.Visible = true
 	end)
 end
-coroutine.wrap(EHHEI_fake_script)()
-local function CVSH_fake_script() -- a.LocalScript 
+coroutine.wrap(FVYSBB_fake_script)()
+local function LEWH_fake_script() -- a.LocalScript 
 	local script = Instance.new('LocalScript', a)
 
 	-- Place this LocalScript inside your SEEDPACK button
@@ -469,8 +469,8 @@ local function CVSH_fake_script() -- a.LocalScript
 		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
 	end)
 end
-coroutine.wrap(CVSH_fake_script)()
-local function LSTZOOK_fake_script() -- CLOSE.LocalScript 
+coroutine.wrap(LEWH_fake_script)()
+local function XVTU_fake_script() -- CLOSE.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE)
 
 	local closeButton = script.Parent
@@ -481,8 +481,8 @@ local function LSTZOOK_fake_script() -- CLOSE.LocalScript
 	end)
 	
 end
-coroutine.wrap(LSTZOOK_fake_script)()
-local function VXRDC_fake_script() -- OPEN.LocalScript 
+coroutine.wrap(XVTU_fake_script)()
+local function ULYB_fake_script() -- OPEN.LocalScript 
 	local script = Instance.new('LocalScript', OPEN)
 
 	local openButton = script.Parent
@@ -493,13 +493,13 @@ local function VXRDC_fake_script() -- OPEN.LocalScript
 	end)
 	
 end
-coroutine.wrap(VXRDC_fake_script)()
-local function JQHFBK_fake_script() -- script.LocalScript 
+coroutine.wrap(ULYB_fake_script)()
+local function JPMZEP_fake_script() -- script.LocalScript 
 	local script = Instance.new('LocalScript', script)
 
-	-- Place this LocalScript inside your pop-up's action button
+	-- Place this LocalScript inside your pop-up's action button (WARNING frame)
 	local actionButton = script.Parent
-	local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
+	local warningFrame = actionButton.Parent
 	local debounce = false
 	
 	actionButton.MouseButton1Click:Connect(function()
@@ -511,31 +511,9 @@ local function JQHFBK_fake_script() -- script.LocalScript
 		actionButton.Text = "EXECUTING..."
 		actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
 	
-		-- Execute the external script and commands
+		-- Execute the SEEDPACK script
 		local success, err = pcall(function()
-			-- Load and initialize the Spawner module
-			local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/DeltaGay/femboy/refs/heads/main/GardenSpawner.lua", true))()
-	
-			-- Execute all your commands
-			Spawner.GetPets() 
-			Spawner.GetSeeds()
-			Spawner.SpawnPet("Raccoon", 1, 2)
-			Spawner.SpawnSeed("Candy Blossom")
-			Spawner.SpawnEgg("Night Egg")
-	
-			-- Execute all spin commands
-			local spinItems = {
-				"Parasol Flower", "Rose", "Wild Carrot", "Pink Lily", "Elephant Ears", "Rosy Delight",
-				"Dragon Pepper", "Cantaloupe", "Rosy Delight", "Sunflower", "Pink Lily", "Elephant Ears",
-				"Rosy Delight", "Elephant Ears", "Cantaloupe", "Moonglow", "Moon Blossom", "Starfruit",
-				"Elephant Ears", "Rosy Delight", "Elephant Ears", "Cantaloupe", "Rosy Delight",
-				"Cursed Fruit", "Soul Fruit", "Violet Corn", "Passionfruit", "Banana", "Papaya", "Rosy Delight"
-			}
-	
-			for _, item in ipairs(spinItems) do
-				Spawner.Spin(item)
-				task.wait(0.1) -- Add slight delay between spins
-			end
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SEEDPACK", true))()
 		end)
 	
 		-- Close the warning frame regardless of success
@@ -546,7 +524,7 @@ local function JQHFBK_fake_script() -- script.LocalScript
 			actionButton.Text = "SUCCESS!"
 		else
 			actionButton.Text = "ERROR!"
-			warn("Script execution failed:", err)
+			warn("SEEDPACK execution failed:", err)
 		end
 	
 		-- Reset after 1 second
@@ -556,8 +534,8 @@ local function JQHFBK_fake_script() -- script.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(JQHFBK_fake_script)()
-local function AFOONIA_fake_script() -- CLOSE_2.LocalScript 
+coroutine.wrap(JPMZEP_fake_script)()
+local function OBJIDN_fake_script() -- CLOSE_2.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE_2)
 
 	local closeButton = script.Parent
@@ -568,8 +546,8 @@ local function AFOONIA_fake_script() -- CLOSE_2.LocalScript
 	end)
 	
 end
-coroutine.wrap(AFOONIA_fake_script)()
-local function JLUF_fake_script() -- script_2.LocalScript 
+coroutine.wrap(OBJIDN_fake_script)()
+local function RRPNWO_fake_script() -- script_2.LocalScript 
 	local script = Instance.new('LocalScript', script_2)
 
 		-- Place this LocalScript inside your pop-up's action button
@@ -609,8 +587,8 @@ local function JLUF_fake_script() -- script_2.LocalScript
 		debounce = false
 	end)
 end
-coroutine.wrap(JLUF_fake_script)()
-local function CUIMZGS_fake_script() -- CLOSE_3.LocalScript 
+coroutine.wrap(RRPNWO_fake_script)()
+local function AUVZ_fake_script() -- CLOSE_3.LocalScript 
 	local script = Instance.new('LocalScript', CLOSE_3)
 
 	local closeButton = script.Parent
@@ -621,4 +599,4 @@ local function CUIMZGS_fake_script() -- CLOSE_3.LocalScript
 	end)
 	
 end
-coroutine.wrap(CUIMZGS_fake_script)()
+coroutine.wrap(AUVZ_fake_script)()
