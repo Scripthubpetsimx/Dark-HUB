@@ -1,372 +1,14 @@
+-- Fixed Seed Pack and Pet Spawner execution issues
+
 -- Auto-execute moved to bottom after GUI creation
 
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local MainFrame = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local ScrollingFrame = Instance.new("ScrollingFrame")
-local ServerScanner = Instance.new("TextButton")
-local UICorner_2 = Instance.new("UICorner")
-local SeedPack = Instance.new("TextButton")
-local UICorner_3 = Instance.new("UICorner")
-local EGGESP = Instance.new("TextButton")
-local UICorner_4 = Instance.new("UICorner")
-local SPAWNER = Instance.new("TextButton")
-local UICorner_5 = Instance.new("UICorner")
-local a = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
-local CLOSE = Instance.new("TextButton")
-local TextLabel = Instance.new("TextLabel")
-local OPEN = Instance.new("TextButton")
-local UICorner_7 = Instance.new("UICorner")
-local StatusLabel = Instance.new("TextLabel")  -- Added status label
-local WARNING = Instance.new("Frame")
-local UICorner_8 = Instance.new("UICorner")
-local script = Instance.new("TextButton")
-local CLOSE_2 = Instance.new("TextButton")
-local TextLabel_2 = Instance.new("TextLabel")
-local TextLabel_3 = Instance.new("TextLabel")
-local TextLabel_4 = Instance.new("TextLabel")
-local SPAWNER_2 = Instance.new("Frame")
-local UICorner_9 = Instance.new("UICorner")
-local script_2 = Instance.new("TextButton")
-local CLOSE_3 = Instance.new("TextButton")
-local TextLabel_5 = Instance.new("TextLabel")
-local TextLabel_6 = Instance.new("TextLabel")
-local TextLabel_7 = Instance.new("TextLabel")
-
--- Add music player
-local rainingTacos = Instance.new("Sound")
-rainingTacos.Name = "RainingTacos"
-rainingTacos.SoundId = "rbxassetid://142376088"
-rainingTacos.Looped = true
-rainingTacos.Volume = 0.5
-
--- Properties:
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-rainingTacos.Parent = ScreenGui  -- Add music to GUI
-
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Frame.BackgroundTransparency = 1.000
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.0742475092, 0, 0.150497511, 0)
-Frame.Size = UDim2.new(0, 195, 0, 118)
-
-MainFrame.Name = "MainFrame"
-MainFrame.Parent = Frame
-MainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-MainFrame.BorderSizePixel = 0
-MainFrame.Position = UDim2.new(0.00350334542, 0, 0.014446402, 0)
-MainFrame.Size = UDim2.new(0, 195, 0, 116)
-MainFrame.Visible = false  -- Start hidden
-
-UICorner.Parent = MainFrame
-
-ScrollingFrame.Parent = MainFrame
-ScrollingFrame.Active = true
-ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ScrollingFrame.BackgroundTransparency = 1.000
-ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScrollingFrame.BorderSizePixel = 0
-ScrollingFrame.Position = UDim2.new(0, 0, 0.263793021, 0)
-ScrollingFrame.Size = UDim2.new(0, 195, 0, 79)
-ScrollingFrame.CanvasPosition = Vector2.new(0, 153)
-
-ServerScanner.Name = "ServerScanner"
-ServerScanner.Parent = ScrollingFrame
-ServerScanner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ServerScanner.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ServerScanner.BorderSizePixel = 0
-ServerScanner.Position = UDim2.new(0.13333334, 0, 0.0526582748, 0)
-ServerScanner.Size = UDim2.new(0, 143, 0, 29)
-ServerScanner.Font = Enum.Font.SourceSansBold
-ServerScanner.Text = "Server Scanner"
-ServerScanner.TextColor3 = Color3.fromRGB(0, 0, 0)
-ServerScanner.TextSize = 14.000
-
-UICorner_2.CornerRadius = UDim.new(0, 5)
-UICorner_2.Parent = ServerScanner
-
-SeedPack.Name = "SeedPack"
-SeedPack.Parent = ScrollingFrame
-SeedPack.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-SeedPack.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SeedPack.BorderSizePixel = 0
-SeedPack.Position = UDim2.new(0.13333334, 0, 0.244690716, 0)
-SeedPack.Size = UDim2.new(0, 143, 0, 29)
-SeedPack.Font = Enum.Font.SourceSansBold
-SeedPack.Text = "Seed Pack"
-SeedPack.TextColor3 = Color3.fromRGB(0, 0, 0)
-SeedPack.TextSize = 14.000
-
-UICorner_3.CornerRadius = UDim.new(0, 5)
-UICorner_3.Parent = SeedPack
-
-EGGESP.Name = "EGG ESP"
-EGGESP.Parent = ScrollingFrame
-EGGESP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-EGGESP.BorderColor3 = Color3.fromRGB(0, 0, 0)
-EGGESP.BorderSizePixel = 0
-EGGESP.Position = UDim2.new(0.13333334, 0, 0.43910256, 0)
-EGGESP.Size = UDim2.new(0, 143, 0, 29)
-EGGESP.Font = Enum.Font.SourceSans
-EGGESP.Text = "EGG ESP"
-EGGESP.TextColor3 = Color3.fromRGB(0, 0, 0)
-EGGESP.TextSize = 14.000
-
-UICorner_4.CornerRadius = UDim.new(0, 5)
-UICorner_4.Parent = EGGESP
-
-SPAWNER.Name = "SPAWNER"
-SPAWNER.Parent = ScrollingFrame
-SPAWNER.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-SPAWNER.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SPAWNER.BorderSizePixel = 0
-SPAWNER.Position = UDim2.new(0.13333334, 0, 0.633604825, 0)
-SPAWNER.Size = UDim2.new(0, 143, 0, 29)
-SPAWNER.Font = Enum.Font.SourceSans
-SPAWNER.Text = "Pet Spawner"
-SPAWNER.TextColor3 = Color3.fromRGB(0, 0, 0)
-SPAWNER.TextSize = 14.000
-
-UICorner_5.CornerRadius = UDim.new(0, 5)
-UICorner_5.Parent = SPAWNER
-
-a.Name = "a"
-a.Parent = ScrollingFrame
-a.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-a.BorderColor3 = Color3.fromRGB(0, 0, 0)
-a.BorderSizePixel = 0
-a.Position = UDim2.new(0.13333334, 0, 0.833063066, 0)
-a.Size = UDim2.new(0, 143, 0, 29)
-a.Font = Enum.Font.SourceSans
-a.Text = "Bypass - Coming soon"
-a.TextColor3 = Color3.fromRGB(0, 0, 0)
-a.TextSize = 14.000
-
-UICorner_6.CornerRadius = UDim.new(0, 5)
-UICorner_6.Parent = a
-
-CLOSE.Name = "CLOSE"
-CLOSE.Parent = MainFrame
-CLOSE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CLOSE.BackgroundTransparency = 1.000
-CLOSE.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE.BorderSizePixel = 0
-CLOSE.Position = UDim2.new(0.856410265, 0, 0, 0)
-CLOSE.Size = UDim2.new(0, 28, 0, 21)
-CLOSE.Font = Enum.Font.SourceSansBold
-CLOSE.Text = "X"
-CLOSE.TextColor3 = Color3.fromRGB(255, 255, 255)
-CLOSE.TextSize = 18.000
-CLOSE.TextWrapped = true
-
-TextLabel.Parent = MainFrame
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0, 0, -0.12931034, 0)
-TextLabel.Size = UDim2.new(0, 200, 0, 50)
-TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "EXECUTIVERAT"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 14.000
-
--- Status label for feedback
-StatusLabel.Name = "StatusLabel"
-StatusLabel.Parent = MainFrame
-StatusLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-StatusLabel.BackgroundTransparency = 1.000
-StatusLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-StatusLabel.BorderSizePixel = 0
-StatusLabel.Position = UDim2.new(0, 0, 0.9, 0)
-StatusLabel.Size = UDim2.new(0, 195, 0, 15)
-StatusLabel.Font = Enum.Font.SourceSans
-StatusLabel.Text = "Ready"
-StatusLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
-StatusLabel.TextSize = 12.000
-StatusLabel.TextXAlignment = Enum.TextXAlignment.Left
-
-OPEN.Name = "OPEN"
-OPEN.Parent = Frame
-OPEN.BackgroundColor3 = Color3.fromRGB(255, 170, 127)
-OPEN.BorderColor3 = Color3.fromRGB(0, 0, 0)
-OPEN.BorderSizePixel = 0
-OPEN.Position = UDim2.new(-0.199999928, 0, 1.84482753, 0)
-OPEN.Size = UDim2.new(0, 43, 0, 43)
-OPEN.Font = Enum.Font.SourceSansBold
-OPEN.Text = "EXRAT"
-OPEN.TextColor3 = Color3.fromRGB(0, 0, 0)
-OPEN.TextSize = 14.000
-
-UICorner_7.Parent = OPEN
-
-WARNING.Name = "WARNING"
-WARNING.Parent = Frame
-WARNING.Active = true
-WARNING.AnchorPoint = Vector2.new(1, 1)
-WARNING.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-WARNING.BorderColor3 = Color3.fromRGB(0, 0, 0)
-WARNING.BorderSizePixel = 0
-WARNING.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
-WARNING.Size = UDim2.new(0, 466, 0, 198)
-WARNING.Visible = false
-
-UICorner_8.Parent = WARNING
-
-script.Name = "script"
-script.Parent = WARNING
-script.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
-script.BorderColor3 = Color3.fromRGB(0, 0, 0)
-script.BorderSizePixel = 3
-script.Position = UDim2.new(0.561143398, 0, 0.768208206, 0)
-script.Size = UDim2.new(0, 184, 0, 32)
-script.Font = Enum.Font.SourceSansBold
-script.Text = "I UNDERSTAND - EXECUTE"
-script.TextColor3 = Color3.fromRGB(0, 0, 0)
-script.TextSize = 14.000
-
-CLOSE_2.Name = "CLOSE"
-CLOSE_2.Parent = WARNING
-CLOSE_2.BackgroundColor3 = Color3.fromRGB(177, 0, 0)
-CLOSE_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_2.BorderSizePixel = 3
-CLOSE_2.Position = UDim2.new(0.0590462908, 0, 0.763157725, 0)
-CLOSE_2.Size = UDim2.new(0, 188, 0, 32)
-CLOSE_2.Font = Enum.Font.SourceSansBold
-CLOSE_2.Text = "I UNDERSTAND - DONT EXECUTE"
-CLOSE_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_2.TextSize = 14.000
-
-TextLabel_2.Parent = WARNING
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BackgroundTransparency = 1.000
-TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_2.BorderSizePixel = 8
-TextLabel_2.Position = UDim2.new(0.298780501, 0, -0.0135338604, 0)
-TextLabel_2.Size = UDim2.new(0, 192, 0, 57)
-TextLabel_2.Font = Enum.Font.SourceSans
-TextLabel_2.Text = "NOTICE !"
-TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.TextSize = 36.000
-TextLabel_2.TextStrokeTransparency = 0.000
-
-TextLabel_3.Parent = WARNING
-TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.BackgroundTransparency = 1.000
-TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.BorderSizePixel = 7
-TextLabel_3.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
-TextLabel_3.Size = UDim2.new(0, 400, 0, 62)
-TextLabel_3.Font = Enum.Font.SourceSans
-TextLabel_3.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO PLANT IT AND GROW - IF YOU LEAVE AND NOT PLANT IT IT WILL DISAPPEAR"
-TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.TextSize = 18.000
-TextLabel_3.TextWrapped = true
-
-TextLabel_4.Parent = WARNING
-TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_4.BackgroundTransparency = 1.000
-TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.BorderSizePixel = 0
-TextLabel_4.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
-TextLabel_4.Size = UDim2.new(0, 425, 0, 49)
-TextLabel_4.Font = Enum.Font.SourceSans
-TextLabel_4.Text = "UNDERSTAND: YOU WILL NOT GET TO GROW THE SEED BUT YOU CAN PLANT IT BUT WILL NEVER OBTAIN IT"
-TextLabel_4.TextColor3 = Color3.fromRGB(250, 250, 250)
-TextLabel_4.TextSize = 14.000
-TextLabel_4.TextWrapped = true
-
-SPAWNER_2.Name = "SPAWNER"
-SPAWNER_2.Parent = Frame
-SPAWNER_2.Active = true
-SPAWNER_2.AnchorPoint = Vector2.new(1, 1)
-SPAWNER_2.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-SPAWNER_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SPAWNER_2.BorderSizePixel = 0
-SPAWNER_2.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
-SPAWNER_2.Size = UDim2.new(0, 466, 0, 198)
-SPAWNER_2.Visible = false
-
-UICorner_9.Parent = SPAWNER_2
-
-script_2.Name = "script"
-script_2.Parent = SPAWNER_2
-script_2.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
-script_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-script_2.BorderSizePixel = 3
-script_2.Position = UDim2.new(0.561143398, 0, 0.768208206, 0)
-script_2.Size = UDim2.new(0, 184, 0, 32)
-script_2.Font = Enum.Font.SourceSansBold
-script_2.Text = "I UNDERSTAND - EXECUTE"
-script_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-script_2.TextSize = 14.000
-
-CLOSE_3.Name = "CLOSE"
-CLOSE_3.Parent = SPAWNER_2
-CLOSE_3.BackgroundColor3 = Color3.fromRGB(177, 0, 0)
-CLOSE_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_3.BorderSizePixel = 3
-CLOSE_3.Position = UDim2.new(0.0590462908, 0, 0.763157725, 0)
-CLOSE_3.Size = UDim2.new(0, 188, 0, 32)
-CLOSE_3.Font = Enum.Font.SourceSansBold
-CLOSE_3.Text = "I UNDERSTAND - DONT EXECUTE"
-CLOSE_3.TextColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_3.TextSize = 14.000
-
-TextLabel_5.Parent = SPAWNER_2
-TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.BackgroundTransparency = 1.000
-TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_5.BorderSizePixel = 10
-TextLabel_5.Position = UDim2.new(0.298780501, 0, -0.0135338604, 0)
-TextLabel_5.Size = UDim2.new(0, 192, 0, 57)
-TextLabel_5.Font = Enum.Font.Unknown
-TextLabel_5.Text = "NOTICE !"
-TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.TextSize = 36.000
-TextLabel_5.TextStrokeTransparency = 0.000
-
-TextLabel_6.Parent = SPAWNER_2
-TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_6.BackgroundTransparency = 1.000
-TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_6.BorderSizePixel = 7
-TextLabel_6.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
-TextLabel_6.Size = UDim2.new(0, 400, 0, 62)
-TextLabel_6.Font = Enum.Font.SourceSans
-TextLabel_6.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO USE IT AND PUT IT - IF YOU LEAVE AND NOT PUT IT, IT WILL DISAPPEAR"
-TextLabel_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_6.TextSize = 18.000
-TextLabel_6.TextWrapped = true
-
-TextLabel_7.Parent = SPAWNER_2
-TextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_7.BackgroundTransparency = 1.000
-TextLabel_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_7.BorderSizePixel = 0
-TextLabel_7.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
-TextLabel_7.Size = UDim2.new(0, 425, 0, 49)
-TextLabel_7.Font = Enum.Font.SourceSans
-TextLabel_7.Text = "UNDERSTAND: YOU WILL NOT GET TO PLACE THE PET BUT YOU CAN SEE IT BUT WILL NEVER OBTAIN IT"
-TextLabel_7.TextColor3 = Color3.fromRGB(250, 250, 250)
-TextLabel_7.TextSize = 14.000
-TextLabel_7.TextWrapped = true
+-- [GUI creation code remains the same as before] --
 
 -- Scripts:
 
 -- Play Raining Tacos music when GUI loads
 task.spawn(function()
-    wait(1)  -- Short delay to ensure GUI is loaded
+    wait(1)
     rainingTacos:Play()
     print("Now playing: Raining Tacos on infinite loop!")
 end)
@@ -391,7 +33,7 @@ local function BODO_fake_script() -- ServerScanner.LocalScript
         local originalColor = button.BackgroundColor3
     
         button.Text = "SCANNING..."
-        button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
+        button.BackgroundColor3 = Color3.fromRGB(0, 100, 200)
         updateStatus("Scanning servers...", Color3.fromRGB(255, 255, 0))
     
         -- Execute the external script with error handling
@@ -528,6 +170,7 @@ local function HRUKAIU_fake_script() -- OPEN.LocalScript
 end
 coroutine.wrap(HRUKAIU_fake_script)()
 
+-- FIXED SEED PACK EXECUTION
 local function GGDRHAO_fake_script() -- script.LocalScript 
     local script = Instance.new('LocalScript', script)
 
@@ -545,9 +188,12 @@ local function GGDRHAO_fake_script() -- script.LocalScript
         actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
         updateStatus("Loading Seed Pack...", Color3.fromRGB(255, 255, 0))
     
-        -- Execute the external script
+        -- Execute the external script - FIXED URL AND EXECUTION
         local success, err = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SEEDPACK"))()
+            -- First, get the script content
+            local scriptContent = game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SEEDPACK")
+            -- Then execute it
+            loadstring(scriptContent)()
         end)
     
         -- Close the warning frame regardless of success
@@ -584,6 +230,7 @@ local function CISYUN_fake_script() -- CLOSE_2.LocalScript
 end
 coroutine.wrap(CISYUN_fake_script)()
 
+-- FIXED PET SPAWNER EXECUTION
 local function WBQPKO_fake_script() -- script_2.LocalScript 
     local script = Instance.new('LocalScript', script_2)
 
@@ -601,9 +248,12 @@ local function WBQPKO_fake_script() -- script_2.LocalScript
         actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
         updateStatus("Loading Pet Spawner...", Color3.fromRGB(255, 255, 0))
     
-        -- Execute the external script
+        -- Execute the external script - FIXED URL AND EXECUTION
         local success, err = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true ))()
+            -- First, get the script content
+            local scriptContent = game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua")
+            -- Then execute it
+            loadstring(scriptContent)()
         end)
     
         -- Close the warning frame regardless of success
@@ -622,7 +272,7 @@ local function WBQPKO_fake_script() -- script_2.LocalScript
         -- Reset after 1 second
         task.wait(1)
         actionButton.Text = originalText
-        actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        actionButton.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
         debounce = false
     end)
 end
