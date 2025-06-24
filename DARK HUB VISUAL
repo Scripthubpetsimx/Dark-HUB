@@ -1,9 +1,4 @@
--- Auto-execute the main script when the GUI loads
-task.spawn(function()
-    pcall(function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20MAIN"))()
-    end)
-end)
+-- Auto-execute moved to bottom after GUI creation
 
 -- Gui to Lua
 -- Version: 3.2
@@ -28,6 +23,7 @@ local CLOSE = Instance.new("TextButton")
 local TextLabel = Instance.new("TextLabel")
 local OPEN = Instance.new("TextButton")
 local UICorner_7 = Instance.new("UICorner")
+local StatusLabel = Instance.new("TextLabel")  -- Added status label
 local WARNING = Instance.new("Frame")
 local UICorner_8 = Instance.new("UICorner")
 local script = Instance.new("TextButton")
@@ -70,6 +66,7 @@ MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BorderSizePixel = 0
 MainFrame.Position = UDim2.new(0.00350334542, 0, 0.014446402, 0)
 MainFrame.Size = UDim2.new(0, 195, 0, 116)
+MainFrame.Visible = false  -- Start hidden
 
 UICorner.Parent = MainFrame
 
@@ -167,7 +164,7 @@ CLOSE.BorderSizePixel = 0
 CLOSE.Position = UDim2.new(0.856410265, 0, 0, 0)
 CLOSE.Size = UDim2.new(0, 28, 0, 21)
 CLOSE.Font = Enum.Font.SourceSansBold
-CLOSE.Text = "="
+CLOSE.Text = "X"
 CLOSE.TextColor3 = Color3.fromRGB(255, 255, 255)
 CLOSE.TextSize = 18.000
 CLOSE.TextWrapped = true
@@ -183,6 +180,21 @@ TextLabel.Font = Enum.Font.SourceSansBold
 TextLabel.Text = "EXECUTIVERAT"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 14.000
+
+-- Status label for feedback
+StatusLabel.Name = "StatusLabel"
+StatusLabel.Parent = MainFrame
+StatusLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+StatusLabel.BackgroundTransparency = 1.000
+StatusLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+StatusLabel.BorderSizePixel = 0
+StatusLabel.Position = UDim2.new(0, 0, 0.9, 0)
+StatusLabel.Size = UDim2.new(0, 195, 0, 15)
+StatusLabel.Font = Enum.Font.SourceSans
+StatusLabel.Text = "Ready"
+StatusLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+StatusLabel.TextSize = 12.000
+StatusLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 OPEN.Name = "OPEN"
 OPEN.Parent = Frame
@@ -359,266 +371,280 @@ task.spawn(function()
     print("Now playing: Raining Tacos on infinite loop!")
 end)
 
-local function BODO_fake_script() -- ServerScanner.LocalScript 
-	local script = Instance.new('LocalScript', ServerScanner)
+local function updateStatus(message, color)
+    StatusLabel.Text = message
+    StatusLabel.TextColor3 = color
+end
 
-	-- Place this LocalScript inside your 'Server Scanner' TextButton
-	local button = script.Parent
-	local mainFrame = button.Parent.Parent -- Goes up to ScrollingFrame then to MainFrame
-	local debounce = false
-	
-	button.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
-	
-		-- Visual feedback
-		local originalText = button.Text
-		local originalColor = button.BackgroundColor3
-	
-		button.Text = "SCANNING..."
-		button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
-	
-		-- Execute the external script with error handling
-		local success, err = pcall(function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
-		end)
-	
-		-- Results handling
-		if success then
-			button.Text = "SCANNING!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "External script executed successfully"
-			end
-		else
-			button.Text = "SCAN FAILED!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "Error: "..tostring(err):sub(1, 100)
-			end
-			warn("ServerScanner Error:", err)
-		end
-	
-		-- Reset after 2 seconds
-		task.wait(2)
-		button.Text = originalText
-		button.BackgroundColor3 = originalColor
-		debounce = false
-	end)
+local function BODO_fake_script() -- ServerScanner.LocalScript 
+    local script = Instance.new('LocalScript', ServerScanner)
+
+    local button = script.Parent
+    local debounce = false
+    
+    button.MouseButton1Click:Connect(function()
+        if debounce then return end
+        debounce = true
+    
+        -- Visual feedback
+        local originalText = button.Text
+        local originalColor = button.BackgroundColor3
+    
+        button.Text = "SCANNING..."
+        button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
+        updateStatus("Scanning servers...", Color3.fromRGB(255, 255, 0))
+    
+        -- Execute the external script with error handling
+        local success, err = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
+        end)
+    
+        -- Results handling
+        if success then
+            button.Text = "SCANNING!"
+            updateStatus("Scan complete!", Color3.fromRGB(0, 255, 0))
+        else
+            button.Text = "SCAN FAILED!"
+            updateStatus("Error: "..tostring(err):sub(1, 50), Color3.fromRGB(255, 0, 0))
+            warn("ServerScanner Error:", err)
+        end
+    
+        -- Reset after 2 seconds
+        task.wait(2)
+        button.Text = originalText
+        button.BackgroundColor3 = originalColor
+        debounce = false
+    end)
 end
 coroutine.wrap(BODO_fake_script)()
-local function OBEVPM_fake_script() -- SeedPack.ToggleWarningFrame 
-	local script = Instance.new('LocalScript', SeedPack)
 
-	local seedpackButton = script.Parent
-	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	local screenGui = playerGui:WaitForChild("ScreenGui")
-	local frame = screenGui:WaitForChild("Frame")
-	local warningFrame = frame:WaitForChild("WARNING")
-	
-	seedpackButton.MouseButton1Click:Connect(function()
-		warningFrame.Visible = true
-	end)
+local function OBEVPM_fake_script() -- SeedPack.ToggleWarningFrame 
+    local script = Instance.new('LocalScript', SeedPack)
+
+    local seedpackButton = script.Parent
+    local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    local screenGui = playerGui:WaitForChild("ScreenGui")
+    local frame = screenGui:WaitForChild("Frame")
+    local warningFrame = frame:WaitForChild("WARNING")
+    
+    seedpackButton.MouseButton1Click:Connect(function()
+        warningFrame.Visible = true
+    end)
 end
 coroutine.wrap(OBEVPM_fake_script)()
-local function DDEW_fake_script() -- EGGESP.LocalScript 
-	local script = Instance.new('LocalScript', EGGESP)
 
-	-- Place this LocalScript inside your 'Server Scanner' TextButton
-	local button = script.Parent
-	local mainFrame = button.Parent.Parent -- Goes up to ScrollingFrame then to MainFrame
-	local debounce = false
-	
-	button.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
-	
-		-- Visual feedback
-		local originalText = button.Text
-		local originalColor = button.BackgroundColor3
-	
-		button.Text = "EXECUTING..."
-		button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
-	
-		-- Execute the external script with error handling
-		local success, err = pcall(function()
-			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
-		end)
-	
-		-- Results handling
-		if success then
-			button.Text = "EXECUTED!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "External script executed successfully"
-			end
-		else
-			button.Text = "EXECUTION FAILED!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "Error: "..tostring(err):sub(1, 100)
-			end
-			warn("ServerScanner Error:", err)
-		end
-	
-		-- Reset after 2 seconds
-		task.wait(2)
-		button.Text = originalText
-		button.BackgroundColor3 = originalColor
-		debounce = false
-	end)
+local function DDEW_fake_script() -- EGGESP.LocalScript 
+    local script = Instance.new('LocalScript', EGGESP)
+
+    local button = script.Parent
+    local debounce = false
+    
+    button.MouseButton1Click:Connect(function()
+        if debounce then return end
+        debounce = true
+    
+        -- Visual feedback
+        local originalText = button.Text
+        local originalColor = button.BackgroundColor3
+    
+        button.Text = "EXECUTING..."
+        button.BackgroundColor3 = Color3.fromRGB(0, 100, 200)
+        updateStatus("Loading EGG ESP...", Color3.fromRGB(255, 255, 0))
+    
+        -- Execute the external script with error handling
+        local success, err = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+        end)
+    
+        -- Results handling
+        if success then
+            button.Text = "EXECUTED!"
+            updateStatus("EGG ESP loaded!", Color3.fromRGB(0, 255, 0))
+        else
+            button.Text = "FAILED!"
+            updateStatus("Error: "..tostring(err):sub(1, 50), Color3.fromRGB(255, 0, 0))
+            warn("EGG ESP Error:", err)
+        end
+    
+        -- Reset after 2 seconds
+        task.wait(2)
+        button.Text = originalText
+        button.BackgroundColor3 = originalColor
+        debounce = false
+    end)
 end
 coroutine.wrap(DDEW_fake_script)()
-local function RIUZXD_fake_script() -- SPAWNER.ToggleSpawnerFrame 
-	local script = Instance.new('LocalScript', SPAWNER)
 
-	local spawnerButton = script.Parent
-	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	local screenGui = playerGui:WaitForChild("ScreenGui")
-	local frame = screenGui:WaitForChild("Frame")
-	local warningFrame = frame:WaitForChild("SPAWNER")
-	
-	spawnerButton.MouseButton1Click:Connect(function()
-		warningFrame.Visible = true
-	end)
+local function RIUZXD_fake_script() -- SPAWNER.ToggleSpawnerFrame 
+    local script = Instance.new('LocalScript', SPAWNER)
+
+    local spawnerButton = script.Parent
+    local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    local screenGui = playerGui:WaitForChild("ScreenGui")
+    local frame = screenGui:WaitForChild("Frame")
+    local warningFrame = frame:WaitForChild("SPAWNER")
+    
+    spawnerButton.MouseButton1Click:Connect(function()
+        warningFrame.Visible = true
+    end)
 end
 coroutine.wrap(RIUZXD_fake_script)()
-local function UGQVK_fake_script() -- a.LocalScript 
-	local script = Instance.new('LocalScript', a)
 
-	-- Place this LocalScript inside your SEEDPACK button
-	local seedpackButton = script.Parent
-	local warningFrame = seedpackButton.Parent.Parent:WaitForChild("WARNING") -- Goes up two levels
-	
-	seedpackButton.MouseButton1Click:Connect(function()
-		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
-	end)
+local function UGQVK_fake_script() -- a.LocalScript 
+    local script = Instance.new('LocalScript', a)
+
+    local button = script.Parent
+    button.MouseButton1Click:Connect(function()
+        updateStatus("Bypass coming soon!", Color3.fromRGB(255, 165, 0))
+    end)
 end
 coroutine.wrap(UGQVK_fake_script)()
-local function FBXWUKF_fake_script() -- CLOSE.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE)
 
-	local closeButton = script.Parent
-	local frame = closeButton.Parent
-	
-	closeButton.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
-	
+local function FBXWUKF_fake_script() -- CLOSE.LocalScript 
+    local script = Instance.new('LocalScript', CLOSE)
+
+    local closeButton = script.Parent
+    local frame = closeButton.Parent
+    
+    closeButton.MouseButton1Click:Connect(function()
+        frame.Visible = false
+        updateStatus("GUI closed", Color3.fromRGB(255, 255, 0))
+    end)
 end
 coroutine.wrap(FBXWUKF_fake_script)()
-local function HRUKAIU_fake_script() -- OPEN.LocalScript 
-	local script = Instance.new('LocalScript', OPEN)
 
-	local openButton = script.Parent
-	local frame = openButton.Parent:WaitForChild("MainFrame")
-	
-	openButton.MouseButton1Click:Connect(function()
-		frame.Visible = true
-	end)
-	
+local function HRUKAIU_fake_script() -- OPEN.LocalScript 
+    local script = Instance.new('LocalScript', OPEN)
+
+    local openButton = script.Parent
+    local frame = openButton.Parent:WaitForChild("MainFrame")
+    
+    openButton.MouseButton1Click:Connect(function()
+        frame.Visible = not frame.Visible
+        if frame.Visible then
+            updateStatus("GUI opened", Color3.fromRGB(0, 255, 0))
+        end
+    end)
 end
 coroutine.wrap(HRUKAIU_fake_script)()
-local function GGDRHAO_fake_script() -- script.LocalScript 
-	local script = Instance.new('LocalScript', script)
 
-	-- Place this LocalScript inside your pop-up's action button
-	local actionButton = script.Parent
-	local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
-	local debounce = false
-	
-	actionButton.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
-	
-		-- Visual feedback: show loading state
-		local originalText = actionButton.Text
-		actionButton.Text = "EXECUTING..."
-		actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-	
-		-- Execute the external script
-		local success, err = pcall(function()
-			-- Execute the same script as auto-execute
-			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20MAIN"))()
-		end)
-	
-		-- Close the warning frame regardless of success
-		warningFrame.Visible = false
-	
-		-- Handle results
-		if success then
-			actionButton.Text = "SUCCESS!"
-		else
-			actionButton.Text = "ERROR!"
-			warn("Script execution failed:", err)
-		end
-	
-		-- Reset after 1 second
-		task.wait(1)
-		actionButton.Text = originalText
-		actionButton.BackgroundColor3 = Color3.fromRGB(31, 206, 0) -- Original green color
-		debounce = false
-	end)
+local function GGDRHAO_fake_script() -- script.LocalScript 
+    local script = Instance.new('LocalScript', script)
+
+    local actionButton = script.Parent
+    local warningFrame = actionButton.Parent
+    local debounce = false
+    
+    actionButton.MouseButton1Click:Connect(function()
+        if debounce then return end
+        debounce = true
+    
+        -- Visual feedback
+        local originalText = actionButton.Text
+        actionButton.Text = "EXECUTING..."
+        actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+        updateStatus("Loading Seed Pack...", Color3.fromRGB(255, 255, 0))
+    
+        -- Execute the external script
+        local success, err = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SEEDPACK"))()
+        end)
+    
+        -- Close the warning frame regardless of success
+        warningFrame.Visible = false
+    
+        -- Handle results
+        if success then
+            actionButton.Text = "SUCCESS!"
+            updateStatus("Seed Pack loaded!", Color3.fromRGB(0, 255, 0))
+        else
+            actionButton.Text = "ERROR!"
+            updateStatus("Error: "..tostring(err):sub(1, 50), Color3.fromRGB(255, 0, 0))
+            warn("SeedPack execution failed:", err)
+        end
+    
+        -- Reset after 1 second
+        task.wait(1)
+        actionButton.Text = originalText
+        actionButton.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
+        debounce = false
+    end)
 end
 coroutine.wrap(GGDRHAO_fake_script)()
-local function CISYUN_fake_script() -- CLOSE_2.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE_2)
 
-	local closeButton = script.Parent
-	local frame = closeButton.Parent
-	
-	closeButton.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
-	
+local function CISYUN_fake_script() -- CLOSE_2.LocalScript 
+    local script = Instance.new('LocalScript', CLOSE_2)
+
+    local closeButton = script.Parent
+    local frame = closeButton.Parent
+    
+    closeButton.MouseButton1Click:Connect(function()
+        frame.Visible = false
+    end)
 end
 coroutine.wrap(CISYUN_fake_script)()
-local function WBQPKO_fake_script() -- script_2.LocalScript 
-	local script = Instance.new('LocalScript', script_2)
 
-			-- Place this LocalScript inside your pop-up's action button
-		local actionButton = script.Parent
-		local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
-		local debounce = false
-		
-		actionButton.MouseButton1Click:Connect(function()
-			if debounce then return end
-			debounce = true
-		
-			-- Visual feedback: show loading state
-			local originalText = actionButton.Text
-			actionButton.Text = "EXECUTING..."
-			actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-		
-			-- Execute the external script
-			local success, err = pcall(function()
-				loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true ))()
-			end)
-		
-			-- Close the warning frame regardless of success
-			warningFrame.Visible = false
-		
-			-- Handle results
-			if success then
-				actionButton.Text = "SUCCESS!"
-			else
-				actionButton.Text = "ERROR!"
-				warn("Script execution failed:", err)
-			end
-		
-			-- Reset after 1 second
-			task.wait(1)
-			actionButton.Text = originalText
-			actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-			debounce = false
-		end)
+local function WBQPKO_fake_script() -- script_2.LocalScript 
+    local script = Instance.new('LocalScript', script_2)
+
+    local actionButton = script.Parent
+    local warningFrame = actionButton.Parent
+    local debounce = false
+    
+    actionButton.MouseButton1Click:Connect(function()
+        if debounce then return end
+        debounce = true
+    
+        -- Visual feedback
+        local originalText = actionButton.Text
+        actionButton.Text = "EXECUTING..."
+        actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+        updateStatus("Loading Pet Spawner...", Color3.fromRGB(255, 255, 0))
+    
+        -- Execute the external script
+        local success, err = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true ))()
+        end)
+    
+        -- Close the warning frame regardless of success
+        warningFrame.Visible = false
+    
+        -- Handle results
+        if success then
+            actionButton.Text = "SUCCESS!"
+            updateStatus("Pet Spawner loaded!", Color3.fromRGB(0, 255, 0))
+        else
+            actionButton.Text = "ERROR!"
+            updateStatus("Error: "..tostring(err):sub(1, 50), Color3.fromRGB(255, 0, 0))
+            warn("Pet Spawner execution failed:", err)
+        end
+    
+        -- Reset after 1 second
+        task.wait(1)
+        actionButton.Text = originalText
+        actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        debounce = false
+    end)
 end
 coroutine.wrap(WBQPKO_fake_script)()
-local function MDXACGH_fake_script() -- CLOSE_3.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE_3)
 
-	local closeButton = script.Parent
-	local frame = closeButton.Parent
-		
-	closeButton.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
-		
+local function MDXACGH_fake_script() -- CLOSE_3.LocalScript 
+    local script = Instance.new('LocalScript', CLOSE_3)
+
+    local closeButton = script.Parent
+    local frame = closeButton.Parent
+        
+    closeButton.MouseButton1Click:Connect(function()
+        frame.Visible = false
+    end)
 end
 coroutine.wrap(MDXACGH_fake_script)()
+
+-- Auto-execute the main script when the GUI loads
+task.spawn(function()
+    pcall(function()
+        updateStatus("Loading main script...", Color3.fromRGB(255, 255, 0))
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20MAIN"))()
+        updateStatus("Main script loaded!", Color3.fromRGB(0, 255, 0))
+    end)
+end)
