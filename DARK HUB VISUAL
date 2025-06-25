@@ -1,7 +1,7 @@
 -- Auto-execute the main script when the GUI loads
 task.spawn(function()
     pcall(function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SCRIPT%20MAIN"))()
+        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/5631075000133c7fa307da94f3bc5b7c%20(1).txt"))()
     end)
 end)
 
