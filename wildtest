@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 52 | Scripts: 11 | Modules: 0 | Tags: 0
+-- Instances: 53 | Scripts: 11 | Modules: 0 | Tags: 0
 local G2L = {};
 
 -- StarterGui.ScreenGui
@@ -46,7 +46,6 @@ G2L["4"] = Instance.new("UIScale", G2L["2"]);
 G2L["5"] = Instance.new("ScrollingFrame", G2L["2"]);
 G2L["5"]["Active"] = true;
 G2L["5"]["BorderSizePixel"] = 0;
-G2L["5"]["CanvasPosition"] = Vector2.new(0, 140);
 G2L["5"]["BackgroundColor3"] = Color3.fromRGB(72, 72, 72);
 G2L["5"]["Name"] = [[MAIN]];
 G2L["5"]["Size"] = UDim2.new(0, 696, 0, 210);
@@ -471,16 +470,22 @@ G2L["33"] = Instance.new("TextButton", G2L["1"]);
 G2L["33"]["BorderSizePixel"] = 0;
 G2L["33"]["TextSize"] = 14;
 G2L["33"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["33"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["33"]["BackgroundColor3"] = Color3.fromRGB(227, 255, 132);
 G2L["33"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 G2L["33"]["Size"] = UDim2.new(0, 55, 0, 50);
 G2L["33"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["33"]["Text"] = [[OPEN]];
 G2L["33"]["Name"] = [[opengui]];
 G2L["33"]["Position"] = UDim2.new(0.0218, 0, 0.83287, 0);
 
 
 -- StarterGui.ScreenGui.opengui.LocalScript
 G2L["34"] = Instance.new("LocalScript", G2L["33"]);
+
+
+
+-- StarterGui.ScreenGui.opengui.UICorner
+G2L["35"] = Instance.new("UICorner", G2L["33"]);
 
 
 
