@@ -1,5 +1,5 @@
 -- Venus UI Library (Safe Alternative)
-local Venus = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Venus/main/venus.lua"))()
+local Venus = loadstring(game:HttpGet("https://raw.githubusercontent.com/weakhoes/Roblox-UI-Libs/refs/heads/main/Venus%20Lib/Venus%20Lib%20Source.lua"))()
 
 -- Create window
 local Window = Venus:CreateWindow({
