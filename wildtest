@@ -1,7 +1,7 @@
--- Load Luna UI Library (active and maintained)
+-- Load Luna UI Library
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/main/source.lua"))()
 
--- Create main window
+-- Create main window with proper configuration
 local Window = Luna:CreateWindow({
     Name = "EXECUTIVERAT IN THE SEWER",
     Subtitle = "Snatched Scripts - Summer Event",
@@ -10,18 +10,19 @@ local Window = Luna:CreateWindow({
     LoadingTitle = "EXECUTIVERAT",
     LoadingSubtitle = "Loading premium features...",
     ConfigSettings = {
-        ConfigFolder = "ExecutiveRatConfig"
+        ConfigFolder = "ExecutiveRatConfig",
+        AutoSave = false
     },
-    KeySystem = false  -- We'll implement custom key system for DUPE/VULN only
+    KeySystem = false  -- We'll implement custom key system
 })
 
 -- Tab 1: Loader
 local LoaderTab = Window:CreateTab({
     Name = "Loader",
-    Icon = "download",
-    ImageSource = "Material"
+    Icon = "rbxassetid://7733955741"
 })
 
+-- Add buttons to LoaderTab
 LoaderTab:CreateButton({
     Name = "No-Lag OFFICIAL v1",
     Description = "Load No-Lag v1 script",
@@ -30,18 +31,38 @@ LoaderTab:CreateButton({
     end
 })
 
--- Add other loader buttons similarly...
+LoaderTab:CreateButton({
+    Name = "No-Lag OFFICIAL v2",
+    Description = "Load No-Lag v2 script",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV2.lua"))()
+    end
+})
+
+LoaderTab:CreateButton({
+    Name = "No-Lag OFFICIAL v3",
+    Description = "Load No-Lag v3 script",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV3.lua"))()
+    end
+})
+
+LoaderTab:CreateButton({
+    Name = "Aussie-WIRE",
+    Description = "Load Aussie-WIRE script",
+    Callback = function()
+        loadstring(game:HttpGet("https://scriptblox.com/raw/Grow-a-Garden-Aussie-WIRE-vs-GrowAGarden-42380"))()
+    end
+})
 
 -- Tab 2: DUPE/VULN (Custom Key System)
 local DupeTab = Window:CreateTab({
     Name = "DUPE/VULN",
-    Icon = "lock",
-    ImageSource = "Material"
+    Icon = "rbxassetid://7734068321"
 })
 
 local keyVerified = false
 local correctKey = "EXECUTIVERAT_FREE_aMB0Ts12s4gjaivmr_var111113321321123"
-local dupeElements = {}
 
 -- Key UI Section
 DupeTab:CreateParagraph({
@@ -71,7 +92,7 @@ DupeTab:CreateInput({
     end
 })
 
-DupeTab:CreateButton({
+local submitBtn = DupeTab:CreateButton({
     Name = "Submit Key",
     Description = "Verify your access",
     Callback = function()
@@ -97,10 +118,20 @@ DupeTab:CreateButton({
 function LoadDupeFeatures()
     if not keyVerified then return end
     
+    -- Hide key elements
+    DupeTab:GetElements()["Copy Key Link"].Visible = false
+    DupeTab:GetElements()["Enter Key"].Visible = false
+    submitBtn.Visible = false
+    
     -- VULN Features
     DupeTab:CreateLabel({
         Text = "Skip Craft Time (PATCHED)",
         Style = 2  -- Warning style
+    })
+    
+    DupeTab:CreateLabel({
+        Text = "Skip Seed Time (PATCHED)",
+        Style = 2
     })
     
     DupeTab:CreateButton({
@@ -121,16 +152,28 @@ function LoadDupeFeatures()
         "Mimic Octopus (Paradise Egg)"
     }
     
-    DupeTab:CreateDropdown({
+    local eggDropdown = DupeTab:CreateDropdown({
         Name = "Egg Finder",
         Description = "Select egg to locate",
         Options = eggOptions,
-        CurrentOption = {eggOptions[1]},
+        CurrentOption = eggOptions[1],
         MultipleOptions = false,
         Callback = function(selected)
             Window:CreateNotification({
                 Title = "TARGET SET",
                 Content = "Finding: "..selected,
+                Duration = 3
+            })
+        end
+    })
+    
+    DupeTab:CreateButton({
+        Name = "Egg Hop", 
+        Description = "Find servers with eggs",
+        Callback = function()
+            Window:CreateNotification({
+                Title = "EGG HOP",
+                Content = "Searching for egg servers...",
                 Duration = 3
             })
         end
@@ -152,10 +195,11 @@ function LoadDupeFeatures()
     }
     local selectedPet = petOptions[1]
     
-    DupeTab:CreateDropdown({
+    local petDropdown = DupeTab:CreateDropdown({
         Name = "Select Pet",
+        Description = "Choose pet to duplicate",
         Options = petOptions,
-        CurrentOption = {selectedPet},
+        CurrentOption = petOptions[1],
         MultipleOptions = false,
         Callback = function(selection)
             selectedPet = selection
@@ -183,6 +227,14 @@ function LoadDupeFeatures()
         Name = "Execute Dupe",
         Description = "Start duplication process",
         Callback = function()
+            if selectedPet == "" then
+                Window:CreateNotification({
+                    Title = "ERROR",
+                    Content = "Select a pet first!",
+                    Duration = 3
+                })
+                return
+            end
             Window:CreateNotification({
                 Title = "DUPE STARTED",
                 Content = string.format("Duping %s (Size: %d, Age: %d)", selectedPet, petSize, petAge),
@@ -196,13 +248,98 @@ function LoadDupeFeatures()
         Text = "Server Dupe Compatibility: Not Compatible",
         Style = 2
     })
+    
+    -- Steal Fruits Section
+    DupeTab:CreateLabel({
+        Text = "Steal Others Fruit",
+        Style = 1
+    })
+    
+    local stealUsername = ""
+    DupeTab:CreateInput({
+        Name = "Username",
+        Placeholder = "Enter username to steal from",
+        Callback = function(value)
+            stealUsername = value
+        end
+    })
+    
+    DupeTab:CreateButton({
+        Name = "Whitelist User",
+        Description = "Add user to safe list",
+        Callback = function()
+            if stealUsername ~= "" then
+                Window:CreateNotification({
+                    Title = "WHITELISTED",
+                    Content = "Added "..stealUsername.." to whitelist",
+                    Duration = 3
+                })
+            end
+        end
+    })
+    
+    -- Shovel Section
+    DupeTab:CreateLabel({
+        Text = "Shovel Other Garden Fruits",
+        Style = 1
+    })
+    
+    local shovelUsername = ""
+    DupeTab:CreateInput({
+        Name = "Username",
+        Placeholder = "Enter username to shovel",
+        Callback = function(value)
+            shovelUsername = value
+        end
+    })
+    
+    DupeTab:CreateButton({
+        Name = "Whitelist User",
+        Description = "Add user to safe list",
+        Callback = function()
+            if shovelUsername ~= "" then
+                Window:CreateNotification({
+                    Title = "WHITELISTED",
+                    Content = "Added "..shovelUsername.." to whitelist",
+                    Duration = 3
+                })
+            end
+        end
+    })
+    
+    -- Teleport Button
+    DupeTab:CreateButton({
+        Name = "Teleport to EASTER SHOP",
+        Description = "Go to special event location",
+        Callback = function()
+            Window:CreateNotification({
+                Title = "TELEPORTING",
+                Content = "Teleporting to Easter Shop...",
+                Duration = 3
+            })
+        end
+    })
+    
+    -- Status Message
+    DupeTab:CreateLabel({
+        Text = "STATUS: ALL VULN SCRIPTS PATCHED - DUPE COMING TONIGHT",
+        Style = 2
+    })
 end
 
--- Tab 3: Animations (With Luna Dialogs)
+-- Tab 3: Animations
 local AnimTab = Window:CreateTab({
     Name = "Animations",
-    Icon = "animation",
-    ImageSource = "Material"
+    Icon = "rbxassetid://7733684335"
+})
+
+-- Keyboard Animation
+AnimTab:CreateButton({
+    Name = "Keyboard",
+    Description = "Load keyboard animation",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+    end
 })
 
 -- UFWboo Tool with Luna dialog warning
@@ -232,6 +369,24 @@ AnimTab:CreateButton({
                 }
             }
         })
+    end
+})
+
+-- Killer Animation
+AnimTab:CreateButton({
+    Name = "Killer Animation",
+    Description = "Load killer animation",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/riYch0rX/raw"))()
+    end
+})
+
+-- Psycho Animation
+AnimTab:CreateButton({
+    Name = "Psycho Animation",
+    Description = "Load psycho animation",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
     end
 })
 
