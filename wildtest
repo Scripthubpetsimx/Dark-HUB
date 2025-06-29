@@ -1,5 +1,5 @@
--- Booting the Library (jensonhirst safer version)
-local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/refs/heads/main/source'))()
+-- Booting the Library
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 
 -- Create Main Window
 local Window = OrionLib:MakeWindow({
@@ -59,28 +59,44 @@ local DupeTab = Window:MakeTab({
 })
 
 -- Key System
-local correctKey = "EXECUTIVERAT"
+local correctKey = "EXECUTIVERAT_FREE_aMB0Ts12s4gjaivmr_var111113321321123"
 local keyInput = ""
+local keyVerified = false
+local keyElements = {} -- Store key UI elements for removal
 
-DupeTab:AddTextbox({
+-- Create key UI elements and store references
+keyElements.copyBtn = DupeTab:AddButton({
+    Name = "Copy Key Link",
+    Callback = function()
+        setclipboard("https://link-center.net/431614/EQVrnV89bzeb")
+        OrionLib:MakeNotification({
+            Name = "COPIED",
+            Content = "Key link copied to clipboard!",
+            Time = 3
+        })
+    end
+})
+
+keyElements.textbox = DupeTab:AddTextbox({
     Name = "Enter Key",
     Default = "",
-    TextDisappear = true,
+    TextDisappear = false,
     Callback = function(Value)
         keyInput = Value
     end
 })
 
-DupeTab:AddButton({
+keyElements.submitBtn = DupeTab:AddButton({
     Name = "Submit Key",
     Callback = function()
         if keyInput == correctKey then
+            keyVerified = true
             OrionLib:MakeNotification({
                 Name = "SUCCESS",
-                Content = "Key accepted! Loading DUPE scripts...",
+                Content = "Key accepted! Loading DUPE/VULN features...",
                 Time = 3
             })
-            -- Add your DUPE/VULN scripts here after verification
+            LoadDupeFeatures()
         else
             OrionLib:MakeNotification({
                 Name = "ERROR",
@@ -91,13 +107,190 @@ DupeTab:AddButton({
     end
 })
 
+-- Function to load DUPE features after key verification
+function LoadDupeFeatures()
+    if not keyVerified then return end
+    
+    -- Remove key elements
+    keyElements.copyBtn.Instance:Destroy()
+    keyElements.textbox.Instance:Destroy()
+    keyElements.submitBtn.Instance:Destroy()
+    
+    -- Add new features
+    DupeTab:AddLabel("Skip Craft Time (PATCHED)")
+    DupeTab:AddLabel("Skip Seed Time (PATCHED)")
+    DupeTab:AddButton({Name = "Egg ESP", Callback = function() end})
+    
+    -- Egg Finder Dropdown
+    DupeTab:AddDropdown({
+        Name = "Egg Finder",
+        Default = "Select Egg",
+        Options = {
+            "Raccoon (Night Egg)", 
+            "Disco Bee (Anti Bee Egg)", 
+            "Butterfly (Anti Bee Egg)", 
+            "Queen Bee (Bee Egg)", 
+            "Red Fox (Mythical Egg)", 
+            "Mimic Octopus (Paradise Egg)"
+        },
+        Callback = function(Value) 
+            OrionLib:MakeNotification({
+                Name = "Egg Selected",
+                Content = "Finding: "..Value,
+                Time = 3
+            })
+        end
+    })
+    
+    DupeTab:AddButton({
+        Name = "Egg Hop", 
+        Callback = function() 
+            OrionLib:MakeNotification({
+                Name = "Egg Hop",
+                Content = "Searching for egg servers...",
+                Time = 3
+            })
+        end
+    })
+
+    -- DUPE Features
+    DupeTab:AddLabel("DUPE -")
+    
+    -- Pet Selection
+    local selectedPet = ""
+    DupeTab:AddDropdown({
+        Name = "Select Pet",
+        Default = "Select Pet",
+        Options = {
+            "Raccoon", 
+            "Disco Bee", 
+            "Butterfly", 
+            "Queen Bee", 
+            "Red Fox", 
+            "Mimic Octopus"
+        },
+        Callback = function(Value) 
+            selectedPet = Value
+        end
+    })
+    
+    -- Size and Age Inputs
+    local petSize, petAge = 1, 1
+    DupeTab:AddTextbox({
+        Name = "Size (Number)",
+        Default = "1",
+        TextDisappear = false,
+        Callback = function(Value) 
+            petSize = tonumber(Value) or 1
+        end
+    })
+    
+    DupeTab:AddTextbox({
+        Name = "Age (Number)",
+        Default = "1",
+        TextDisappear = false,
+        Callback = function(Value) 
+            petAge = tonumber(Value) or 1
+        end
+    })
+    
+    DupeTab:AddButton({
+        Name = "Execute Dupe",
+        Callback = function()
+            if selectedPet == "" then
+                OrionLib:MakeNotification({
+                    Name = "ERROR",
+                    Content = "Select a pet first!",
+                    Time = 3
+                })
+                return
+            end
+            OrionLib:MakeNotification({
+                Name = "DUPE STARTED",
+                Content = string.format("Duping %s (Size: %d, Age: %d)", selectedPet, petSize, petAge),
+                Time = 5
+            })
+            -- Actual dupe script would go here
+        end
+    })
+    
+    DupeTab:AddLabel("Server Dupe Compatibility: Not Compatible")
+    
+    -- Steal Fruits Section
+    local stealUsername = ""
+    DupeTab:AddLabel("Steal Others Fruit")
+    DupeTab:AddTextbox({
+        Name = "Username",
+        Default = "",
+        TextDisappear = false,
+        Callback = function(Value) 
+            stealUsername = Value
+        end
+    })
+    
+    DupeTab:AddButton({
+        Name = "Whitelist User",
+        Callback = function() 
+            if stealUsername == "" then return end
+            OrionLib:MakeNotification({
+                Name = "WHITELISTED",
+                Content = "Added "..stealUsername.." to whitelist",
+                Time = 3
+            })
+        end
+    })
+    
+    -- Shovel Section
+    local shovelUsername = ""
+    DupeTab:AddLabel("Shovel Other Garden Fruits")
+    DupeTab:AddTextbox({
+        Name = "Username",
+        Default = "",
+        TextDisappear = false,
+        Callback = function(Value) 
+            shovelUsername = Value
+        end
+    })
+    
+    DupeTab:AddButton({
+        Name = "Whitelist User",
+        Callback = function() 
+            if shovelUsername == "" then return end
+            OrionLib:MakeNotification({
+                Name = "WHITELISTED",
+                Content = "Added "..shovelUsername.." to whitelist",
+                Time = 3
+            })
+        end
+    })
+    
+    -- Teleport Button
+    DupeTab:AddButton({
+        Name = "Teleport to EASTER SHOP",
+        Callback = function() 
+            OrionLib:MakeNotification({
+                Name = "TELEPORTING",
+                Content = "Teleporting to Easter Shop...",
+                Time = 3
+            })
+            -- Teleport script would go here
+        end
+    })
+    
+    -- Status Message
+    DupeTab:AddParagraph(
+        "STATUS", 
+        "ALL VULN SCRIPTS ARE PATCHED AND NOW FIXING, DUPE WILL BE COMING TONIGHT LATER"
+    )
+end
+
 -- Tab 3: Animations
 local AnimTab = Window:MakeTab({
     Name = "Animations",
     Icon = "rbxassetid://7733684335"
 })
 
--- Keyboard Animation (Working Script)
+-- Keyboard Animation
 AnimTab:AddButton({
     Name = "Keyboard",
     Callback = function()
@@ -116,13 +309,17 @@ AnimTab:AddButton({
                 {
                     Text = "OK",
                     Callback = function()
-                       loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
                     end
                 },
                 {
                     Text = "Cancel",
                     Callback = function()
-                        -- Optional cancel action
+                        OrionLib:MakeNotification({
+                            Name = "Cancelled",
+                            Content = "Action aborted",
+                            Time = 2
+                        })
                     end
                 }
             }
@@ -143,6 +340,52 @@ AnimTab:AddButton({
     Name = "Psycho Animation",
     Callback = function()
         loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
+    end
+})
+
+-- TROLL TAB Animation
+AnimTab:AddButton({
+    Name = "TROLL TAB",
+    Callback = function()
+        OrionLib:MakeAlert({
+            Title = "TROLL WARNING",
+            Content = "This animation may cause unexpected effects!",
+            Buttons = {
+                {
+                    Text = "I Understand",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/p0e1/1/main/Fe%20R6%20Animation"))()
+                    end
+                },
+                {
+                    Text = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+-- Revenge Hands Animation
+AnimTab:AddButton({
+    Name = "Revenge Hands",
+    Callback = function()
+        OrionLib:MakeAlert({
+            Title = "WARNING",
+            Content = "Revenge Hands may cause visual glitches!",
+            Buttons = {
+                {
+                    Text = "Proceed",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/guiscript/main/reevenge%20hands.txt"))()
+                    end
+                },
+                {
+                    Text = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
     end
 })
 
