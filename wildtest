@@ -1,5 +1,5 @@
--- Booting Custom Orion Library
-local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
+-- Booting the Library (jensonhirst safer version)
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/refs/heads/main/source'))()
 
 -- Create Main Window
 local Window = OrionLib:MakeWindow({
@@ -80,7 +80,7 @@ DupeTab:AddButton({
                 Content = "Key accepted! Loading DUPE scripts...",
                 Time = 3
             })
-            -- Add DUPE scripts here after verification
+            -- Add your DUPE/VULN scripts here after verification
         else
             OrionLib:MakeNotification({
                 Name = "ERROR",
@@ -97,6 +97,7 @@ local AnimTab = Window:MakeTab({
     Icon = "rbxassetid://7733684335"
 })
 
+-- Keyboard Animation (Working Script)
 AnimTab:AddButton({
     Name = "Keyboard",
     Callback = function()
@@ -104,6 +105,7 @@ AnimTab:AddButton({
     end
 })
 
+-- UFWboo Tool with Warning
 AnimTab:AddButton({
     Name = "UFWboo Tool",
     Callback = function()
@@ -128,6 +130,7 @@ AnimTab:AddButton({
     end
 })
 
+-- Killer Animation
 AnimTab:AddButton({
     Name = "Killer Animation",
     Callback = function()
@@ -135,6 +138,7 @@ AnimTab:AddButton({
     end
 })
 
+-- Psycho Animation
 AnimTab:AddButton({
     Name = "Psycho Animation",
     Callback = function()
