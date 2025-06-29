@@ -116,7 +116,7 @@ AnimTab:AddButton({
                 {
                     Text = "OK",
                     Callback = function()
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
+                       loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
                     end
                 },
                 {
