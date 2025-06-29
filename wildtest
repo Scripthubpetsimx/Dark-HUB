@@ -1,7 +1,7 @@
--- Load Orion Library
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/jensonhirst/Orion/main/source')))()
+-- Booting Custom Orion Library
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
 
--- Create Window with Custom Title
+-- Create Main Window
 local Window = OrionLib:MakeWindow({
     Name = "EXECUTIVERAT IN THE SEWER",
     HidePremium = false,
@@ -11,7 +11,7 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "OrionConfig"
 })
 
--- Show Initial Notification
+-- Initial Notification
 OrionLib:MakeNotification({
     Name = "EXECUTIVERAT",
     Content = "Snatched Scripts - Summer Event Script 9999+ points",
@@ -21,28 +21,27 @@ OrionLib:MakeNotification({
 -- Tab 1: Loader
 local LoaderTab = Window:MakeTab({
     Name = "Loader",
-    Icon = "rbxassetid://7733955741",
-    PremiumOnly = false
+    Icon = "rbxassetid://7733955741"
 })
 
 LoaderTab:AddButton({
     Name = "No-Lag OFFICIAL v1",
     Callback = function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV1.lua"))()
     end
 })
 
 LoaderTab:AddButton({
     Name = "No-Lag OFFICIAL v2",
     Callback = function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV2.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV2.lua"))()
     end
 })
 
 LoaderTab:AddButton({
     Name = "No-Lag OFFICIAL v3",
     Callback = function()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV3.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV3.lua"))()
     end
 })
 
@@ -56,34 +55,32 @@ LoaderTab:AddButton({
 -- Tab 2: DUPE/VULN (Key System)
 local DupeTab = Window:MakeTab({
     Name = "DUPE/VULN",
-    Icon = "rbxassetid://7734068321",
-    PremiumOnly = false
+    Icon = "rbxassetid://7734068321"
 })
 
 -- Key System
-local CorrectKey = "EXECUTIVERAT" -- Change this to your desired key
-local KeyInput = nil
+local correctKey = "EXECUTIVERAT"
+local keyInput = ""
 
 DupeTab:AddTextbox({
     Name = "Enter Key",
     Default = "",
     TextDisappear = true,
     Callback = function(Value)
-        KeyInput = Value
+        keyInput = Value
     end
 })
 
 DupeTab:AddButton({
     Name = "Submit Key",
     Callback = function()
-        if KeyInput == CorrectKey then
+        if keyInput == correctKey then
             OrionLib:MakeNotification({
                 Name = "SUCCESS",
                 Content = "Key accepted! Loading DUPE scripts...",
                 Time = 3
             })
-            -- Add your DUPE/VULN scripts here after key verification
-            -- Example: loadstring(game:HttpGet("YOUR_DUPE_SCRIPT"))()
+            -- Add DUPE scripts here after verification
         else
             OrionLib:MakeNotification({
                 Name = "ERROR",
@@ -97,11 +94,9 @@ DupeTab:AddButton({
 -- Tab 3: Animations
 local AnimTab = Window:MakeTab({
     Name = "Animations",
-    Icon = "rbxassetid://7733684335",
-    PremiumOnly = false
+    Icon = "rbxassetid://7733684335"
 })
 
--- Keyboard Animation (Working Script)
 AnimTab:AddButton({
     Name = "Keyboard",
     Callback = function()
@@ -109,7 +104,6 @@ AnimTab:AddButton({
     end
 })
 
--- UFWboo Tool with Warning
 AnimTab:AddButton({
     Name = "UFWboo Tool",
     Callback = function()
@@ -126,11 +120,7 @@ AnimTab:AddButton({
                 {
                     Text = "Cancel",
                     Callback = function()
-                        OrionLib:MakeNotification({
-                            Name = "Cancelled",
-                            Content = "Action aborted.",
-                            Time = 3
-                        })
+                        -- Optional cancel action
                     end
                 }
             }
@@ -138,7 +128,6 @@ AnimTab:AddButton({
     end
 })
 
--- Killer Animation
 AnimTab:AddButton({
     Name = "Killer Animation",
     Callback = function()
@@ -146,7 +135,6 @@ AnimTab:AddButton({
     end
 })
 
--- Psycho Animation
 AnimTab:AddButton({
     Name = "Psycho Animation",
     Callback = function()
