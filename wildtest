@@ -1,126 +1,131 @@
--- Booting the Library
-local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jensonhirst/Orion/main/source'))()
+-- Venus UI Library (Safe Alternative)
+local Venus = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Venus/main/venus.lua"))()
 
--- Create Main Window
-local Window = OrionLib:MakeWindow({
-    Name = "EXECUTIVERAT IN THE SEWER",
-    HidePremium = false,
-    SaveConfig = false,
-    IntroEnabled = true,
-    IntroText = "EXECUTIVERAT",
-    ConfigFolder = "OrionConfig"
+-- Create window
+local Window = Venus:CreateWindow({
+    Title = "EXECUTIVERAT IN THE SEWER",
+    Center = true,
+    AutoShow = true,
+    TabWidth = 160,
+    Size = UDim2.fromOffset(600, 400),
+    Theme = {
+        Background = Color3.fromRGB(25, 25, 25),
+        Glow = Color3.fromRGB(235, 69, 69),
+        Accent = Color3.fromRGB(9, 149, 98),
+        LightContrast = Color3.fromRGB(35, 35, 35),
+        DarkContrast = Color3.fromRGB(20, 20, 20),
+        TextColor = Color3.fromRGB(240, 240, 240)
+    }
 })
 
--- Initial Notification
-OrionLib:MakeNotification({
-    Name = "EXECUTIVERAT",
-    Content = "Snatched Scripts - Summer Event Script 9999+ points",
-    Time = 5
+-- Create tabs
+local LoaderTab = Window:AddTab("Loader", "rbxassetid://7072722619")
+local DupeTab = Window:AddTab("DUPE/VULN", "rbxassetid://7072708282")
+local AnimTab = Window:AddTab("Animations", "rbxassetid://7072723980")
+
+-- Initial notification
+Venus:Notify({
+    Title = "EXECUTIVERAT",
+    Text = "Snatched Scripts - Summer Event Script 9999+ points",
+    Duration = 5
 })
 
 -- Tab 1: Loader
-local LoaderTab = Window:MakeTab({
-    Name = "Loader",
-    Icon = "rbxassetid://7733955741"
-})
-
 LoaderTab:AddButton({
-    Name = "No-Lag OFFICIAL v1",
+    Title = "No-Lag OFFICIAL v1",
+    Description = "Official No-Lag Hub Loader v1",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV1.lua"))()
     end
 })
 
 LoaderTab:AddButton({
-    Name = "No-Lag OFFICIAL v2",
+    Title = "No-Lag OFFICIAL v2",
+    Description = "Official No-Lag Hub Loader v2",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV2.lua"))()
     end
 })
 
 LoaderTab:AddButton({
-    Name = "No-Lag OFFICIAL v3",
+    Title = "No-Lag OFFICIAL v3",
+    Description = "Official No-Lag Hub Loader v3",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV3.lua"))()
     end
 })
 
 LoaderTab:AddButton({
-    Name = "Aussie-WIRE",
+    Title = "Aussie-WIRE",
+    Description = "Grow a Garden exploit",
     Callback = function()
         loadstring(game:HttpGet("https://scriptblox.com/raw/Grow-a-Garden-Aussie-WIRE-vs-GrowAGarden-42380"))()
     end
 })
 
--- Tab 2: DUPE/VULN (Key System)
-local DupeTab = Window:MakeTab({
-    Name = "DUPE/VULN",
-    Icon = "rbxassetid://7734068321"
-})
-
--- Key System
-local correctKey = "EXECUTIVERAT_FREE_aMB0Ts12s4gjaivmr_var111113321321123"
+-- Tab 2: DUPE/VULN Key System
 local keyInput = ""
 local keyVerified = false
-
--- Create containers for key UI and dupe features
-local keyContainer = {}
-local dupeContainer = {}
+local correctKey = "EXECUTIVERAT_FREE_aMB0Ts12s4gjaivmr_var111113321321123"
 
 -- Key UI elements
-keyContainer.copyBtn = DupeTab:AddButton({
-    Name = "Copy Key Link",
+DupeTab:AddButton({
+    Title = "Copy Key Link",
+    Description = "Get your access key",
     Callback = function()
         setclipboard("https://link-center.net/431614/EQVrnV89bzeb")
-        OrionLib:MakeNotification({
-            Name = "COPIED",
-            Content = "Key link copied to clipboard!",
-            Time = 3
+        Venus:Notify({
+            Title = "COPIED",
+            Text = "Key link copied to clipboard!",
+            Duration = 3
         })
     end
 })
 
-keyContainer.textbox = DupeTab:AddTextbox({
-    Name = "Enter Key",
+local keyTextBox = DupeTab:AddTextBox({
+    Title = "Enter Key",
     Default = "",
-    TextDisappear = false,
+    Placeholder = "Paste key here",
     Callback = function(Value)
         keyInput = Value
     end
 })
 
-keyContainer.submitBtn = DupeTab:AddButton({
-    Name = "Submit Key",
+local submitBtn = DupeTab:AddButton({
+    Title = "Submit Key",
+    Description = "Verify your access",
     Callback = function()
         if keyInput == correctKey then
             keyVerified = true
-            OrionLib:MakeNotification({
-                Name = "SUCCESS",
-                Content = "Key accepted! Loading DUPE/VULN features...",
-                Time = 3
+            Venus:Notify({
+                Title = "SUCCESS",
+                Text = "Key accepted! Loading DUPE/VULN features...",
+                Duration = 3
             })
             LoadDupeFeatures()
         else
-            OrionLib:MakeNotification({
-                Name = "ERROR",
-                Content = "Invalid key!",
-                Time = 3
+            Venus:Notify({
+                Title = "ERROR",
+                Text = "Invalid key!",
+                Duration = 3
             })
         end
     end
 })
 
--- Function to create DUPE features (but keep them hidden initially)
+-- Function to create DUPE features (initially hidden)
+local dupeSection
 function CreateDupeFeatures()
-    -- VULN Features (PATCHED)
-    dupeContainer.skipCraftLabel = DupeTab:AddLabel("Skip Craft Time (PATCHED)")
-    dupeContainer.skipSeedLabel = DupeTab:AddLabel("Skip Seed Time (PATCHED)")
-    dupeContainer.eggESP = DupeTab:AddButton({Name = "Egg ESP", Callback = function() end})
+    dupeSection = DupeTab:AddSection("DUPE/VULN Features")
     
-    -- Egg Finder Dropdown
-    dupeContainer.eggFinder = DupeTab:AddDropdown({
-        Name = "Egg Finder",
-        Default = "Select Egg",
+    -- VULN Features
+    dupeSection:AddLabel("Skip Craft Time (PATCHED)")
+    dupeSection:AddLabel("Skip Seed Time (PATCHED)")
+    dupeSection:AddButton({Title = "Egg ESP"})
+    
+    -- Egg Finder
+    dupeSection:AddDropdown({
+        Title = "Egg Finder",
         Options = {
             "Raccoon (Night Egg)", 
             "Disco Bee (Anti Bee Egg)", 
@@ -130,33 +135,23 @@ function CreateDupeFeatures()
             "Mimic Octopus (Paradise Egg)"
         },
         Callback = function(Value) 
-            OrionLib:MakeNotification({
-                Name = "Egg Selected",
-                Content = "Finding: "..Value,
-                Time = 3
+            Venus:Notify({
+                Title = "Egg Selected",
+                Text = "Finding: "..Value,
+                Duration = 3
             })
         end
     })
     
-    dupeContainer.eggHop = DupeTab:AddButton({
-        Name = "Egg Hop", 
-        Callback = function() 
-            OrionLib:MakeNotification({
-                Name = "Egg Hop",
-                Content = "Searching for egg servers...",
-                Time = 3
-            })
-        end
-    })
-
+    dupeSection:AddButton({Title = "Egg Hop"})
+    
     -- DUPE Features
-    dupeContainer.dupeLabel = DupeTab:AddLabel("DUPE -")
+    dupeSection:AddLabel("DUPE -")
     
     -- Pet Selection
     local selectedPet = ""
-    dupeContainer.petDropdown = DupeTab:AddDropdown({
-        Name = "Select Pet",
-        Default = "Select Pet",
+    dupeSection:AddDropdown({
+        Title = "Select Pet",
         Options = {
             "Raccoon", 
             "Disco Bee", 
@@ -170,119 +165,95 @@ function CreateDupeFeatures()
         end
     })
     
-    -- Size and Age Inputs
+    -- Size and Age
     local petSize, petAge = 1, 1
-    dupeContainer.sizeInput = DupeTab:AddTextbox({
-        Name = "Size (Number)",
+    dupeSection:AddTextBox({
+        Title = "Size (Number)",
         Default = "1",
-        TextDisappear = false,
         Callback = function(Value) 
             petSize = tonumber(Value) or 1
         end
     })
     
-    dupeContainer.ageInput = DupeTab:AddTextbox({
-        Name = "Age (Number)",
+    dupeSection:AddTextBox({
+        Title = "Age (Number)",
         Default = "1",
-        TextDisappear = false,
         Callback = function(Value) 
             petAge = tonumber(Value) or 1
         end
     })
     
-    dupeContainer.executeBtn = DupeTab:AddButton({
-        Name = "Execute Dupe",
+    dupeSection:AddButton({
+        Title = "Execute Dupe",
         Callback = function()
-            if selectedPet == "" then
-                OrionLib:MakeNotification({
-                    Name = "ERROR",
-                    Content = "Select a pet first!",
-                    Time = 3
-                })
-                return
-            end
-            OrionLib:MakeNotification({
-                Name = "DUPE STARTED",
-                Content = string.format("Duping %s (Size: %d, Age: %d)", selectedPet, petSize, petAge),
-                Time = 5
+            Venus:Notify({
+                Title = "DUPE STARTED",
+                Text = string.format("Duping %s (Size: %d, Age: %d)", selectedPet, petSize, petAge),
+                Duration = 5
             })
         end
     })
     
-    dupeContainer.compatibility = DupeTab:AddLabel("Server Dupe Compatibility: Not Compatible")
+    dupeSection:AddLabel("Server Dupe Compatibility: Not Compatible")
     
-    -- Steal Fruits Section
-    local stealUsername = ""
-    dupeContainer.stealLabel = DupeTab:AddLabel("Steal Others Fruit")
-    dupeContainer.stealInput = DupeTab:AddTextbox({
-        Name = "Username",
+    -- Steal Fruits
+    dupeSection:AddLabel("Steal Others Fruit")
+    local stealInput = dupeSection:AddTextBox({
+        Title = "Username",
         Default = "",
-        TextDisappear = false,
-        Callback = function(Value) 
-            stealUsername = Value
-        end
+        Callback = function() end
     })
     
-    dupeContainer.whitelistBtn1 = DupeTab:AddButton({
-        Name = "Whitelist User",
+    dupeSection:AddButton({
+        Title = "Whitelist User",
         Callback = function() 
-            if stealUsername == "" then return end
-            OrionLib:MakeNotification({
-                Name = "WHITELISTED",
-                Content = "Added "..stealUsername.." to whitelist",
-                Time = 3
+            Venus:Notify({
+                Title = "WHITELISTED",
+                Text = "Added user to whitelist",
+                Duration = 3
             })
         end
     })
     
     -- Shovel Section
-    local shovelUsername = ""
-    dupeContainer.shovelLabel = DupeTab:AddLabel("Shovel Other Garden Fruits")
-    dupeContainer.shovelInput = DupeTab:AddTextbox({
-        Name = "Username",
+    dupeSection:AddLabel("Shovel Other Garden Fruits")
+    local shovelInput = dupeSection:AddTextBox({
+        Title = "Username",
         Default = "",
-        TextDisappear = false,
-        Callback = function(Value) 
-            shovelUsername = Value
-        end
+        Callback = function() end
     })
     
-    dupeContainer.whitelistBtn2 = DupeTab:AddButton({
-        Name = "Whitelist User",
+    dupeSection:AddButton({
+        Title = "Whitelist User",
         Callback = function() 
-            if shovelUsername == "" then return end
-            OrionLib:MakeNotification({
-                Name = "WHITELISTED",
-                Content = "Added "..shovelUsername.." to whitelist",
-                Time = 3
+            Venus:Notify({
+                Title = "WHITELISTED",
+                Text = "Added user to whitelist",
+                Duration = 3
             })
         end
     })
     
-    -- Teleport Button
-    dupeContainer.teleportBtn = DupeTab:AddButton({
-        Name = "Teleport to EASTER SHOP",
+    -- Teleport
+    dupeSection:AddButton({
+        Title = "Teleport to EASTER SHOP",
         Callback = function() 
-            OrionLib:MakeNotification({
-                Name = "TELEPORTING",
-                Content = "Teleporting to Easter Shop...",
-                Time = 3
+            Venus:Notify({
+                Title = "TELEPORTING",
+                Text = "Teleporting to Easter Shop...",
+                Duration = 3
             })
         end
     })
     
-    -- Status Message
-    dupeContainer.status = DupeTab:AddParagraph(
+    -- Status
+    dupeSection:AddParagraph(
         "STATUS", 
         "ALL VULN SCRIPTS ARE PATCHED AND NOW FIXING, DUPE WILL BE COMING TONIGHT LATER"
     )
     
     -- Hide all dupe features initially
-    for name, element in pairs(dupeContainer) do
-        if element.Instance then
-            element.Instance.Visible = false
-        end
-    end
+    dupeSection:SetVisible(false)
 end
 
 -- Function to show DUPE features after key verification
@@ -290,42 +261,33 @@ function LoadDupeFeatures()
     if not keyVerified then return end
     
     -- Hide key elements
-    keyContainer.copyBtn.Instance.Visible = false
-    keyContainer.textbox.Instance.Visible = false
-    keyContainer.submitBtn.Instance.Visible = false
+    keyTextBox:SetVisible(false)
+    submitBtn:SetVisible(false)
     
     -- Show dupe features
-    for name, element in pairs(dupeContainer) do
-        if element.Instance then
-            element.Instance.Visible = true
-        end
-    end
+    dupeSection:SetVisible(true)
 end
 
--- Create the dupe features but keep them hidden
+-- Create but hide dupe features
 CreateDupeFeatures()
 
 -- Tab 3: Animations
-local AnimTab = Window:MakeTab({
-    Name = "Animations",
-    Icon = "rbxassetid://7733684335"
-})
-
--- Keyboard Animation
 AnimTab:AddButton({
-    Name = "Keyboard",
+    Title = "Keyboard",
+    Description = "Mobile keyboard animation",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
     end
 })
 
--- UFWboo Tool with Warning
+-- UFWboo Tool with warning
 AnimTab:AddButton({
-    Name = "UFWboo Tool",
+    Title = "UFWboo Tool",
+    Description = "Tool animation with warning",
     Callback = function()
-        OrionLib:MakeAlert({
+        Venus:Prompt({
             Title = "WARNING",
-            Content = "You have granted a Tool Animation, check your Inventory",
+            Text = "You have granted a Tool Animation, check your Inventory",
             Buttons = {
                 {
                     Text = "OK",
@@ -336,10 +298,10 @@ AnimTab:AddButton({
                 {
                     Text = "Cancel",
                     Callback = function()
-                        OrionLib:MakeNotification({
-                            Name = "Cancelled",
-                            Content = "Action aborted",
-                            Time = 2
+                        Venus:Notify({
+                            Title = "Cancelled",
+                            Text = "Action aborted",
+                            Duration = 2
                         })
                     end
                 }
@@ -350,7 +312,8 @@ AnimTab:AddButton({
 
 -- Killer Animation
 AnimTab:AddButton({
-    Name = "Killer Animation",
+    Title = "Killer Animation",
+    Description = "Killer-style animation",
     Callback = function()
         loadstring(game:HttpGet("https://pastefy.app/riYch0rX/raw"))()
     end
@@ -358,19 +321,21 @@ AnimTab:AddButton({
 
 -- Psycho Animation
 AnimTab:AddButton({
-    Name = "Psycho Animation",
+    Title = "Psycho Animation",
+    Description = "Psycho-style animation",
     Callback = function()
         loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
     end
 })
 
--- TROLL TAB Animation
+-- TROLL TAB Animation with warning
 AnimTab:AddButton({
-    Name = "TROLL TAB",
+    Title = "TROLL TAB",
+    Description = "Troll animations (FE R6 compatible)",
     Callback = function()
-        OrionLib:MakeAlert({
+        Venus:Prompt({
             Title = "TROLL WARNING",
-            Content = "This animation may cause unexpected effects!",
+            Text = "This animation may cause unexpected effects!",
             Buttons = {
                 {
                     Text = "I Understand",
@@ -387,13 +352,14 @@ AnimTab:AddButton({
     end
 })
 
--- Revenge Hands Animation
+-- Revenge Hands Animation with warning
 AnimTab:AddButton({
-    Name = "Revenge Hands",
+    Title = "Revenge Hands",
+    Description = "Revenge hands animation",
     Callback = function()
-        OrionLib:MakeAlert({
+        Venus:Prompt({
             Title = "WARNING",
-            Content = "Revenge Hands may cause visual glitches!",
+            Text = "Revenge Hands may cause visual glitches!",
             Buttons = {
                 {
                     Text = "Proceed",
@@ -411,4 +377,4 @@ AnimTab:AddButton({
 })
 
 -- Initialize UI
-OrionLib:Init()
+Venus:Init()
