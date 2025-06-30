@@ -1,273 +1,270 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Elements Showcase</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
-            padding: 20px;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            text-align: center;
-        }
-        
-        header {
-            margin-bottom: 40px;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-        }
-        
-        .subtitle {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 35px 30px;
-            width: 300px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-        }
-        
-        .label::before {
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
-        }
-        
-        .warning::before {
-            background: linear-gradient(90deg, #f6d365, #fda085);
-        }
-        
-        .information::before {
-            background: linear-gradient(90deg, #a1c4fd, #c2e9fb);
-        }
-        
-        .icon-container {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 40px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        
-        .label .icon-container {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: white;
-        }
-        
-        .warning .icon-container {
-            background: linear-gradient(135deg, #f6d365, #fda085);
-            color: #d35400;
-        }
-        
-        .information .icon-container {
-            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-            color: #2980b9;
-        }
-        
-        .card h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #2c3e50, #4a6580);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .card p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            font-size: 1.05rem;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            background: rgba(245, 245, 245, 0.8);
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .bounce {
-            animation: bounce 1.5s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        footer {
-            margin-top: 50px;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .cards-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
+local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
+
+local Window = Luna:CreateWindow({
+	Name = "🌟 ExecutiveRat",
+	Subtitle = nil,
+	LogoID = "82795327169782",
+	LoadingEnabled = true,
+	LoadingTitle = "🔥 PREMIUM SCRIPT",
+	LoadingSubtitle = "by ExecutiveRAT 🐀",
+	ConfigSettings = {
+		RootFolder = nil,
+		ConfigFolder = "EXECUTIVERAT"
+	},
+	KeySystem = false  -- Key system disabled
+})
+
+local Tab = Window:CreateTab({
+	Name = "🏠 Main",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true
+})
+
+local Button = Tab:CreateButton({
+    Name = "🔍 Server Scanner",
+    Description = "📡 Scan server luck metrics & info!",
+    Callback = function()
+        -- Create a dummy script parent to satisfy the original script's requirements
+        local fakeScript = {
+            Parent = {
+                Parent = {
+                    Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+                }
             }
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Design Elements Showcase</h1>
-            <p class="subtitle">Beautifully designed components with visual hierarchy and modern aesthetics. Each element is crafted with attention to detail and responsive design.</p>
-        </header>
         
-        <div class="cards-container">
-            <div class="card label">
-                <div class="icon-container">
-                    <i class="fas fa-tag bounce"></i>
-                </div>
-                <h2>Label</h2>
-                <p>Labels provide clear identification and categorization. This design uses a vibrant gradient, smooth animations, and clean typography to make your labels stand out.</p>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value">98%</div>
-                        <div class="stat-label">Clarity</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value pulse">4.8</div>
-                        <div class="stat-label">Rating</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card warning">
-                <div class="icon-container">
-                    <i class="fas fa-exclamation-triangle pulse"></i>
-                </div>
-                <h2>Warning</h2>
-                <p>Warning elements demand attention. This design uses warm colors, subtle animations, and clear typography to ensure critical information is noticed immediately.</p>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value pulse">!</div>
-                        <div class="stat-label">Priority</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">100%</div>
-                        <div class="stat-label">Visibility</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card information">
-                <div class="icon-container">
-                    <i class="fas fa-info-circle bounce"></i>
-                </div>
-                <h2>Information</h2>
-                <p>Information elements provide helpful context. This design uses cool colors, clean layout, and ample spacing to make information easy to digest at a glance.</p>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value">24/7</div>
-                        <div class="stat-label">Availability</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value pulse">∞</div>
-                        <div class="stat-label">Use Cases</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        -- Load and adapt the scanner script
+        local scannerScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
         
-        <footer>
-            <p>Designed with attention to detail • Modern UI/UX Principles • Fully Responsive</p>
-        </footer>
-    </div>
-</body>
-</html>
+        -- Run the scanner with our fake environment
+        setfenv(scannerScript, {
+            script = fakeScript,
+            game = game,
+            require = require,
+            wait = task.wait,
+            pcall = pcall,
+            print = print,
+            warn = warn,
+            error = error,
+            getfenv = getfenv,
+            setfenv = setfenv,
+            getmetatable = getmetatable,
+            setmetatable = setmetatable,
+            next = next,
+            pairs = pairs,
+            ipairs = ipairs,
+            select = select,
+            tonumber = tonumber,
+            tostring = tostring,
+            type = type,
+            unpack = unpack,
+            Vector2 = Vector2,
+            Vector3 = Vector3,
+            Color3 = Color3,
+            UDim2 = UDim2,
+            UDim = UDim,
+            Rect = Rect,
+            Axes = Axes,
+            Faces = Faces,
+            BrickColor = BrickColor,
+            CFrame = CFrame,
+            Enum = Enum,
+            Instance = Instance,
+            math = math,
+            string = string,
+            table = table,
+            coroutine = coroutine,
+            os = os,
+            debug = debug,
+            _G = _G,
+            shared = shared,
+            script = fakeScript
+        })
+        
+        scannerScript()
+        
+        Luna:Notification({ 
+            Title = "✅ EXECUTIVERAT",
+            Content = "SERVER SCANNER ACTIVATED"
+        })
+    end
+})
+local Button = Tab:CreateButton({
+	Name = "⚡ No-lag OFICCIAL",
+	Description = "✨ Free No Lag v1 | [+] Auto Craft",
+	Callback = function()
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+		Luna:Notification({ 
+			Title = "🚀 EXECUTIVERAT",
+			Content = "No-Lag is running at MAX SPEED"
+		})
+	end
+})
+local Button = Tab:CreateButton({
+	Name = "💎 No-lag PREMIUM",
+	Description = "🔥 The BEST SCRIPT EVER - VIP Edition",
+	Callback = function()
+		script_key = ""
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV3.lua"))()
+		Luna:Notification({ 
+			Title = "💎 EXECUTIVERAT",
+			Content = "PREMIUM No-Lag ACTIVATED"
+		})
+	end
+})
+local antiAfkConnection
+local Toggle = Tab:CreateToggle({
+	Name = "🔄 Enable Anti-AFK",
+	Callback = function(Value)
+		if Value then
+			antiAfkConnection = game:GetService("Players").LocalPlayer.Idled:Connect(function()
+				game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+			end)
+			Luna:Notification({
+				Title = "✅ ANTI-AFK",
+				Content = "Enabled - You won't get kicked!"
+			})
+		elseif antiAfkConnection then
+			antiAfkConnection:Disconnect()
+			Luna:Notification({
+				Title = "❌ ANTI-AFK",
+				Content = "Disabled - Be careful!"
+			})
+		end
+	end
+}, "AntiAFK")
+
+-- Add configuration section
+Tab:BuildConfigSection()
+
+
+local Tab = Window:CreateTab({
+	Name = "🎭 Troll",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true
+})
+
+local Button = Tab:CreateButton({
+	Name = "👋 Revenge Hand",
+	Description = "💪 Transform into a MONSTER with giant hands!",
+	Callback = function()
+	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/guiscript/refs/heads/main/reevenge%20hands.txt"))() 
+		Luna:Notification({ 
+			Title = "👹 EXECUTIVERAT",
+			Content = "Transforming into HAND MONSTER..."
+		})
+	end
+})
+local Button = Tab:CreateButton({
+	Name = "🕺 UFWboo",
+	Description = "🎭 Get an ANIMATION TOOL in your inventory",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
+		Luna:Notification({ 
+			Title = "💃 EXECUTIVERAT",
+			Content = "Animation tool added! Check inventory!"
+		})
+	end
+})
+
+local Button = Tab:CreateButton({
+	Name = "💃 SUS ANIMATIONS",
+	Description = "😏 Cool animations for trolling",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/p0e1/1/refs/heads/main/Fe%20R6%20Animation"))()
+		Luna:Notification({ 
+			Title = "🕺 EXECUTIVERAT",
+			Content = "Dance animations activated! Groove on!"
+		})
+	end
+})
+local Button = Tab:CreateButton({
+	Name = "😜 PHYSCO WALK",
+	Description = "🚶‍♂️ A crazy psycho-style walk",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
+		Luna:Notification({ 
+			Title = "😵 EXECUTIVERAT",
+			Content = "PSYCHO walk activated!"
+		})
+	end
+})
+local Button = Tab:CreateButton({
+	Name = "🔪 KILLER WALK",
+	Description = "🚶‍♂️ A menacing killer-style walk",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/riYch0rX/raw"))() 
+		Luna:Notification({ 
+			Title = "💀 EXECUTIVERAT",
+			Content = "KILLER walk activated!"
+		})
+	end
+})
+local Tab = Window:CreateTab({
+	Name = "💰 DUPER",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true
+})
+local Dropdown = Tab:CreateDropdown({
+	Name = "🐾 DUPE PETS",
+    Description = "✨ Select pet to duplicate",
+	Options = {"🦊 Fennec Fox (NEW!)","🐙 Mimic Octopus","🐝 Disco Bee","🦋 Butterfly","🦝 Raccoon","👑 Queen Bee","🐉 Dragonfly"},
+    CurrentOption = "🦊 Fennec Fox (NEW!)",
+    MultipleOptions = false,
+    SpecialType = nil,
+    Callback = function(Options)
+        -- Add functionality here
+    end
+}, "DupePetsDropdown")
+
+local Slider = Tab:CreateSlider({
+	Name = "🔢 Amount of Pets",
+	Range = {0, 200},
+	Increment = 1,
+	CurrentValue = 1,
+    Callback = function(Value)
+        -- Add functionality here
+    end
+}, "PetsAmountSlider")
+
+local Dropdown = Tab:CreateDropdown({
+	Name = "🥚 DUPE EGG",
+    Description = "✨ Select egg to duplicate",
+	Options = {"🌟 GOD Egg","🦖 Jurasic Egg", "🌴 Paradise Egg","🐝 Anti Bee Egg","🐝 Bee Egg","🌙 Night Egg","🐛 Bug Egg","🌈 Mythical Egg"},
+    CurrentOption = "🌟 GOD Egg",
+    MultipleOptions = false,
+    SpecialType = nil,
+    Callback = function(Options)
+        -- Add functionality here
+    end
+}, "DupeEggsDropdown")
+
+local Slider = Tab:CreateSlider({
+	Name = "🔢 Amount of Eggs",
+	Range = {0, 200},
+	Increment = 1,
+	CurrentValue = 1,
+    Callback = function(Value)
+        -- Add functionality here
+    end
+}, "EggsAmountSlider")
+
+local Button = Tab:CreateButton({
+	Name = "🚀 START DUPING",
+	Description = "💸 Duplicate EGGS, PETS and SEEDPACKS",
+	Callback = function()
+		Luna:Notification({ 
+			Title = "⚠️ WARNING",
+			Content = "Duper has been PATCHED! Trade FAST before items disappear! 🤑"
+		})
+	end
+})
+
+-- Add configuration section
+Tab:BuildConfigSection()
+
+-- MUST be at bottom to load saved settings
+Luna:LoadAutoloadConfig()
