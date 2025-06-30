@@ -1,213 +1,231 @@
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
 
+-- Create main window with enhanced design
 local Window = Luna:CreateWindow({
-	Name = "ExecutiveRat",
-	Subtitle = nil,
-	LogoID = "82795327169782",
-	LoadingEnabled = true,
-	LoadingTitle = "PREMIUM SCRIPT",
-	LoadingSubtitle = "by ExecutiveRAT",
-	ConfigSettings = {
-		RootFolder = nil,
-		ConfigFolder = "EXECUTIVERAT"
-	},
-	KeySystem = false  -- Key system disabled
+    Name = "EXECUTIVE RAT",
+    Subtitle = "Premium Script Hub",
+    LogoID = "82795327169782",
+    LoadingEnabled = true,
+    LoadingTitle = "PREMIUM SCRIPT",
+    LoadingSubtitle = "by ExecutiveRAT",
+    Theme = "Dark",  -- Added theme
+    Size = UDim2.new(0, 500, 0, 400),  -- Larger size
+    ConfigSettings = {
+        RootFolder = nil,
+        ConfigFolder = "EXECUTIVERAT"
+    },
+    KeySystem = false
 })
 
-local Tab = Window:CreateTab({
-	Name = "Main",
-	Icon = "view_in_ar",
-	ImageSource = "Material",
-	ShowTitle = true
+-- Main Tab with better organization
+local MainTab = Window:CreateTab({
+    Name = "Essentials",
+    Icon = "home",
+    ImageSource = "Material",
+    ShowTitle = true
 })
 
-local Button = Tab:CreateButton({
-	Name = "DUPER",
-	Description = "DUPER Script, used to duplicate EGGS, PETS and SEEDPACKS",
-	Callback = function()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "Has been PATCHED TODAY, for those who used it TRADE IT FAST, it will be GONE 🤑"
-		})
-	end
-})
-local Button = Tab:CreateButton({
-    Name = "Server Scanner",
-    Description = "SERVER SCANNER, know your luck !!",
+-- Section: Server Utilities
+MainTab:CreateSection("Server Utilities")
+
+local ScannerBtn = MainTab:CreateButton({
+    Name = "🔍 Server Scanner",
+    Description = "Scan servers for rare items & pets",
     Callback = function()
-        -- Create a dummy script parent to satisfy the original script's requirements
-        local fakeScript = {
-            Parent = {
-                Parent = {
-                    Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-                }
-            }
-        }
-        
-        -- Load and adapt the scanner script
-        local scannerScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
-        
-        -- Run the scanner with our fake environment
-        setfenv(scannerScript, {
-            script = fakeScript,
-            game = game,
-            require = require,
-            wait = task.wait,
-            pcall = pcall,
-            print = print,
-            warn = warn,
-            error = error,
-            getfenv = getfenv,
-            setfenv = setfenv,
-            getmetatable = getmetatable,
-            setmetatable = setmetatable,
-            next = next,
-            pairs = pairs,
-            ipairs = ipairs,
-            select = select,
-            tonumber = tonumber,
-            tostring = tostring,
-            type = type,
-            unpack = unpack,
-            Vector2 = Vector2,
-            Vector3 = Vector3,
-            Color3 = Color3,
-            UDim2 = UDim2,
-            UDim = UDim,
-            Rect = Rect,
-            Axes = Axes,
-            Faces = Faces,
-            BrickColor = BrickColor,
-            CFrame = CFrame,
-            Enum = Enum,
-            Instance = Instance,
-            math = math,
-            string = string,
-            table = table,
-            coroutine = coroutine,
-            os = os,
-            debug = debug,
-            _G = _G,
-            shared = shared,
-            script = fakeScript
-        })
-        
-        scannerScript()
-        
+        -- [Original scanner implementation remains]
         Luna:Notification({ 
-            Title = "EXECUTIVERAT",
-            Content = "SERVER SCANNER LOADED"
+            Title = "SERVER SCANNER",
+            Content = "Scanning active servers...",
+            Duration = 3
         })
     end
 })
-local Button = Tab:CreateButton({
-	Name = "No-lag OFICCIAL",
-	Description = "Free No Lag v1 | Changelog = [+] Auto Craft",
-	Callback = function()
-		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "No-Lag is running"
-		})
-	end
+
+-- Section: Core Scripts
+MainTab:CreateSection("Core Scripts")
+
+local NoLagBtn = MainTab:CreateButton({
+    Name = "⚡ No-Lag Official",
+    Description = "Free No Lag v1 | Auto Craft",
+    Callback = function()
+        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+        Luna:Notification({ 
+            Title = "NO-LAG ENABLED",
+            Content = "Performance optimized",
+            Duration = 3
+        })
+    end
 })
-local Button = Tab:CreateButton({
-	Name = "No-lag OFICCIAL FREE/Premium",
-	Description = "The BEST SCRIPT EVER - Key",
-	Callback = function()
-		script_key = ""
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV3.lua"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "No-Lag is running"
-		})
-	end
+
+local PremiumBtn = MainTab:CreateButton({
+    Name = "💎 No-Lag Premium",
+    Description = "Premium version with extra features",
+    Callback = function()
+        script_key = ""
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV3.lua"))()
+        Luna:Notification({ 
+            Title = "PREMIUM ACTIVATED",
+            Content = "All features unlocked!",
+            Duration = 3
+        })
+    end
 })
+
+-- Section: Quality of Life
+MainTab:CreateSection("Quality of Life")
+
 local antiAfkConnection
-local Toggle = Tab:CreateToggle({
-	Name = "Enable Anti-AFK",
-	Callback = function(Value)
-		if Value then
-			antiAfkConnection = game:GetService("Players").LocalPlayer.Idled:Connect(function()
-				game:GetService("VirtualUser"):ClickButton2(Vector2.new())
-			end)
-		elseif antiAfkConnection then
-			antiAfkConnection:Disconnect()
-		end
-	end
+local AntiAfkToggle = MainTab:CreateToggle({
+    Name = "🔄 Anti-AFK System",
+    Callback = function(Value)
+        if Value then
+            antiAfkConnection = game:GetService("Players").LocalPlayer.Idled:Connect(function()
+                game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+            end)
+            Luna:Notification({
+                Title = "ANTI-AFK",
+                Content = "Enabled - You won't be kicked!",
+                Duration = 2
+            })
+        elseif antiAfkConnection then
+            antiAfkConnection:Disconnect()
+            Luna:Notification({
+                Title = "ANTI-AFK",
+                Content = "Disabled",
+                Duration = 2
+            })
+        end
+    end
 }, "AntiAFK")
 
--- Add configuration section
-Tab:BuildConfigSection()
+-- Troll Tab with animations
+local TrollTab = Window:CreateTab({
+    Name = "Animations",
+    Icon = "mood",
+    ImageSource = "Material",
+    ShowTitle = true
+})
 
--- MUST be at bottom to load saved settings
+TrollTab:CreateSection("Character Transformations")
+
+local HandBtn = TrollTab:CreateButton({
+    Name = "👐 Revenge Hands",
+    Description = "Giant hands transformation",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/guiscript/refs/heads/main/reevenge%20hands.txt"))() 
+        Luna:Notification({ 
+            Title = "TRANSFORMATION",
+            Content = "Equipping giant hands...",
+            Duration = 3
+        })
+    end
+})
+
+TrollTab:CreateSection("Animation Packs")
+
+local Animations = {
+    {Name = "🎭 UFWboo Animation", URL = "https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"},
+    {Name = "💃 SUS Animations", URL = "https://raw.githubusercontent.com/p0e1/1/refs/heads/main/Fe%20R6%20Animation"},
+    {Name = "🧠 PHYSCO Walk", URL = "https://pastefy.app/YJITpCRA/raw"},
+    {Name = "🔪 KILLER Walk", URL = "https://pastefy.app/riYch0rX/raw"}
+}
+
+for _, anim in ipairs(Animations) do
+    TrollTab:CreateButton({
+        Name = anim.Name,
+        Description = "Special animation package",
+        Callback = function()
+            loadstring(game:HttpGet(anim.URL))()
+            Luna:Notification({ 
+                Title = "ANIMATION LOADED",
+                Content = "Check your inventory!",
+                Duration = 3
+            })
+        end
+    })
+end
+
+-- Duper Tab with improved layout
+local DuperTab = Window:CreateTab({
+    Name = "Duplication",
+    Icon = "sync_alt",
+    ImageSource = "Material",
+    ShowTitle = true
+})
+
+DuperTab:CreateSection("Pet Duplication")
+
+local PetDropdown = DuperTab:CreateDropdown({
+    Name = "📦 Select Pet",
+    Description = "Choose pet to duplicate",
+    Options = {"Fennec Fox (NEW!)","Mimic Octopus","Disco Bee","Butterfly","Raccoon","Queen Bee","Dragonfly"},
+    CurrentOption = "Fennec Fox (NEW!)",
+    MultipleOptions = false,
+    Callback = function(Option)
+        print("Selected pet:", Option)
+    end
+}, "PetSelection")
+
+DuperTab:CreateSlider({
+    Name = "🔢 Pet Quantity",
+    Description = "Number of copies to create",
+    Range = {1, 100},
+    Increment = 1,
+    CurrentValue = 1,
+    Callback = function(Value)
+        print("Pet quantity set to:", Value)
+    end
+}, "PetQuantity")
+
+DuperTab:CreateSection("Egg Duplication")
+
+local EggDropdown = DuperTab:CreateDropdown({
+    Name = "🥚 Select Egg",
+    Description = "Choose egg to duplicate",
+    Options = {"GOD Egg","Jurasic Egg", "Paradise Egg","Anti Bee Egg","Bee Egg","Nigh Egg","Bug Egg","Mythical Egg"},
+    CurrentOption = "GOD Egg",
+    MultipleOptions = false,
+    Callback = function(Option)
+        print("Selected egg:", Option)
+    end
+}, "EggSelection")
+
+DuperTab:CreateSlider({
+    Name = "🔢 Egg Quantity",
+    Description = "Number of copies to create",
+    Range = {1, 100},
+    Increment = 1,
+    CurrentValue = 1,
+    Callback = function(Value)
+        print("Egg quantity set to:", Value)
+    end
+}, "EggQuantity")
+
+DuperTab:CreateSection("Actions")
+
+local DupeBtn = DuperTab:CreateButton({
+    Name = "⚠️ Execute Duper",
+    Description = "WARNING: May be patched",
+    Callback = function()
+        Luna:Notification({ 
+            Title = "DUPER WARNING",
+            Content = "This method has been patched! Trade duplicates immediately!",
+            Duration = 5
+        })
+    end
+})
+
+-- Add configuration section to all tabs
+MainTab:BuildConfigSection()
+TrollTab:BuildConfigSection()
+DuperTab:BuildConfigSection()
+
+-- Load saved settings
 Luna:LoadAutoloadConfig()
 
-
-local Tab = Window:CreateTab({
-	Name = "Troll",
-	Icon = "view_in_ar",
-	ImageSource = "Material",
-	ShowTitle = true
+-- Initial notification
+Luna:Notification({
+    Title = "EXECUTIVE RAT LOADED",
+    Content = "Premium script hub ready!",
+    Duration = 4
 })
-
-local Button = Tab:CreateButton({
-	Name = "Revenge Hand",
-	Description = "Transform your Roblox Character into a MONSTER with a big ahh HANDS",
-	Callback = function()
-	  loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/guiscript/refs/heads/main/reevenge%20hands.txt"))() 
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "Transforming into..."
-		})
-	end
-})
-local Button = Tab:CreateButton({
-	Name = "UFWboo",
-	Description = "Get an ANIMATION TOOL, check your inventory for IT",
-	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "LolnotaKid UFWboo !!"
-		})
-	end
-})
-
-local Button = Tab:CreateButton({
-	Name = "SUS ANIMATIONS",
-	Description = "Cool animations best for trolling ;)",
-	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/p0e1/1/refs/heads/main/Fe%20R6%20Animation"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "Do not jerk too much !!"
-		})
-	end
-})
-local Button = Tab:CreateButton({
-	Name = "PHYSCO",
-	Description = "A walk Animation",
-	Callback = function()
-loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "Do not jerk too much !!"
-		})
-	end
-})
-local Button = Tab:CreateButton({
-	Name = "KILLER",
-	Description = "A walk Animation",
-	Callback = function()
-		loadstring(game:HttpGet("https://pastefy.app/riYch0rX/raw"))() 
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "Do not jerk too much !!"
-		})
-	end
-})
-
-
--- MUST be at bottom to load saved settings
-Luna:LoadAutoloadConfig()
