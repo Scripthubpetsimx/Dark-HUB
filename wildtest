@@ -32,15 +32,73 @@ local Button = Tab:CreateButton({
 	end
 })
 local Button = Tab:CreateButton({
-	Name = "Server Scanner",
-	Description = "SERVER SCANNER, know your luck !!",
-	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "SCANNING SERVER"
-		})
-	end
+    Name = "Server Scanner",
+    Description = "SERVER SCANNER, know your luck !!",
+    Callback = function()
+        -- Create a dummy script parent to satisfy the original script's requirements
+        local fakeScript = {
+            Parent = {
+                Parent = {
+                    Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+                }
+            }
+        }
+        
+        -- Load and adapt the scanner script
+        local scannerScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/Dark-HUB/refs/heads/main/deepseek_lua_20250621_fb7786.lua"))()
+        
+        -- Run the scanner with our fake environment
+        setfenv(scannerScript, {
+            script = fakeScript,
+            game = game,
+            require = require,
+            wait = task.wait,
+            pcall = pcall,
+            print = print,
+            warn = warn,
+            error = error,
+            getfenv = getfenv,
+            setfenv = setfenv,
+            getmetatable = getmetatable,
+            setmetatable = setmetatable,
+            next = next,
+            pairs = pairs,
+            ipairs = ipairs,
+            select = select,
+            tonumber = tonumber,
+            tostring = tostring,
+            type = type,
+            unpack = unpack,
+            Vector2 = Vector2,
+            Vector3 = Vector3,
+            Color3 = Color3,
+            UDim2 = UDim2,
+            UDim = UDim,
+            Rect = Rect,
+            Axes = Axes,
+            Faces = Faces,
+            BrickColor = BrickColor,
+            CFrame = CFrame,
+            Enum = Enum,
+            Instance = Instance,
+            math = math,
+            string = string,
+            table = table,
+            coroutine = coroutine,
+            os = os,
+            debug = debug,
+            _G = _G,
+            shared = shared,
+            script = fakeScript
+        })
+        
+        scannerScript()
+        
+        Luna:Notification({ 
+            Title = "EXECUTIVERAT",
+            Content = "SERVER SCANNER LOADED"
+        })
+    end
 })
 local Button = Tab:CreateButton({
 	Name = "No-lag OFICCIAL",
