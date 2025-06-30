@@ -2,22 +2,16 @@ local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-S
 
 local Window = Luna:CreateWindow({
 	Name = "ExecutiveRat",
+	Subtitle = nil,
 	LogoID = "82795327169782",
 	LoadingEnabled = true,
 	LoadingTitle = "PREMIUM SCRIPT",
 	LoadingSubtitle = "by ExecutiveRAT",
 	ConfigSettings = {
+		RootFolder = nil,
 		ConfigFolder = "EXECUTIVERAT"
 	},
-	KeySystem = false,
-	KeySettings = {
-		Title = "KEY ACCESS",
-		Subtitle = "Key System",
-		Note = "The Key Access in my name, but in CAPS",
-		SaveKey = true,
-		Key = {"EXECUTIVERAT"}, -- Consider upgrading to HWID system
-		SecondAction = {Enabled = false}
-	}
+	KeySystem = false  -- Key system disabled
 })
 
 local Tab = Window:CreateTab({
@@ -27,8 +21,7 @@ local Tab = Window:CreateTab({
 	ShowTitle = true
 })
 
--- No Lag Button
-Tab:CreateButton({
+local Button = Tab:CreateButton({
 	Name = "No-lag OFICCIAL",
 	Description = "Free No Lag v1 | Changelog = [+] Auto Craft",
 	Callback = function()
@@ -40,9 +33,8 @@ Tab:CreateButton({
 	end
 })
 
--- Anti-AFK Toggle (Fixed)
 local antiAfkConnection
-Tab:CreateToggle({
+local Toggle = Tab:CreateToggle({
 	Name = "Enable Anti-AFK",
 	Callback = function(Value)
 		if Value then
@@ -53,10 +45,10 @@ Tab:CreateToggle({
 			antiAfkConnection:Disconnect()
 		end
 	end
-}, "AntiAFK") -- Unique flag
+}, "AntiAFK")
 
--- ADD BEFORE LOADING CONFIG
+-- Add configuration section
 Tab:BuildConfigSection()
 
--- MUST BE AT BOTTOM
+-- MUST be at bottom to load saved settings
 Luna:LoadAutoloadConfig()
