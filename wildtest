@@ -1,380 +1,62 @@
--- Load Luna UI Library
-local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/main/source.lua"))()
+local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
 
--- Create main window with proper configuration
 local Window = Luna:CreateWindow({
-    Name = "EXECUTIVERAT IN THE SEWER",
-    Subtitle = "Snatched Scripts - Summer Event",
-    LogoID = nil,
-    LoadingEnabled = true,
-    LoadingTitle = "EXECUTIVERAT",
-    LoadingSubtitle = "Loading premium features...",
-    ConfigSettings = {
-        ConfigFolder = "ExecutiveRatConfig",
-        AutoSave = false
-    },
-    KeySystem = false
+	Name = "ExecutiveRat",
+	LogoID = "82795327169782",
+	LoadingEnabled = true,
+	LoadingTitle = "PREMIUM SCRIPT",
+	LoadingSubtitle = "by ExecutiveRAT",
+	ConfigSettings = {
+		ConfigFolder = "EXECUTIVERAT"
+	},
+	KeySystem = true,
+	KeySettings = {
+		Title = "KEY ACCESS",
+		Subtitle = "Key System",
+		Note = "The Key Access in my name, but in CAPS",
+		SaveKey = true,
+		Key = {"EXECUTIVERAT"}, -- Consider upgrading to HWID system
+		SecondAction = {Enabled = false}
+	}
 })
 
--- Initial notification
-Window:CreateNotification({
-    Title = "EXECUTIVERAT",
-    Content = "Snatched Scripts - Summer Event Script 9999+ points",
-    Duration = 5
+local Tab = Window:CreateTab({
+	Name = "Main",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true
 })
 
--- Tab 1: Loader
-local LoaderTab = Window:CreateTab({
-    Name = "Loader",
-    Icon = "7733955741", -- Custom icon ID
-    ImageSource = "Custom",
-    ShowTitle = true
+-- No Lag Button
+Tab:CreateButton({
+	Name = "No-lag OFICCIAL",
+	Description = "Free No Lag v1 | Changelog = [+] Auto Craft",
+	Callback = function()
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "No-Lag is running"
+		})
+	end
 })
 
-LoaderTab:CreateButton({
-    Name = "No-Lag OFFICIAL v1",
-    Description = "Load No-Lag v1 script",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/main/Loader/LoaderV1.lua"))()
-    end
-})
+-- Anti-AFK Toggle (Fixed)
+local antiAfkConnection
+Tab:CreateToggle({
+	Name = "Enable Anti-AFK",
+	Callback = function(Value)
+		if Value then
+			antiAfkConnection = game:GetService("Players").LocalPlayer.Idled:Connect(function()
+				game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+			end)
+		elseif antiAfkConnection then
+			antiAfkConnection:Disconnect()
+		end
+	end
+}, "AntiAFK") -- Unique flag
 
--- Add other loader buttons similarly...
+-- ADD BEFORE LOADING CONFIG
+Tab:BuildConfigSection()
 
--- Tab 2: DUPE/VULN
-local DupeTab = Window:CreateTab({
-    Name = "DUPE/VULN",
-    Icon = "7734068321", -- Custom icon ID
-    ImageSource = "Custom",
-    ShowTitle = true
-})
-
-local keyVerified = false
-local correctKey = "EXECUTIVERAT_FREE_aMB0Ts12s4gjaivmr_var111113321321123"
-
--- Key UI Section
-local keySection = DupeTab:CreateSection("KEY ACCESS")
-
-local copyBtn = DupeTab:CreateButton({
-    Name = "Copy Key Link",
-    Description = "Get your access key",
-    Callback = function()
-        setclipboard("https://link-center.net/431614/EQVrnV89bzeb")
-        Window:CreateNotification({
-            Title = "COPIED",
-            Content = "Key link copied to clipboard!",
-            Duration = 3
-        })
-    end
-})
-
-local keyInput = ""
-local keyField = DupeTab:CreateInput({
-    Name = "Enter Key",
-    Placeholder = "Paste key here",
-    Callback = function(value)
-        keyInput = value
-    end
-})
-
-local submitBtn = DupeTab:CreateButton({
-    Name = "Submit Key",
-    Description = "Verify your access",
-    Callback = function()
-        if keyInput == correctKey then
-            keyVerified = true
-            Window:CreateNotification({
-                Title = "SUCCESS",
-                Content = "Key accepted! Loading DUPE/VULN features...",
-                Duration = 3
-            })
-            loadDupeFeatures()
-        else
-            Window:CreateNotification({
-                Title = "ERROR",
-                Content = "Invalid key!",
-                Duration = 3
-            })
-        end
-    end
-})
-
--- Function to create DUPE features after key verification
-local function loadDupeFeatures()
-    if not keyVerified then return end
-    
-    -- Hide key elements
-    keySection:Destroy()
-    copyBtn:Destroy()
-    keyField:Destroy()
-    submitBtn:Destroy()
-    
-    -- VULN Features
-    DupeTab:CreateLabel({
-        Text = "Skip Craft Time (PATCHED)",
-        Style = 2  -- Warning style
-    })
-    
-    DupeTab:CreateLabel({
-        Text = "Skip Seed Time (PATCHED)",
-        Style = 2
-    })
-    
-    DupeTab:CreateButton({
-        Name = "Egg ESP",
-        Description = "Locate special eggs",
-        Callback = function() end
-    })
-    
-    -- Egg Finder Dropdown
-    local eggOptions = {
-        "Raccoon (Night Egg)", 
-        "Disco Bee (Anti Bee Egg)", 
-        "Butterfly (Anti Bee Egg)", 
-        "Queen Bee (Bee Egg)", 
-        "Red Fox (Mythical Egg)", 
-        "Mimic Octopus (Paradise Egg)"
-    }
-    
-    DupeTab:CreateDropdown({
-        Name = "Egg Finder",
-        Description = "Select egg to locate",
-        Options = eggOptions,
-        CurrentOption = eggOptions[1],
-        MultipleOptions = false,
-        Callback = function(selected)
-            Window:CreateNotification({
-                Title = "TARGET SET",
-                Content = "Finding: "..selected,
-                Duration = 3
-            })
-        end
-    })
-    
-    DupeTab:CreateButton({
-        Name = "Egg Hop", 
-        Description = "Find servers with eggs",
-        Callback = function()
-            Window:CreateNotification({
-                Title = "EGG HOP",
-                Content = "Searching for egg servers...",
-                Duration = 3
-            })
-        end
-    })
-    
-    -- DUPE Execution Section
-    DupeTab:CreateSection("DUPE")
-    
-    local petOptions = {
-        "Raccoon", 
-        "Disco Bee", 
-        "Butterfly", 
-        "Queen Bee", 
-        "Red Fox", 
-        "Mimic Octopus"
-    }
-    local selectedPet = petOptions[1]
-    
-    DupeTab:CreateDropdown({
-        Name = "Select Pet",
-        Description = "Choose pet to duplicate",
-        Options = petOptions,
-        CurrentOption = petOptions[1],
-        MultipleOptions = false,
-        Callback = function(selection)
-            selectedPet = selection
-        end
-    })
-    
-    local petSize, petAge = 1, 1
-    DupeTab:CreateInput({
-        Name = "Size (Number)",
-        Placeholder = "Enter size value",
-        Callback = function(value)
-            petSize = tonumber(value) or 1
-        end
-    })
-    
-    DupeTab:CreateInput({
-        Name = "Age (Number)",
-        Placeholder = "Enter age value",
-        Callback = function(value)
-            petAge = tonumber(value) or 1
-        end
-    })
-    
-    DupeTab:CreateButton({
-        Name = "Execute Dupe",
-        Description = "Start duplication process",
-        Callback = function()
-            if selectedPet == "" then
-                Window:CreateNotification({
-                    Title = "ERROR",
-                    Content = "Select a pet first!",
-                    Duration = 3
-                })
-                return
-            end
-            Window:CreateNotification({
-                Title = "DUPE STARTED",
-                Content = string.format("Duping %s (Size: %d, Age: %d)", selectedPet, petSize, petAge),
-                Duration = 5
-            })
-        end
-    })
-    
-    -- Status message
-    DupeTab:CreateLabel({
-        Text = "Server Dupe Compatibility: Not Compatible",
-        Style = 2
-    })
-    
-    -- Steal Fruits Section
-    DupeTab:CreateSection("Steal Others Fruit")
-    
-    local stealUsername = ""
-    DupeTab:CreateInput({
-        Name = "Username",
-        Placeholder = "Enter username to steal from",
-        Callback = function(value)
-            stealUsername = value
-        end
-    })
-    
-    DupeTab:CreateButton({
-        Name = "Whitelist User",
-        Description = "Add user to safe list",
-        Callback = function()
-            if stealUsername ~= "" then
-                Window:CreateNotification({
-                    Title = "WHITELISTED",
-                    Content = "Added "..stealUsername.." to whitelist",
-                    Duration = 3
-                })
-            end
-        end
-    })
-    
-    -- Shovel Section
-    DupeTab:CreateSection("Shovel Other Garden Fruits")
-    
-    local shovelUsername = ""
-    DupeTab:CreateInput({
-        Name = "Username",
-        Placeholder = "Enter username to shovel",
-        Callback = function(value)
-            shovelUsername = value
-        end
-    })
-    
-    DupeTab:CreateButton({
-        Name = "Whitelist User",
-        Description = "Add user to safe list",
-        Callback = function()
-            if shovelUsername ~= "" then
-                Window:CreateNotification({
-                    Title = "WHITELISTED",
-                    Content = "Added "..shovelUsername.." to whitelist",
-                    Duration = 3
-                })
-            end
-        end
-    })
-    
-    -- Teleport Button
-    DupeTab:CreateButton({
-        Name = "Teleport to EASTER SHOP",
-        Description = "Go to special event location",
-        Callback = function()
-            Window:CreateNotification({
-                Title = "TELEPORTING",
-                Content = "Teleporting to Easter Shop...",
-                Duration = 3
-            })
-        end
-    })
-    
-    -- Status Message
-    DupeTab:CreateParagraph({
-        Title = "STATUS",
-        Text = "ALL VULN SCRIPTS PATCHED - DUPE COMING TONIGHT"
-    })
-end
-
--- Tab 3: Animations
-local AnimTab = Window:CreateTab({
-    Name = "Animations",
-    Icon = "7733684335", -- Custom icon ID
-    ImageSource = "Custom",
-    ShowTitle = true
-})
-
--- Keyboard Animation
-AnimTab:CreateButton({
-    Name = "Keyboard",
-    Description = "Load keyboard animation",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
-    end
-})
-
--- UFWboo Tool with Luna dialog warning
-AnimTab:CreateButton({
-    Name = "UFWboo Tool",
-    Description = "Tool animation package",
-    Callback = function()
-        Window:CreateDialog({
-            Title = "WARNING",
-            Content = "You have granted a Tool Animation, check your Inventory",
-            Buttons = {
-                {
-                    Text = "PROCEED",
-                    Callback = function()
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
-                    end
-                },
-                {
-                    Text = "CANCEL",
-                    Callback = function()
-                        Window:CreateNotification({
-                            Title = "CANCELLED",
-                            Content = "Action aborted",
-                            Duration = 2
-                        })
-                    end
-                }
-            }
-        })
-    end
-})
-
--- TROLL TAB with warning
-AnimTab:CreateButton({
-    Name = "TROLL TAB",
-    Description = "Special effects animation",
-    Callback = function()
-        Window:CreateDialog({
-            Title = "TROLL WARNING",
-            Content = "This animation may cause unexpected effects!",
-            Buttons = {
-                {
-                    Text = "I UNDERSTAND",
-                    Callback = function()
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/p0e1/1/main/Fe%20R6%20Animation"))()
-                    end
-                },
-                {
-                    Text = "CANCEL",
-                    Callback = function() end
-                }
-            }
-        })
-    end
-})
-
--- Initialize UI
-Window:Initialize()
-
--- Required by Luna documentation
+-- MUST BE AT BOTTOM
 Luna:LoadAutoloadConfig()
