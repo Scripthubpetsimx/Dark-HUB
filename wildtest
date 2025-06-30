@@ -32,7 +32,17 @@ local Button = Tab:CreateButton({
 		})
 	end
 })
-
+local Button = Tab:CreateButton({
+	Name = "No-lag OFICCIAL FREE/Premium",
+	Description = "The BEST SCRIPT EVER - Key",
+	Callback = function()
+		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "No-Lag is running"
+		})
+	end
+})
 local antiAfkConnection
 local Toggle = Tab:CreateToggle({
 	Name = "Enable Anti-AFK",
