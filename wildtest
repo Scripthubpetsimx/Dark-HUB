@@ -3,13 +3,13 @@ local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-S
 local Window = Luna:CreateWindow({
 	Name = "ExecutiveRat",
 	LogoID = "82795327169782",
-	LoadingEnabled = false,
+	LoadingEnabled = true,
 	LoadingTitle = "PREMIUM SCRIPT",
 	LoadingSubtitle = "by ExecutiveRAT",
 	ConfigSettings = {
 		ConfigFolder = "EXECUTIVERAT"
 	},
-	KeySystem = true,
+	KeySystem = false,
 	KeySettings = {
 		Title = "KEY ACCESS",
 		Subtitle = "Key System",
