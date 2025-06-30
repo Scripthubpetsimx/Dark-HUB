@@ -1,50 +1,62 @@
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
 
+-- Create window
 local Window = Luna:CreateWindow({
 	Name = "ExecutiveRat",
-	Subtitle = nil,
 	LogoID = "82795327169782",
 	LoadingEnabled = true,
 	LoadingTitle = "PREMIUM SCRIPT",
 	LoadingSubtitle = "by ExecutiveRAT",
 	ConfigSettings = {
-		RootFolder = nil,
 		ConfigFolder = "EXECUTIVERAT"
 	},
-	KeySystem = false  -- Key system disabled
+	KeySystem = false
 })
 
-local Tab = Window:CreateTab({
+-- Main Tab
+local MainTab = Window:CreateTab({
 	Name = "Main",
 	Icon = "view_in_ar",
 	ImageSource = "Material",
 	ShowTitle = true
 })
 
-local Button = Tab:CreateButton({
+-- Duper button (notification only)
+MainTab:CreateButton({
+	Name = "DUPER",
+	Description = "DUPER Script, used to duplicate EGGS, PETS and SEEDPACKS",
+	Callback = function()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "Has been PATCHED TODAY, for those who used it TRADE IT FAST, it will be GONE 🤑"
+		})
+	end
+})
+
+-- No-lag buttons
+local function loadNoLag()
+	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
+	Luna:Notification({ 
+		Title = "EXECUTIVERAT",
+		Content = "No-Lag is running"
+	})
+end
+
+MainTab:CreateButton({
 	Name = "No-lag OFICCIAL",
 	Description = "Free No Lag v1 | Changelog = [+] Auto Craft",
-	Callback = function()
-		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "No-Lag is running"
-		})
-	end
+	Callback = loadNoLag
 })
-local Button = Tab:CreateButton({
-	Name = "No-lag OFICCIAL FREE/Premium",
+
+MainTab:CreateButton({
+	Name = "No-lag FREE/Premium",
 	Description = "The BEST SCRIPT EVER - Key",
-	Callback = function()
-		loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/LoaderV1.lua"))()
-		Luna:Notification({ 
-			Title = "EXECUTIVERAT",
-			Content = "No-Lag is running"
-		})
-	end
+	Callback = loadNoLag
 })
+
+-- Anti-AFK toggle
 local antiAfkConnection
-local Toggle = Tab:CreateToggle({
+MainTab:CreateToggle({
 	Name = "Enable Anti-AFK",
 	Callback = function(Value)
 		if Value then
@@ -57,8 +69,77 @@ local Toggle = Tab:CreateToggle({
 	end
 }, "AntiAFK")
 
--- Add configuration section
-Tab:BuildConfigSection()
+-- Troll Tab
+local TrollTab = Window:CreateTab({
+	Name = "Troll",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true
+})
+
+-- Troll scripts
+TrollTab:CreateButton({
+	Name = "Revenge Hand",
+	Description = "Transform your Roblox Character into a MONSTER with big hands",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Scripthubpetsimx/guiscript/refs/heads/main/reevenge%20hands.txt"))() 
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "Transforming into monster hands..."
+		})
+	end
+})
+
+TrollTab:CreateButton({
+	Name = "UFWboo",
+	Description = "Get an ANIMATION TOOL, check your inventory",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/SCRIPTSBYVEUX/main/UFWboo.txt"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "Animation tool added to inventory!"
+		})
+	end
+})
+
+TrollTab:CreateButton({
+	Name = "SUS ANIMATIONS",
+	Description = "Cool animations best for trolling",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/p0e1/1/refs/heads/main/Fe%20R6%20Animation"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "Sus animations activated!"
+		})
+	end
+})
+
+TrollTab:CreateButton({
+	Name = "PHYSCO WALK",
+	Description = "A psycho-style walk animation",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/YJITpCRA/raw"))()
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "Psycho walk activated!"
+		})
+	end
+})
+
+TrollTab:CreateButton({
+	Name = "KILLER WALK",
+	Description = "A killer-style walk animation",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/riYch0rX/raw"))() 
+		Luna:Notification({ 
+			Title = "EXECUTIVERAT",
+			Content = "Killer walk activated!"
+		})
+	end
+})
+
+-- Configuration section (only needed once)
+MainTab:BuildConfigSection()
 
 -- MUST be at bottom to load saved settings
 Luna:LoadAutoloadConfig()
