@@ -207,8 +207,7 @@ local Button = Tab:CreateButton({
 		})
 	end
 })
--- Add configuration section
-Tab:BuildConfigSection()
+
 
 -- MUST be at bottom to load saved settings
 Luna:LoadAutoloadConfig()
