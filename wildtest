@@ -209,8 +209,8 @@ local Tab = Window:CreateTab({
 	ShowTitle = true
 })
 local Dropdown = Tab:CreateDropdown({
-	Name = "🐾 DUPE PETS",
-    Description = "✨ Select pet to duplicate",
+	Name = "🐾 DUPE PETS v6.902.5",
+    Description = "✨ Select pet to duplicate... unfortunately all dupe methods has been not working since JANDEL is fixing it out... we are very sorry to inform you this. Please still keep your pets in your inventory or in your garden. HOPE YOU ENJOY !! 🤑🤑",
 	Options = {"🦊 Fennec Fox (NEW!)","🐙 Mimic Octopus","🐝 Disco Bee","🦋 Butterfly","🦝 Raccoon","👑 Queen Bee","🐉 Dragonfly"},
     CurrentOption = "🦊 Fennec Fox (NEW!)",
     MultipleOptions = false,
@@ -219,6 +219,31 @@ local Dropdown = Tab:CreateDropdown({
         -- Add functionality here
     end
 }, "DupePetsDropdown")
+local Dropdown = Tab:CreateDropdown({
+	Name = "👤 Alt Account",
+    Description = "❗ Your pets will dupe the pets to this account, making your main and alt account have the same pets as what the pet was traded",
+	Options = {"🦊 Fennec Fox (NEW!)","🐙 Mimic Octopus","🐝 Disco Bee","🦋 Butterfly","🦝 Raccoon","👑 Queen Bee","🐉 Dragonfly"},
+    CurrentOption = "🦊 Fennec Fox (NEW!)",
+    MultipleOptions = false,
+    SpecialType = nil,
+    Callback = function(Options)
+        -- Add functionality here
+    end
+}, "DupePetsDropdown")
+
+local Input = Tab:CreateInput({
+	Name = "👤 Alt Account",
+	Description = "❗ Your pets will dupe the pets to this account, making your main and alt account have the same pets as what the pet was traded",
+	PlaceholderText = "Username",
+	CurrentValue = "", -- the current text
+	Numeric = false, -- When true, the user may only type numbers in the box (Example walkspeed)
+	MaxCharacters = nil, -- if a number, the textbox length cannot exceed the number
+	Enter = false, -- When true, the callback will only be executed when the user presses enter.
+    	Callback = function(Text)
+       	 -- The function that takes place when the input is changed
+	 -- The variable (Text) is a string for the value in the text box
+    	end
+}, "Input") 
 
 local Slider = Tab:CreateSlider({
 	Name = "🔢 Amount of Pets",
