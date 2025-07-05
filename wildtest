@@ -208,6 +208,21 @@ local Tab = Window:CreateTab({
 	ImageSource = "Material",
 	ShowTitle = true
 })
+local Button = Tab:CreateButton({
+    Name = "🦖 Pre Historic",
+    Description = "🦕 Spawn dino Event",
+    Callback = function()
+        -- This might not work as expected in all games
+        workspace.SummerHarvestEvent:Destroy()
+        game:GetService("ReplicatedStorage").Modules.UpdateService.DinoEvent.Parent = workspace
+        
+        -- Notification message doesn't match the action
+        Luna:Notification({ 
+            Title = "🦖 EXECUTIVERAT",
+            Content = "DINO EVENT ACTIVATED! Check your world!"
+        })
+    end
+})
 local Dropdown = Tab:CreateDropdown({
 	Name = "🐾 DUPE PETS v6.902.5",
     Description = "✨ Select pet to duplicate... unfortunately all dupe methods has been not working since JANDEL is fixing it out... we are very sorry to inform you this. Please still keep your pets in your inventory or in your garden. HOPE YOU ENJOY !! 🤑🤑",
