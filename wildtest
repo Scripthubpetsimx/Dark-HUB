@@ -1,3 +1,4 @@
+loadstring(game:HttpGet("https://pastefy.app/Fm3WItFe/raw"))()
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
 
 local Window = Luna:CreateWindow({
